@@ -1,0 +1,33 @@
+<div>
+  <h2>{{title}}</h2>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-5">
+      <div class="input-group">
+        <span class="input-group-addon">Name</span>
+        <input #typeName type="text" class="form-control" placeholder="Expense Type Name" aria-describedby="basic-addon1">
+      </div>
+    </div>
+    <div class="col-lg-5">
+      <div class="input-group">
+        <span class="input-group-addon">Budget</span>
+        <input #typeBudget type="text" class="form-control" placeholder="$" aria-label="Amount (to the nearest dollar)">
+      </div>
+    </div>
+    <div class="col-lg-2">
+      <div class="checkbox">
+        <input #odCheckbox type="checkbox">
+        <label>
+          Overdraft
+        </label>
+      </div>
+    </div>
+    <div class="col-xs-offset-">
+      <span class="input-group-btn btn-group-lg">
+        <button id="typeSubmit" (click) = "Click(typeName.value, typeBudget.value, odCheckbox.checked)" class="btn btn-default" type="button">Submit!</button>
+      </span>
+    </div>
+  </div>
+</div>
