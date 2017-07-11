@@ -12,7 +12,6 @@ import { NewExpenseTypeComponent } from './new-expense-type/new-expense-type.com
 @NgModule({
   declarations: [
     AppComponent,
-
     HeaderComponent,
     NavComponent,
     BodyComponent,
