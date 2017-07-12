@@ -7,6 +7,7 @@ import { HeaderComponent } from './header/header.component';
 import { NavComponent } from './nav/nav.component';
 import { BodyComponent } from './body/body.component';
 import { NewExpenseTypeComponent } from './new-expense-type/new-expense-type.component';
+import { EmployeeComponent } from './employee/employee.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { NewExpenseTypeComponent } from './new-expense-type/new-expense-type.com
     HeaderComponent,
     NavComponent,
     BodyComponent,
-    NewExpenseTypeComponent
+    NewExpenseTypeComponent,
+    EmployeeComponent
 
   ],
   imports: [
