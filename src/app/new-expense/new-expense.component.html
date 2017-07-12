@@ -1,0 +1,57 @@
+<div class="text-center">
+  <h2>{{title}}</h2>
+</div>
+<!-- Purchase date
+Reimbursed date
+Cost
+Description
+Note
+Receipt
+Expense Type ID
+User ID -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4 col-lg-offset-1">
+      <div class="input-group">
+        <span class="input-group-addon">Purchase date</span>
+        <input #typeName type="text" class="form-control" placeholder="mm/dd/yyyy" aria-describedby="basic-addon1">
+      </div>
+    </div>
+    <div class="col-lg-2">
+      <div class="input-group">
+        <span class="input-group-addon">Cost</span>
+        <input #typeBudget type="text" class="form-control" placeholder="$" aria-label="Amount (to the nearest dollar)">
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="input-group">
+        <span class="input-group-addon">Description</span>
+        <input #typeBudget type="text" class="form-control" placeholder="Parking ticket..." aria-label="Amount (to the nearest dollar)">
+      </div>
+    </div>
+    <div class="col-lg-4 col-lg-offset-4">
+      <div class="input-group">
+        <label for="comment">Notes:</label>
+        <textarea class="form-control" rows="5" id="description"></textarea>
+      </div>
+    </div>
+    <div class="col-lg-2 col-lg-offset-4">
+      <button type="button" class="btn btn-default">Add Receipt</button>
+    </div>
+    <div class="col-lg-2">
+      <div class="btn-group" role="group">
+     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+       Expense Type
+       <span class="caret"></span>
+     </button>
+     <ul class="dropdown-menu">
+       <li><a href="#">Type 1</a></li>
+       <li><a href="#">Type 2</a></li>
+     </ul>
+   </div>
+    </div>
+    <div class="col-lg-4 col-lg-offset-5">
+      <button type="button" class="btn btn-default">Submit</button>
+    </div>
+  </div>
+</div>

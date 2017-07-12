@@ -8,6 +8,8 @@ import { NavComponent } from './nav/nav.component';
 import { BodyComponent } from './body/body.component';
 import { NewExpenseTypeComponent } from './new-expense-type/new-expense-type.component';
 import { EmployeeComponent } from './employee/employee.component';
+import { NewExpenseComponent } from './new-expense/new-expense.component';
+
 
 
 @NgModule({
@@ -17,7 +19,8 @@ import { EmployeeComponent } from './employee/employee.component';
     NavComponent,
     BodyComponent,
     NewExpenseTypeComponent,
-    EmployeeComponent
+    EmployeeComponent,
+    NewExpenseComponent
 
   ],
   imports: [
