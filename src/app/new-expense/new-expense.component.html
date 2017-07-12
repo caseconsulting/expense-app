@@ -32,7 +32,7 @@ User ID -->
     <div class="col-lg-4 col-lg-offset-4">
       <div class="input-group">
         <label for="comment">Notes:</label>
-        <textarea class="form-control" rows="5" id="description"></textarea>
+        <textarea class="form-control" placeholder="What I learned in boating school is..." rows="5" cols="100" id="description"></textarea>
       </div>
     </div>
     <div class="col-lg-2 col-lg-offset-4">
@@ -51,7 +51,9 @@ User ID -->
    </div>
     </div>
     <div class="col-lg-4 col-lg-offset-5">
-      <button type="button" class="btn btn-default">Submit</button>
-    </div>
+        <span class="input-group-btn btn-group-lg">
+          <button id="typeSubmit" (click) = "Click(typeName.value, typeBudget.value, odCheckbox.checked)" class="btn btn-default" type="button">Submit!</button>
+        </span>
+      </div>
   </div>
 </div>
