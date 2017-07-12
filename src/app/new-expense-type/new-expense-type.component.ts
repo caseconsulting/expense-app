@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'new-expense-type',
   templateUrl: './new-expense-type.component.html',
