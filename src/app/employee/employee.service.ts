@@ -20,8 +20,9 @@ export class EmployeeService {
   constructor(private http: Http) { }
 
   getEmployees(){
+    let apiCall = 'http://localhost:3000/employees/';
     return this.http
-    .get('http://localhost:3000/employees/')
+    .get(apiCall)
     .map((response: Response) => <Employee[]>response.json())
     .do(data => console.log(data))
     .catch(this.handleError);

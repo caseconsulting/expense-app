@@ -1,13 +1,16 @@
+<!-- Output employees -->
 <ul>
   <li *ngFor="let employee of employees" (click)="select(employee)">
     {{ employee.firstName }}
   </li>
 </ul>
 
+
+<!-- Output error messages -->
 <ul class="messages">
   <li *ngFor="let msg of messages">{{msg}}</li>
 </ul>
 
 <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
 
-<!-- <selected-employee *ngIf="selectedemployee" [employee]="selectedEmployee"></my-employee> -->
+<currentEmployee *ngIf="selectedEmployee" [employee]="selectedEmployee"></currentEmployee>
