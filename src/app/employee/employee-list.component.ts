@@ -26,6 +26,22 @@ export class EmployeeListComponent {
   ngOnInit() { this.getEmployees(); }
 
   select(employee: Employee) {
-    this.selectedEmployee = employee;
+    // console.log(employee);
+    // console.log(this.employeeService.readSingleEmployee(employee.id));
+    this.employeeService.readSingleEmployee(employee.id)
+    .subscribe(
+      result =>
+      {
+        this.selectedEmployee = result;
+        console.log("result of subscribe ", result);
+        console.log('selectedEmployee in sub ', this.selectedEmployee);
+        console.log('this is ', this);
+        return this.selectedEmployee;
+
+      },
+      error =>  this.errorMessage = <any>error
+    );
+    console.log('this other is ', this);
+    console.log("final value of selected employee should be ", this.selectedEmployee);
   }
 }

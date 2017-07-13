@@ -1,7 +1,7 @@
 <!-- Output employees -->
 <ul>
   <li *ngFor="let employee of employees" (click)="select(employee)">
-    {{ employee.firstName }}
+    {{ employee.firstName }} {{ employee.middleName }} {{ employee.lastName }}
   </li>
 </ul>
 
