@@ -1,0 +1,14 @@
+{
+  "extends": "stylelint-config-standard",
+  "ignoreFiles": [
+
+  ],
+  "plugins": [
+
+  ],
+  "rules": {
+    "max-empty-lines": 2,
+    "no-empty-source": null
+
+  }
+}

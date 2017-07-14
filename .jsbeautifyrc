@@ -1,0 +1,47 @@
+---
+  html:
+    brace_style: "collapse"
+    end_with_newline: true
+    indent_char: " "
+    indent_scripts: "normal"
+    indent_size: 2
+    max_preserve_newlines: 2
+    preserve_newlines: true
+    wrap_line_length: 0
+  css:
+    beautify_on_save: true
+    end_with_newline: true
+    indent_char: " "
+    indent_size: 2
+    newline_between_rules: true
+    selector_separator_newline: true
+  js:
+    beautify_on_save: true
+    end_with_newline: true
+    indent_char: " "
+    indent_level: 0
+    indent_size: 2
+    indent_with_tabs: false
+    jslint_happy: false
+    max_preserve_newlines: 2
+    preserve_newlines: true
+  json:
+    beautify_on_save: true
+    end_with_newline: true
+    indent_char: " "
+    indent_level: 0
+    indent_size: 2
+    indent_with_tabs: false
+    jslint_happy: false
+    max_preserve_newlines: 2
+    preserve_newlines: true
+  ts:
+    beautify_on_save: true
+    end_with_newline: true
+    indent_char: " "
+    indent_level: 0
+    indent_size: 2
+    indent_with_tabs: false
+    jslint_happy: false
+    max_preserve_newlines: 2
+    preserve_newlines: true

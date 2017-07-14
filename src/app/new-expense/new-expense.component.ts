@@ -11,7 +11,7 @@ export class NewExpenseComponent implements OnInit {
 
   ngOnInit() {
   }
-  Click(typeName:string, typeBudget:string, odCheckbox:boolean) {
+  Click(typeName: string, typeBudget: string, odCheckbox: boolean) {
     console.log(typeName, typeBudget, odCheckbox);
   }
 }
