@@ -10,6 +10,7 @@ import { BodyComponent } from './body/body.component';
 import { NewExpenseTypeComponent } from './new-expense-type/new-expense-type.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { EmployeeListComponent } from './employee/employee-list.component';
+import { UpdateDeleteBtnComponent } from './update-delete-btn/update-delete-btn.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { EmployeeListComponent } from './employee/employee-list.component';
     BodyComponent,
     NewExpenseTypeComponent,
     EmployeeComponent,
-    EmployeeListComponent
+    EmployeeListComponent,
+    UpdateDeleteBtnComponent
 
 
   ],

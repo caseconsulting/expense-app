@@ -1,6 +1,6 @@
 <!-- Output employees -->
-<ul>
-  <li *ngFor="let employee of employees" (click)="select(employee)">
+<ul class="list-group">
+  <li class="list-group-item text-center" *ngFor="let employee of employees" (click)="select(employee)">
     {{ employee.firstName }} {{ employee.middleName }} {{ employee.lastName }}
   </li>
 </ul>

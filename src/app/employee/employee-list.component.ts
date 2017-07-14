@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Employee, EmployeeService} from './employee.service';
 
 @Component({
@@ -9,6 +9,8 @@ import { Employee, EmployeeService} from './employee.service';
 })
 
 export class EmployeeListComponent {
+  @Output() changed = new EventEmitter<Employee>();
+
   errorMessage: string;
   selectedEmployee: Employee;
   employees: Employee[];
@@ -25,23 +27,10 @@ export class EmployeeListComponent {
 
   ngOnInit() { this.getEmployees(); }
 
-  select(employee: Employee) {
-    // console.log(employee);
-    // console.log(this.employeeService.readSingleEmployee(employee.id));
-    this.employeeService.readSingleEmployee(employee.id)
-    .subscribe(
-      result =>
-      {
-        this.selectedEmployee = result;
-        console.log("result of subscribe ", result);
-        console.log('selectedEmployee in sub ', this.selectedEmployee);
-        console.log('this is ', this);
-        return this.selectedEmployee;
-
-      },
-      error =>  this.errorMessage = <any>error
-    );
-    console.log('this other is ', this);
-    console.log("final value of selected employee should be ", this.selectedEmployee);
+  select(selectedEmployee: Employee) {
+    console.log('before ',this.selectedEmployee);
+    this.selectedEmployee = selectedEmployee;
+    this.changed.emit(selectedEmployee);
+    console.log('after ', this.selectedEmployee);
   }
 }
