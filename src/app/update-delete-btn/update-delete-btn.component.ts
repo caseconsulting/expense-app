@@ -22,5 +22,12 @@ export class UpdateDeleteBtnComponent implements OnInit {
       currentEmployee => employee = currentEmployee,
       );
   }
+  update(employee: Employee) {
+    console.log('calling update on ', this.currentEmployee);
+    this.employeeService.updateEmployee(this.currentEmployee)
+      .subscribe(
+      currentEmployee => employee = currentEmployee,
+      );
+  }
 
 }

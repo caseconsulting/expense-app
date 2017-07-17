@@ -53,8 +53,13 @@ export class EmployeeService {
 
   updateEmployee(employee: Employee) {
     console.log('making update call for ', employee.id);
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    const options = new RequestOptions({ headers: headers });
+
+    const testEmp = new Employee(employee.id, 'Black', 'Rawr', 'Panther', 50, 10101995);
+    console.log('testing ', testEmp);
     return this.http
-      .put(employeeRoute + employee.id, JSON.stringify(employee))
+      .put(employeeRoute + employee.id, JSON.stringify(testEmp), options)
       .map((res: Response) => {
         res.json();
         console.log(res)

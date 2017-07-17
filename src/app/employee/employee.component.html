@@ -1,4 +1,7 @@
 <h3>{{employee.firstName}} {{employee.middleName}} {{employee.lastName}}</h3>
 <h4> {{employee.empId}}</h4>
 <h4> {{employee.hireDate | date: 'MM/dd/y'}}</h4>
+
+<!-- if employee is being passed from employee component set currentEmployee in
+ CRUD btn component to employee being passed out of employee -->
 <update-delete-btn *ngIf="employee" [currentEmployee]="employee"></update-delete-btn>

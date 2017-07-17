@@ -44,6 +44,13 @@ export class EmployeeComponent implements OnChanges {
 
   delete(currentEmployee: Employee) {
     console.log('passing employee ', currentEmployee, 'to be deleted');
+    // Emit an event 'clicked', which passes up the currentEmployee
+    this.clicked.emit(currentEmployee);
+  }
+
+  update(currentEmployee: Employee) {
+    console.log('passing employee ', currentEmployee, ' to be updated');
+    // Emit an event 'clicked', which passes up the currentEmployee
     this.clicked.emit(currentEmployee);
   }
 
