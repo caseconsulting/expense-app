@@ -11,6 +11,7 @@ import { NewExpenseTypeComponent } from './new-expense-type/new-expense-type.com
 import { EmployeeComponent } from './employee/employee.component';
 import { EmployeeListComponent } from './employee/employee-list.component';
 import { UpdateDeleteBtnComponent } from './update-delete-btn/update-delete-btn.component';
+import { CreateBtnComponent } from './create-btn/create-btn.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { UpdateDeleteBtnComponent } from './update-delete-btn/update-delete-btn.
     NewExpenseTypeComponent,
     EmployeeComponent,
     EmployeeListComponent,
-    UpdateDeleteBtnComponent
+    UpdateDeleteBtnComponent,
+    CreateBtnComponent
 
 
   ],
