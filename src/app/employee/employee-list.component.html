@@ -1,5 +1,5 @@
 <!-- Output employees -->
-<ul class="list-group">
+<ul style="float: left;" class="list-group col-md-6">
   <li class="list-group-item text-center" *ngFor="let employee of employees" (click)="select(employee)">
     {{ employee.firstName }} {{ employee.middleName }} {{ employee.lastName }}
   </li>
@@ -7,9 +7,11 @@
 
 
 <!-- Output error messages -->
-<ul class="messages">
+<ul class="messages col-md-6">
   <li *ngFor="let msg of messages">{{msg}}</li>
 </ul>
+
+<app-create-btn></app-create-btn>
 
 <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
 

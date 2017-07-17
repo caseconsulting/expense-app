@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Employee, EmployeeService} from '../employee/employee.service';
 
 @Component({
   selector: 'app-create-btn',
@@ -6,10 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-btn.component.css']
 })
 export class CreateBtnComponent implements OnInit {
-
-  constructor() { }
+@Input() currentEmployee: Employee;
+  constructor(private employeeService: EmployeeService) { }
 
   ngOnInit() {
+    console.log('in create-btn ', this.currentEmployee);
+  }
+
+  create(employee: Employee) {
+    console.log('calling create on ', this.currentEmployee);
+    this.employeeService.createEmployee(this.currentEmployee)
+      .subscribe(
+      currentEmployee => employee = currentEmployee,
+      );
   }
 
 }

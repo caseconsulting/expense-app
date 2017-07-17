@@ -31,9 +31,14 @@ export class EmployeeService {
   }
 
   createEmployee(employee: Employee) {
-    console.log('making create call for ', employee.id);
+    console.log('making create call');
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    const options = new RequestOptions({ headers: headers });
+
+    const testEmp = new Employee('', 'Black', 'Rawr', 'Panther', 51, 10101995);
+    console.log('testing ', testEmp);
     return this.http
-      .post(employeeRoute, JSON.stringify(employee))
+      .post(employeeRoute, JSON.stringify(testEmp), options)
       .map((res: Response) => {
         res.json();
         console.log(res)

@@ -12,7 +12,7 @@ export class UpdateDeleteBtnComponent implements OnInit {
   constructor(private employeeService: EmployeeService) { }
 
   ngOnInit() {
-    console.log(this.currentEmployee);
+    console.log('in create-btn ', this.currentEmployee);
   }
 
   delete(employee: Employee) {
