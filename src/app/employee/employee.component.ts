@@ -14,21 +14,21 @@
 //
 // }
 
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges} from '@angular/core';
 import { Employee, EmployeeService } from './employee.service';
 
 @Component({
   selector: 'currentEmployee',
    templateUrl: './employee.component.html'
 })
-export class EmployeeComponent {
+export class EmployeeComponent implements OnChanges {
   @Input() employee: Employee;
   @Output() clicked = new EventEmitter<Employee>();
   constructor(private employeeService: EmployeeService) { }
 
   // ngOnChanges detects when a change has occured on @input arguments
   ngOnChanges() {
-    if(this.employee) {
+    if (this.employee) {
      console.log(`>>> Call API for ${this.employee.firstName}`);
      // this would call your getEmployee service
      // you would need to do a subscribe below setting
@@ -42,8 +42,7 @@ export class EmployeeComponent {
     }
   }
 
-  delete(currentEmployee: Employee)
-  {
+  delete(currentEmployee: Employee) {
     console.log('passing employee ', currentEmployee, 'to be deleted');
     this.clicked.emit(currentEmployee);
   }

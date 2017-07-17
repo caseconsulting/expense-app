@@ -8,7 +8,7 @@ import { Employee, EmployeeService} from './employee.service';
   providers: [EmployeeService]
 })
 
-export class EmployeeListComponent {
+export class EmployeeListComponent implements OnInit {
   @Output() changed = new EventEmitter<Employee>();
 
   errorMessage: string;
@@ -28,7 +28,7 @@ export class EmployeeListComponent {
   ngOnInit() { this.getEmployees(); }
 
   select(selectedEmployee: Employee) {
-    console.log('before ',this.selectedEmployee);
+    console.log('before ', this.selectedEmployee);
     this.selectedEmployee = selectedEmployee;
     this.changed.emit(selectedEmployee);
     console.log('after ', this.selectedEmployee);
