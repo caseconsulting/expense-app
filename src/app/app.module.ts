@@ -12,7 +12,7 @@ import { EmployeeComponent } from './employee/employee.component';
 import { EmployeeListComponent } from './employee/employee-list.component';
 import { UpdateDeleteBtnComponent } from './update-delete-btn/update-delete-btn.component';
 import { CreateBtnComponent } from './create-btn/create-btn.component';
-
+import { EmployeeFormComponent } from './forms/employee-form/employee-form.component';
 
 @NgModule({
   declarations: [
@@ -24,12 +24,13 @@ import { CreateBtnComponent } from './create-btn/create-btn.component';
     EmployeeComponent,
     EmployeeListComponent,
     UpdateDeleteBtnComponent,
-    CreateBtnComponent
-
-
+    CreateBtnComponent,
+    EmployeeFormComponent
   ],
   imports: [
-    BrowserModule, HttpModule
+    BrowserModule,
+    HttpModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
