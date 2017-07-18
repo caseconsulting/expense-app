@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Employee, EmployeeService} from '../employee/employee.service';
-
+import { EmployeeListComponent } from '../employee/employee-list.component';
 @Component({
   selector: 'exp-update-delete-btn',
   templateUrl: './update-delete-btn.component.html',
@@ -9,7 +9,7 @@ import { Employee, EmployeeService} from '../employee/employee.service';
 export class UpdateDeleteBtnComponent implements OnInit {
   @Input() currentEmployee: Employee;
 
-  constructor(private employeeService: EmployeeService) { }
+  constructor(private employeeService: EmployeeService, private employeeListComponent: EmployeeListComponent) { }
 
   ngOnInit() {
     console.log('in create-btn ', this.currentEmployee);
@@ -19,14 +19,16 @@ export class UpdateDeleteBtnComponent implements OnInit {
     console.log('calling delete on ', this.currentEmployee);
     this.employeeService.deleteEmployee(this.currentEmployee)
       .subscribe(
-      currentEmployee => employee = currentEmployee,
+      () => { this.employeeListComponent.getEmployees() },
+      currentEmployee => employee = currentEmployee
       );
   }
   update(employee: Employee) {
     console.log('calling update on ', this.currentEmployee);
     this.employeeService.updateEmployee(this.currentEmployee)
       .subscribe(
-      currentEmployee => employee = currentEmployee,
+      () => { this.employeeListComponent.getEmployees() },
+      currentEmployee => employee = currentEmployee
       );
   }
 
