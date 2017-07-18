@@ -35,7 +35,7 @@ export class EmployeeService {
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
 
-    const testEmp = new Employee('', 'Black', 'Rawr', 'Panther', 57, 10101995);
+    const testEmp = new Employee('', 'White', 'Rawr', 'Panther', 104, 10101995);
     console.log('testing ', testEmp);
     return this.http
       .post(employeeRoute, JSON.stringify(testEmp), options)
@@ -74,14 +74,14 @@ export class EmployeeService {
 
   deleteEmployee(employee: Employee) {
     console.log('making delete call for ', employee);
-     const headers = new Headers({ 'Content-Type': 'application/json' });
-     const options = new RequestOptions({ headers: headers });
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    const options = new RequestOptions({ headers: headers });
 
-      return this.http
-        .delete(employeeRoute + employee.id, options)
-        .map((response: Response) => response.json())
-        .do(data => console.log(data))
-        .catch(this.handleError);
+    return this.http
+      .delete(employeeRoute + employee.id, options)
+      .map((response: Response) => response.json())
+      .do(data => console.log(data))
+      .catch(this.handleError);
   }
 
   private handleError(error: Response) {
