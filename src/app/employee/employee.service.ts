@@ -12,8 +12,8 @@ export class Employee {
     public firstName: string,
     public middleName: string,
     public lastName: string,
-    public empId: number,
-    public hireDate: number // Ask about this
+    public empId: string,
+    public hireDate: string // Ask about this
   ) { }
 }
 
@@ -35,7 +35,7 @@ export class EmployeeService {
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
 
-    const testEmp = new Employee('', 'White', 'Rawr', 'Panther', 104, 10101995);
+    const testEmp = new Employee('', 'Black', 'Rawr', 'Panther', '57', '10101995');
     console.log('testing ', testEmp);
     return this.http
       .post(employeeRoute, JSON.stringify(testEmp), options)
@@ -61,7 +61,7 @@ export class EmployeeService {
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
 
-    const testEmp = new Employee(employee.id, 'Black', 'Rawr', 'Panther', 50, 10101995);
+    const testEmp = new Employee(employee.id, 'Black', 'Rawr', 'Panther', '50', '10101995');
     console.log('testing ', testEmp);
     return this.http
       .put(employeeRoute + employee.id, JSON.stringify(testEmp), options)
