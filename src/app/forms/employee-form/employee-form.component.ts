@@ -49,8 +49,9 @@ export class EmployeeFormComponent implements OnChanges {
       );
   }
   update(employee: Employee) {
-    console.log('calling update on ', this.focusedEmployee);
-    this.employeeService.updateEmployee(this.focusedEmployee)
+    console.log('calling update on ', this.focusedEmployee.id);
+    employee.id = this.focusedEmployee.id;
+    this.employeeService.updateEmployee(employee)
       .subscribe(
       () => { this.employeeListComponent.getEmployees() },
       focusedEmployee => employee = focusedEmployee
