@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 
 @Component({
-  selector: 'new-expense-type',
+  selector: 'exp-expense-type',
   templateUrl: './new-expense-type.component.html',
   styleUrls: ['./new-expense-type.component.css']
 })
@@ -13,7 +13,7 @@ export class NewExpenseTypeComponent implements OnInit {
   ngOnInit() {
   }
 
-  Click(typeName:string, typeBudget:string, odCheckbox:boolean) {
+  Click(typeName: string, typeBudget: string, odCheckbox: boolean) {
     console.log(typeName, typeBudget, odCheckbox);
   }
 }

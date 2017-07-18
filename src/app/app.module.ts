@@ -14,6 +14,7 @@ import { EmployeeListComponent } from './employee/employee-list.component';
 import { UpdateDeleteBtnComponent } from './update-delete-btn/update-delete-btn.component';
 import { CreateBtnComponent } from './create-btn/create-btn.component';
 import { EmployeeFormComponent } from './forms/employee-form/employee-form.component';
+import { DeleteConfirmComponent } from './delete-confirm/delete-confirm.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { EmployeeFormComponent } from './forms/employee-form/employee-form.compo
     EmployeeListComponent,
     UpdateDeleteBtnComponent,
     CreateBtnComponent,
-    EmployeeFormComponent
+    EmployeeFormComponent,
+    DeleteConfirmComponent
   ],
   imports: [
     BrowserModule,

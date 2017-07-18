@@ -5,8 +5,8 @@
 <h4> {{employee.empId}}</h4>
 <h4> {{employee.hireDate | date: 'MM/dd/y'}}</h4>
 
-<app-employee-form></app-employee-form>
+<exp-employee-form></exp-employee-form>
 <!-- if employee is being passed from employee component set currentEmployee in
  CRUD btn component to employee being passed out of employee -->
-<update-delete-btn *ngIf="employee" [currentEmployee]="employee"></update-delete-btn>
+<exp-update-delete-btn *ngIf="employee" [currentEmployee]="employee"></exp-update-delete-btn>
 </div>

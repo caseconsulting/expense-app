@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Employee } from '../../employee/employee.service';
 
 @Component({
-  selector: 'app-employee-form',
+  selector: 'exp-employee-form',
   templateUrl: './employee-form.component.html',
   styleUrls: ['./employee-form.component.css']
 })

@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Employee, EmployeeService} from '../employee/employee.service';
 
 @Component({
-  selector: 'update-delete-btn',
+  selector: 'exp-update-delete-btn',
   templateUrl: './update-delete-btn.component.html',
   styleUrls: ['./update-delete-btn.component.css']
 })

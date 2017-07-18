@@ -11,8 +11,8 @@
   <li *ngFor="let msg of messages">{{msg}}</li>
 </ul>
 
-<app-create-btn></app-create-btn>
+<exp-create-btn></exp-create-btn>
 
 <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
 
-<currentEmployee *ngIf="selectedEmployee" [employee]="selectedEmployee"></currentEmployee>
+<exp-current-employee *ngIf="selectedEmployee" [employee]="selectedEmployee"></exp-current-employee>

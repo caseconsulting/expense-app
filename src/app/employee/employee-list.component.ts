@@ -3,7 +3,7 @@ import { Employee, EmployeeService} from './employee.service';
 
 @Component({
   selector: 'exp-employee-list',
-  templateUrl: './employee-list.component.html',
+   templateUrl: './employee-list.component.html',
   styles: ['li {cursor: pointer;} .error {color:red;}'],
   providers: [EmployeeService]
 })

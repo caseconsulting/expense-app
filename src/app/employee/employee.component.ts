@@ -18,7 +18,7 @@ import { Component, Input, Output, EventEmitter, OnChanges} from '@angular/core'
 import { Employee, EmployeeService } from './employee.service';
 
 @Component({
-  selector: 'currentEmployee',
+  selector: 'exp-current-employee',
    templateUrl: './employee.component.html'
 })
 export class EmployeeComponent implements OnChanges {

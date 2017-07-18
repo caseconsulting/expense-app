@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Employee, EmployeeService} from '../employee/employee.service';
 
 @Component({
-  selector: 'app-create-btn',
+  selector: 'exp-create-btn',
   templateUrl: './create-btn.component.html',
   styleUrls: ['./create-btn.component.css']
 })
