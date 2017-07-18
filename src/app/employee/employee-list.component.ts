@@ -2,8 +2,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Employee, EmployeeService} from './employee.service';
 
 @Component({
-  selector: 'employee-list',
-   templateUrl: './employee-list.component.html',
+  selector: 'exp-employee-list',
+  templateUrl: './employee-list.component.html',
   styles: ['li {cursor: pointer;} .error {color:red;}'],
   providers: [EmployeeService]
 })
@@ -20,9 +20,9 @@ export class EmployeeListComponent implements OnInit {
   getEmployees() {
     this.employeeService.getEmployees()
       .subscribe(
-        employees => this.employees = employees,
-        error =>  this.errorMessage = <any>error
-    );
+      employees => this.employees = employees,
+      error => this.errorMessage = <any>error
+      );
   }
 
   ngOnInit() { this.getEmployees(); }
