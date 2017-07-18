@@ -54,7 +54,6 @@
   "pre-commit": [
     "validate",
     "lint",
-    "stylelint",
-    "test"
+    "stylelint"
   ]
 }
