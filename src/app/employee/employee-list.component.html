@@ -1,6 +1,7 @@
 <!-- Output employees -->
 <ul style="float: left;" class="list-group col-md-6">
-  <li class="list-group-item text-center" *ngFor="let employee of employees" (click)="select(employee)">
+  <li class="list-group-item text-center" *ngFor="let employee of employees"
+  (click)="select(employee)">
     {{ employee.firstName }} {{ employee.middleName }} {{ employee.lastName }}
   </li>
 </ul>
@@ -13,6 +14,10 @@
 
 <exp-create-btn></exp-create-btn>
 
-<div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
+<div class="error" (errHandle)=errHandle($event)
+*ngIf="errorMessage">{{errorMessage}}</div>
 
-<exp-employee-form *ngIf="selectedEmployee" [focusedEmployee]="selectedEmployee"></exp-employee-form>
+
+<exp-employee-form *ngIf="selectedEmployee"
+[employee]="selectedEmployee" (errHandle)=errHandle($event)>
+</exp-employee-form>

@@ -3,7 +3,7 @@ import { Employee, EmployeeService} from './employee.service';
 
 @Component({
   selector: 'exp-employee-list',
-   templateUrl: './employee-list.component.html',
+  templateUrl: './employee-list.component.html',
   styles: ['li {cursor: pointer;} .error {color:red;}'],
   providers: [EmployeeService]
 })
@@ -32,5 +32,10 @@ export class EmployeeListComponent implements OnInit {
     this.selectedEmployee = selectedEmployee;
     this.changed.emit(selectedEmployee);
     console.log('after ', this.selectedEmployee);
+  }
+
+  errHandle(err: any) {
+    this.errorMessage = err;
+    console.log('calling error', err);
   }
 }

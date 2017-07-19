@@ -8,8 +8,9 @@ import { EmployeeListComponent } from '../../employee/employee-list.component';
   styleUrls: ['./employee-form.component.css']
 })
 export class EmployeeFormComponent implements OnChanges {
-  @Input() focusedEmployee: Employee;
-  @Output() clicked = new EventEmitter<Employee>();
+  @Input() employee: Employee;
+  //  @Output() clicked = new EventEmitter<Employee>();
+  @Output() errHandle = new EventEmitter<any>();
 
   model: Employee;
   editing = false;
@@ -22,39 +23,41 @@ export class EmployeeFormComponent implements OnChanges {
       form.controls['firstName'].value; // Dr. IQ
   }
   ngOnChanges() {
-    if (this.focusedEmployee) {
-      console.log(`>>> Call API for ${this.focusedEmployee.firstName}`);
+    if (this.employee) {
+      console.log(`>>> Call API for ${this.employee.firstName}`);
       // this would call your getEmployee service
       // you would need to do a subscribe below setting
       // the return value of the getCharacter call to your character
-      this.employeeService.readSingleEmployee(this.focusedEmployee.id)
+      this.employeeService.readSingleEmployee(this.employee.id)
         .subscribe(
-        result => this.focusedEmployee = result
+        result => this.employee = result
         );
-      this.model = new Employee('', this.focusedEmployee.firstName,
-        this.focusedEmployee.middleName, this.focusedEmployee.lastName,
-        this.focusedEmployee.empId, this.focusedEmployee.hireDate);
+      this.model = new Employee('', this.employee.firstName,
+        this.employee.middleName, this.employee.lastName,
+        this.employee.empId, this.employee.hireDate);
 
-      console.log('passing employee ', this.focusedEmployee, 'to  delete');
-      this.clicked.emit(this.focusedEmployee);
+      console.log('passing employee ', this.employee, 'to  delete');
+      //  this.clicked.emit(this.employee);
     }
   }
 
-  delete(employee: Employee) {
-    console.log('calling delete on ', this.focusedEmployee);
-    this.employeeService.deleteEmployee(this.focusedEmployee)
+  delete(emp: Employee) {
+    console.log('calling delete on ', this.employee);
+    this.employeeService.deleteEmployee(this.employee)
       .subscribe(
-      () => { this.employeeListComponent.getEmployees() },
-      focusedEmployee => employee = focusedEmployee
+      () => {
+        this.employeeListComponent.getEmployees();
+      },
+      error => this.errHandle.emit(error)
       );
   }
   update(employee: Employee) {
-    console.log('calling update on ', this.focusedEmployee.id);
-    employee.id = this.focusedEmployee.id;
+    console.log('calling update on ', this.employee.id);
+    employee.id = this.employee.id;
     this.employeeService.updateEmployee(employee)
       .subscribe(
       () => { this.employeeListComponent.getEmployees() },
-      focusedEmployee => employee = focusedEmployee
+      error => this.errHandle.emit(error)
       );
   }
 

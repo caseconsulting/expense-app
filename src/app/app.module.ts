@@ -34,7 +34,7 @@ import { DeleteConfirmComponent } from './delete-confirm/delete-confirm.componen
     BrowserModule,
     HttpModule,
     FormsModule,
-    NgbModule
+    NgbModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

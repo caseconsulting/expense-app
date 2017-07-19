@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BodyComponent implements OnInit {
 
+
   constructor() { }
 
   ngOnInit() {
   }
-
+  changed(changedEmployee: any) {
+    if (changedEmployee) {
+      console.warn('something changed', changedEmployee);
+    }
+  }
 }

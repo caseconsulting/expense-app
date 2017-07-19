@@ -13,7 +13,7 @@ export class Employee {
     public middleName: string,
     public lastName: string,
     public empId: string,
-    public hireDate: string // Ask about this
+    public hireDate: string
   ) { }
 }
 
@@ -80,7 +80,7 @@ export class EmployeeService {
     return this.http
       .delete(employeeRoute + employee.id, options)
       .map((response: Response) => response.json())
-      .do(data => console.log(data))
+      .do(data => console.log('DELETE response: ', data))
       .catch(this.handleError);
   }
 
