@@ -1,6 +1,8 @@
 import { Component, Input, EventEmitter, Output, OnChanges } from '@angular/core';
-import { Employee, EmployeeService } from '../../employee/employee.service';
 import { EmployeeListComponent } from '../../employee/employee-list.component';
+
+import { Employee, EmployeeService } from '../../employee/employee.service';
+
 
 @Component({
   selector: 'exp-employee-form',
@@ -41,15 +43,17 @@ export class EmployeeFormComponent implements OnChanges {
     }
   }
 
-  delete(emp: Employee) {
-    console.log('calling delete on ', this.employee);
-    this.employeeService.deleteEmployee(this.employee)
-      .subscribe(
-      () => {
-        this.employeeListComponent.getEmployees();
-      },
-      error => this.errHandle.emit(error)
-      );
+  delete(confirmed: boolean) {
+    if (confirmed) {
+      console.log('calling delete on ', this.employee);
+      this.employeeService.deleteEmployee(this.employee)
+        .subscribe(
+        () => {
+          this.employeeListComponent.getEmployees();
+        },
+        error => this.errHandle.emit(error)
+        );
+    }
   }
   update(employee: Employee) {
     console.log('calling update on ', this.employee.id);
