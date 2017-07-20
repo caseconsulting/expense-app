@@ -14,6 +14,7 @@ export class EmployeeFormComponent implements OnChanges {
   //  @Output() clicked = new EventEmitter<Employee>();
   @Output() errHandle = new EventEmitter<any>();
   @Output() removeFromList = new EventEmitter<boolean>();
+  @Output() updateList = new EventEmitter<boolean>();
 
   model: Employee;
   editing = false;
@@ -38,8 +39,7 @@ export class EmployeeFormComponent implements OnChanges {
       this.model = new Employee('', this.employee.firstName,
         this.employee.middleName, this.employee.lastName,
         this.employee.empId, this.employee.hireDate);
-
-      console.log('passing employee ', this.employee, 'to  delete');
+        console.log('passing employee ', this.employee, 'to  delete');
       //  this.clicked.emit(this.employee);
     }
   }
@@ -59,7 +59,10 @@ export class EmployeeFormComponent implements OnChanges {
     employee.id = this.employee.id;
     this.employeeService.updateEmployee(employee)
       .subscribe(
-      () => { this.employeeListComponent.getEmployees() },
+      () => {
+        this.updateList.emit(true);
+        this.editing = false;
+      },
       error => this.errHandle.emit(error)
       );
   }

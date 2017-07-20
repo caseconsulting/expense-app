@@ -20,5 +20,6 @@
 
 <exp-employee-form *ngIf="selectedEmployee" [employee]="selectedEmployee"
 (removeFromList)=removeFromList($event)
+(updateList)=updateList($event)
 (errHandle)=errHandle($event)>
 </exp-employee-form>
