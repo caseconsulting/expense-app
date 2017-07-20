@@ -42,7 +42,7 @@
 
       <button type="submit" class="btn btn-success" (click)="onSubmit();" [disabled]="!employeeForm.form.valid || employeeForm.form.pristine">Create</button>
        <!-- TODO Make the form go away on cancel -->
-      <button class="btn btn-default" (click)="reviewing=false">Cancel</button>
+      <button class="btn btn-default" (click)="cancelSubmission(false)">Cancel</button>
     </form>
   </div>
 

@@ -10,8 +10,8 @@ import { UpdateListService } from '../update-list.service'
 })
 export class EmployeeFormCreateComponent {
   @Output() errHandle = new EventEmitter<any>();
-  @Output() updateList = new EventEmitter<boolean>();
-
+  @Output() hideView = new EventEmitter<boolean>();
+  @Input() buttonClicked: boolean;
   reviewing = false;
   model = new Employee('', '', '', '', '', '');
 
@@ -29,6 +29,11 @@ export class EmployeeFormCreateComponent {
       },
       error => this.errHandle.emit(error)
       );
+  }
+
+  cancelSubmission(remove: boolean) {
+    console.log('canceling submission ', remove);
+    this.hideView.emit(false);
   }
 
   // keep this last
