@@ -15,6 +15,7 @@ import { UpdateDeleteBtnComponent } from './update-delete-btn/update-delete-btn.
 import { CreateBtnComponent } from './create-btn/create-btn.component';
 import { EmployeeFormComponent } from './forms/employee-form/employee-form.component';
 import { DeleteConfirmComponent } from './delete-confirm/delete-confirm.component';
+import { EmployeeFormCreateComponent } from './employee-form-create/employee-form-create.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { DeleteConfirmComponent } from './delete-confirm/delete-confirm.componen
     UpdateDeleteBtnComponent,
     CreateBtnComponent,
     EmployeeFormComponent,
-    DeleteConfirmComponent
+    DeleteConfirmComponent,
+    EmployeeFormCreateComponent
   ],
   imports: [
     BrowserModule,

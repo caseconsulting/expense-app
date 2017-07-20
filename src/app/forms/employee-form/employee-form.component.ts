@@ -1,6 +1,4 @@
 import { Component, Input, EventEmitter, Output, OnChanges } from '@angular/core';
-import { EmployeeListComponent } from '../../employee/employee-list.component';
-
 import { Employee, EmployeeService } from '../../employee/employee.service';
 
 
@@ -20,12 +18,8 @@ export class EmployeeFormComponent implements OnChanges {
   editing = false;
   onSubmit() { this.editing = true; }
 
-  constructor(private employeeService: EmployeeService, private employeeListComponent: EmployeeListComponent) { }
+  constructor(private employeeService: EmployeeService) { }
 
-  showFormControls(form: any) {
-    return form && form.controls['firstName'] &&
-      form.controls['firstName'].value; // Dr. IQ
-  }
   ngOnChanges() {
     if (this.employee) {
       console.log(`>>> Call API for ${this.employee.firstName}`);
