@@ -12,7 +12,7 @@
   <li *ngFor="let msg of messages">{{msg}}</li>
 </ul>
 
-<exp-create-btn (changed)=changed($event) ></exp-create-btn>
+<exp-create-btn></exp-create-btn>
 
 <div class="error" (errHandle)=errHandle($event)
 *ngIf="errorMessage">{{errorMessage}}</div>
@@ -23,8 +23,3 @@
 (updateList)=updateList($event)
 (errHandle)=errHandle($event)>
 </exp-employee-form>
-
-<exp-employee-form-create
-(updateList)=updateList($event)
-(errHandle)=errHandle($event)>
-</exp-employee-form-create>

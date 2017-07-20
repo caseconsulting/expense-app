@@ -1,20 +1,6 @@
-// import { Component, OnInit } from '@angular/core';
-//
-// @Component({
-//   selector: 'exp-employee-form-create',
-//   templateUrl: './employee-form-create.component.html',
-//   styleUrls: ['./employee-form-create.component.css']
-// })
-// export class EmployeeFormCreateComponent implements OnInit {
-//
-//   constructor() { }
-//
-//   ngOnInit() {
-//   }
-//
-// }
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { Employee, EmployeeService } from '../employee/employee.service';
+import { UpdateListService } from '../update-list.service'
 
 
 @Component({
@@ -31,14 +17,14 @@ export class EmployeeFormCreateComponent {
 
   onSubmit() { this.reviewing = true; }
 
-  constructor(private employeeService: EmployeeService) { }
+  constructor(private employeeService: EmployeeService, private updateListService: UpdateListService) { }
 
   create(employee: Employee) {
     console.log('calling create on ', employee.firstName);
     this.employeeService.createEmployee(employee)
       .subscribe(
       () => {
-        this.updateList.emit(true);
+        this.updateListService.announceUpdate(true);
         this.reviewing = false;
       },
       error => this.errHandle.emit(error)

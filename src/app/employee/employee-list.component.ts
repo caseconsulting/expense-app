@@ -1,11 +1,13 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Employee, EmployeeService} from './employee.service';
+import { UpdateListService } from '../update-list.service';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'exp-employee-list',
   templateUrl: './employee-list.component.html',
   styles: ['li {cursor: pointer;} .error {color:red;}'],
-  providers: [EmployeeService]
+  providers: [EmployeeService, UpdateListService]
 })
 
 export class EmployeeListComponent implements OnInit {
@@ -14,8 +16,13 @@ export class EmployeeListComponent implements OnInit {
   errorMessage: string;
   selectedEmployee: Employee;
   employees: Employee[];
+  subscription: Subscription;
+  reloadList = false;
 
-  constructor(private employeeService: EmployeeService) { }
+  constructor(private employeeService: EmployeeService, private updateListService: UpdateListService) {
+  this.subscription = updateListService.updateAnnounced$.subscribe(
+    update => this.updateList(update)
+  )}
 
   getEmployees() {
     this.employeeService.getEmployees()
@@ -42,9 +49,11 @@ export class EmployeeListComponent implements OnInit {
   }
 
   updateList(isChanged: boolean) {
+    console.log(isChanged);
     if (isChanged) {
       this.getEmployees();
     }
+
   }
 
   errHandle(err: any) {
