@@ -34,9 +34,10 @@ export class EmployeeListComponent implements OnInit {
     console.log('after ', this.selectedEmployee);
   }
 
-  updateList(isChanged: boolean) {
+  removeFromList(isChanged: boolean) {
     if (isChanged) {
       this.getEmployees();
+      this.selectedEmployee = null;
     }
   }
 
