@@ -12,9 +12,4 @@ export class BodyComponent implements OnInit {
 
   ngOnInit() {
   }
-  changed(changedEmployee: any) {
-    if (changedEmployee) {
-      console.warn('something changed', changedEmployee);
-    }
-  }
 }

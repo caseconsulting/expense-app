@@ -13,7 +13,7 @@ export class EmployeeFormComponent implements OnChanges {
   @Input() employee: Employee;
   //  @Output() clicked = new EventEmitter<Employee>();
   @Output() errHandle = new EventEmitter<any>();
-
+  @Output() updateList = new EventEmitter<boolean>();
   model: Employee;
   editing = false;
   onSubmit() { this.editing = true; }
@@ -48,9 +48,7 @@ export class EmployeeFormComponent implements OnChanges {
       console.log('calling delete on ', this.employee);
       this.employeeService.deleteEmployee(this.employee)
         .subscribe(
-        () => {
-          this.employeeListComponent.getEmployees();
-        },
+        () => this.updateList.emit(true),
         error => this.errHandle.emit(error)
         );
     }

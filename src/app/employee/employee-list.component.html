@@ -12,12 +12,13 @@
   <li *ngFor="let msg of messages">{{msg}}</li>
 </ul>
 
-<exp-create-btn></exp-create-btn>
+<exp-create-btn (changed)=changed($event) ></exp-create-btn>
 
 <div class="error" (errHandle)=errHandle($event)
 *ngIf="errorMessage">{{errorMessage}}</div>
 
 
-<exp-employee-form *ngIf="selectedEmployee"
-[employee]="selectedEmployee" (errHandle)=errHandle($event)>
+<exp-employee-form *ngIf="selectedEmployee" [employee]="selectedEmployee"
+(updateList)=updateList($event)
+(errHandle)=errHandle($event)>
 </exp-employee-form>

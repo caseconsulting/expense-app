@@ -34,6 +34,12 @@ export class EmployeeListComponent implements OnInit {
     console.log('after ', this.selectedEmployee);
   }
 
+  updateList(isChanged: boolean) {
+    if (isChanged) {
+      this.getEmployees();
+    }
+  }
+
   errHandle(err: any) {
     this.errorMessage = err;
     console.log('calling error', err);
