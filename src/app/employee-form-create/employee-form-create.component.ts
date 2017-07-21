@@ -24,12 +24,11 @@ export class EmployeeFormCreateComponent {
     this.employeeService.createEmployee(employee)
       .subscribe(
       () => {
-        this.updateListService.announceUpdate('create');
-        this.hideSubmission(true);
+        this.updateListService.announceUpdate('create'),
+          this.hideSubmission(true);
 
       },
-      error => this.errHandle.emit(error)
-      );
+      error => this.errHandle.emit(error));
   }
 
   hideSubmission(remove: boolean) {
