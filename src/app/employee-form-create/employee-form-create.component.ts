@@ -25,13 +25,14 @@ export class EmployeeFormCreateComponent {
       .subscribe(
       () => {
         this.updateListService.announceUpdate('create');
-        this.reviewing = false;
+        this.hideSubmission(true);
+
       },
       error => this.errHandle.emit(error)
       );
   }
 
-  cancelSubmission(remove: boolean) {
+  hideSubmission(remove: boolean) {
     console.log('canceling submission ', remove);
     this.hideView.emit(false);
   }
