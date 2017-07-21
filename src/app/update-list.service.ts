@@ -5,7 +5,7 @@ import { Subject } from 'rxjs/Subject';
 export class UpdateListService {
 
   // Observable string sources
-  private updateAnnouncedSource = new Subject<boolean>();
+  private updateAnnouncedSource = new Subject<string>();
   // private missionConfirmedSource = new Subject<string>();
 
   // Observable string streams
@@ -13,8 +13,8 @@ export class UpdateListService {
   // missionConfirmed$ = this.missionConfirmedSource.asObservable();
 
   // Service message commands
-  announceUpdate(update: boolean) {
-    this.updateAnnouncedSource.next(update);
+  announceUpdate(caller: string) {
+    this.updateAnnouncedSource.next(caller);
   }
 
   // confirmMission(astronaut: string) {

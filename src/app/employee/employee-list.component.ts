@@ -20,9 +20,11 @@ export class EmployeeListComponent implements OnInit {
   reloadList = false;
 
   constructor(private employeeService: EmployeeService, private updateListService: UpdateListService) {
-  this.subscription = updateListService.updateAnnounced$.subscribe(
-    update => this.updateList(update)
-  )}
+
+    this.subscription = updateListService.updateAnnounced$.subscribe(
+      caller => this.updateList(caller)
+    )
+  }
 
   getEmployees() {
     this.employeeService.getEmployees()
@@ -48,12 +50,11 @@ export class EmployeeListComponent implements OnInit {
     }
   }
 
-  updateList(isChanged: boolean) {
-    console.log(isChanged);
-    if (isChanged) {
-      this.getEmployees();
+  updateList(caller: string) {
+    this.getEmployees();
+    if (caller === 'remove') {
+      this.selectedEmployee = null;
     }
-
   }
 
   errHandle(err: any) {

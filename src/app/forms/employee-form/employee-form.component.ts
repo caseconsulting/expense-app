@@ -1,4 +1,6 @@
 import { Component, Input, EventEmitter, Output, OnChanges } from '@angular/core';
+
+import { UpdateListService } from '../../update-list.service';
 import { Employee, EmployeeService } from '../../employee/employee.service';
 
 
@@ -18,7 +20,7 @@ export class EmployeeFormComponent implements OnChanges {
   editing = false;
   onSubmit() { this.editing = true; }
 
-  constructor(private employeeService: EmployeeService) { }
+  constructor(private employeeService: EmployeeService, private updateListService: UpdateListService) { }
 
   ngOnChanges() {
     if (this.employee) {
@@ -33,7 +35,7 @@ export class EmployeeFormComponent implements OnChanges {
       this.model = new Employee('', this.employee.firstName,
         this.employee.middleName, this.employee.lastName,
         this.employee.empId, this.employee.hireDate);
-        console.log('passing employee ', this.employee, 'to  delete');
+      console.log('passing employee ', this.employee, 'to  delete');
       //  this.clicked.emit(this.employee);
     }
   }
@@ -43,7 +45,7 @@ export class EmployeeFormComponent implements OnChanges {
       console.log('calling delete on ', this.employee);
       this.employeeService.deleteEmployee(this.employee)
         .subscribe(
-        () => this.removeFromList.emit(true),
+        () => this.updateListService.announceUpdate('remove'),
         error => this.errHandle.emit(error)
         );
     }
@@ -54,7 +56,7 @@ export class EmployeeFormComponent implements OnChanges {
     this.employeeService.updateEmployee(employee)
       .subscribe(
       () => {
-        this.updateList.emit(true);
+        this.updateListService.announceUpdate('update');
         this.editing = false;
       },
       error => this.errHandle.emit(error)

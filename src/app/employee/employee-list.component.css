@@ -1,0 +1,10 @@
+ul li {
+  cursor: pointer;
+  border-radius: 0;
+  border: 0;
+  margin-bottom: 2%;
+  max-width:none;
+  }
+.error {
+  color:red;
+}

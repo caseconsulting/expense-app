@@ -12,7 +12,7 @@ export class DeleteConfirmComponent {
   @Output() delete = new EventEmitter<boolean>();
   closeResult: string;
 
-  constructor(private modalService: NgbModal) {}
+  constructor(private modalService: NgbModal) { }
 
   open(content) {
     this.modalService.open(content).result.then((result) => {
@@ -25,16 +25,16 @@ export class DeleteConfirmComponent {
     });
   }
 
-// diagnostic
+  // diagnostic
   private getDismissReason(reason: any): string {
-     if (reason === ModalDismissReasons.ESC) {
+    if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
       return 'by clicking on a backdrop';
     } else if (reason === 'delete') {
       return 'by clicking delete';
     } else {
-      return  `with: ${reason}`;
+      return `with: ${reason}`;
     }
-   }
+  }
 }

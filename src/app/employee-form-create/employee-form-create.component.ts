@@ -1,6 +1,6 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { Employee, EmployeeService } from '../employee/employee.service';
-import { UpdateListService } from '../update-list.service'
+import { UpdateListService } from '../update-list.service';
 
 
 @Component({
@@ -24,7 +24,7 @@ export class EmployeeFormCreateComponent {
     this.employeeService.createEmployee(employee)
       .subscribe(
       () => {
-        this.updateListService.announceUpdate(true);
+        this.updateListService.announceUpdate('create');
         this.reviewing = false;
       },
       error => this.errHandle.emit(error)
