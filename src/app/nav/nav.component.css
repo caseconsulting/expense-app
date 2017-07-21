@@ -1,9 +1,9 @@
 .navbar-fixed-left {
-  width: 100px;
-  position: fixed;
+
+
   border-radius: 0;
-  height: 100%;
-  background-color: #2B2E3D;
+  height: 100vh;
+  background-color: #E2E3E9;
   padding-left: 0;
   padding-right: 0;
 }

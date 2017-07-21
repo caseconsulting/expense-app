@@ -1,25 +1,31 @@
 <!-- Output employees -->
-<ul style="float: left;" class="list-group col-md-4">
-  <li class="list-group-item text-center" *ngFor="let employee of employees"
-  (click)="select(employee)">
-    {{ employee.firstName }} {{ employee.middleName }} {{ employee.lastName }}
-  </li>
-</ul>
+<div class="row">
 
 
-<!-- Output error messages -->
-<ul class="messages col-md-6">
-  <li *ngFor="let msg of messages">{{msg}}</li>
-</ul>
+  <div class="col-6">
+    <ul class="list-group">
+      <li class="list-group-item text-center" *ngFor="let employee of employees" (click)="select(employee)">
+        {{ employee.firstName }} {{ employee.middleName }} {{ employee.lastName }}
+      </li>
+    </ul>
+  </div>
 
+
+
+
+<div class="col-6">
 <exp-create-btn></exp-create-btn>
+  <exp-employee-form *ngIf="selectedEmployee" [employee]="selectedEmployee" (removeFromList)=removeFromList($event) (updateList)=updateList($event) (errHandle)=errHandle($event)>
+  </exp-employee-form>
 
-<div class="error" (errHandle)=errHandle($event)
-*ngIf="errorMessage">{{errorMessage}}</div>
+  <!-- Output error messages -->
+  <ul class="messages col-6">
+    <li *ngFor="let msg of messages">{{msg}}</li>
+  </ul>
 
 
-<exp-employee-form *ngIf="selectedEmployee" [employee]="selectedEmployee"
-(removeFromList)=removeFromList($event)
-(updateList)=updateList($event)
-(errHandle)=errHandle($event)>
-</exp-employee-form>
+
+  <div class="error" (errHandle)=errHandle($event) *ngIf="errorMessage">{{errorMessage}}</div>
+</div>
+
+</div>
