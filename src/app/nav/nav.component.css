@@ -3,7 +3,7 @@
 
   border-radius: 0;
   height: 100vh;
-  background-color: #8b8683;
+  background-color: #BDBDBD;
   padding-left: 0;
   padding-right: 0;
 }
@@ -13,21 +13,17 @@ i {
   color: #FDFDFD;
 }
 
-ul{
-  color:
-}
-
 li
 {
   padding-right: 10%;
   padding-top: 25px;
   padding-bottom: 25px;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.5s ease;
 }
 
 .navbar-nav>li:hover
 {
-    background-color: #68CAA6;
+    background-color: #B2DFDB;
 }
 
 #logo {

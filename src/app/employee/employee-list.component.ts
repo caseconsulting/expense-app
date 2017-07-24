@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs/Subscription';
 @Component({
   selector: 'exp-employee-list',
   templateUrl: './employee-list.component.html',
-  styles: ['li {cursor: pointer;} .error {color:red;}'],
+  styleUrls: ['employee-list.component.css'],
   providers: [EmployeeService, UpdateListService]
 })
 

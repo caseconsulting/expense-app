@@ -1,11 +1,12 @@
-ul li {
+ul{
   cursor: pointer;
-  border-radius: 0;
-  border: 0;
-  margin-bottom: 2%;
-  max-width:none;
-  background-color: red;
   }
-.error {
-  color:red;
+li{
+  border-radius: 0 !important;
+  border: 0;
+  text-align: center;
+  border-bottom: solid;
+  border-bottom-width: thin;
+  border-bottom-color: #BDBDBD;
+  margin-bottom: 0;
 }
