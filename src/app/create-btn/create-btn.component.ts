@@ -6,11 +6,11 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./create-btn.component.css']
 })
 export class CreateBtnComponent {
-clicked = false;
+  clicked = false;
   constructor() { }
 
   hideView(removeView: boolean) {
-    this.clicked = false;
+    this.clicked = !this.clicked;
     console.log('changing value of clicked in create-btn to ', this.clicked);
   }
 

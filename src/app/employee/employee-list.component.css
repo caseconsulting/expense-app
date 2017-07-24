@@ -4,6 +4,7 @@ ul li {
   border: 0;
   margin-bottom: 2%;
   max-width:none;
+  background-color: red;
   }
 .error {
   color:red;
