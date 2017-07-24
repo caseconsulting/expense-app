@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'exp-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  template: `<h1><span>{{specialE}}</span>{{title}}</h1>`,
+  styles: [
+    `h1 {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    color: #38424D;
+    }
+    span {
+      color: #37DB67;
+    }`]
 })
-export class HeaderComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
+export class HeaderComponent {
+  specialE = '€';
+  title = 'XPENSE APP';
 
 }
