@@ -1,64 +1,70 @@
+// Testing Dependencies
 import {fakeAsync, inject, TestBed } from '@angular/core/testing';
-import {HttpModule, XHRBackend, ResponseOptions, Response, RequestMethod } from '@angular/http';
 import { MockBackend, MockConnection } from '@angular/http/testing';
+// Service Dependencies
+import {HttpModule, Http, Response, ResponseOptions, XHRBackend } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/Rx';
 
-import { Employee, EmployeeService } from '../../employee/employee.service';
+// Service
+import { EmployeeService } from '../../employee/employee.service';
 
-const mockResponse = {
-  'firstName': 'John',
-  'middleName': 'C',
-  'lastName': 'TypeScript',
-  'empID': '123',
-  'hireDate': '10/10/1995'
-};
-
-describe('Wikipedia search service', () => {
+describe('EmployeeService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpModule],
-      providers: [
-        {
-          provide: XHRBackend,
-          useClass: MockBackend
-        },
-        EmployeeService
-      ]
+      providers: [EmployeeService,
+        // Tell our injector to inject an instance of MockBackend whenever
+        // someone asks for an XHRBackend, which is what Angular’s Http module
+        // does behind the scenes
+        { provide: XHRBackend, useClass: MockBackend }]
     });
   });
 
-  it('should get search results', fakeAsync(
-    inject([
-      XHRBackend,
-      EmployeeService
-    ], (mockBackend: XHRBackend, searchWiki: EmployeeService) => {
+  // Create mockResponse
+  describe('getEmployees', () => {
+    let thing1, thing2, mockResponse;
+    beforeEach(() => {
+      thing1 = {
+        'id': '5a7e',
+        'firstName': 'Dwight',
+        'middleName': 'D',
+        'lastName': 'Eisenhower',
+        'empId': '21',
+        'hireDate': ' 3/23/12'
+      }
+      thing2 = {
+        'id': '8d28',
+        'firstName': 'Franklin',
+        'middleName': 'Delano',
+        'lastName': 'Roosevelt',
+        'empId': '20',
+        'hireDate': ' 2/13/95'
+      }
+      mockResponse = [thing1, thing2];
+    })
 
-      const expectedUrl = 'https://en.wikipedia.org/w/api.php?' +
-        'action=query&list=search&srsearch=Angular';
+    // spec
+    it('should return an Observable<Array<Employee>>',
+      inject([EmployeeService, XHRBackend], (employeeService, mockBackend) => {
 
-      mockBackend.connections.subscribe(
-        (connection: MockConnection) => {
-          expect(connection.request.method).toBe(RequestMethod.Get);
-          expect(connection.request.url).toBe(expectedUrl);
-
-          connection.mockRespond(new Response(
-            new ResponseOptions({ body: mockResponse })
-          ));
+        // This is called every time someone subscribes to
+        // an http call.
+        mockBackend.connections.subscribe((connection) => {
+          // Here we want to fake the http response.
+          connection.mockRespond(new Response(new ResponseOptions({
+            body: JSON.stringify(mockResponse)
+          })));
         });
 
-      searchWiki.search('Angular')
-        .subscribe(res => {
-          expect(res).toEqual(mockResponse);
-        });
-    })
-  ));
-
-  it('should set foo with a 1s delay', fakeAsync(
-    inject([EmployeeService], (searchWiki: EmployeeService) => {
-      searchWiki.setFoo('food');
-      tick(1000);
-      expect(searchWiki.foo).toEqual('food');
-    })
-  ));
-
+        // Call to service
+        employeeService.getEmployees()
+          .subscribe(employees => {
+            expect(employees.length).toBe(2);
+             expect(employees[0].firstName).toEqual('Dwight');
+             expect(employees[1].firstName).toEqual('Franklin');
+          });
+      }));
+  });
 });
