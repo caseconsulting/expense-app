@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'exp-header',
-  template: `<h1><span>{{specialE}}</span>{{title}}</h1>`,
+  template: `<h1><span>{{specialE}}</span>{{title}}</h1> <exp-create-btn></exp-create-btn> `,
   styles: [
     `h1 {
     font-family: 'Quicksand', sans-serif;
