@@ -2,12 +2,12 @@
 import {fakeAsync, inject, TestBed } from '@angular/core/testing';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 // Service Dependencies
-import {HttpModule, Http, Response, ResponseOptions, XHRBackend } from '@angular/http';
+import {HttpModule, Http, Response, RequestMethod, ResponseOptions, XHRBackend } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 
 // Service
-import { EmployeeService } from '../../employee/employee.service';
+import { Employee, EmployeeService } from '../../employee/employee.service';
 
 describe('EmployeeService', () => {
 
@@ -43,7 +43,7 @@ describe('EmployeeService', () => {
         'hireDate': ' 2/13/95'
       }
       mockResponse = [thing1, thing2];
-    })
+    });
 
     // spec
     it('should return an Observable<Array<Employee>>',
@@ -62,9 +62,159 @@ describe('EmployeeService', () => {
         employeeService.getEmployees()
           .subscribe(employees => {
             expect(employees.length).toBe(2);
-             expect(employees[0].firstName).toEqual('Dwight');
-             expect(employees[1].firstName).toEqual('Franklin');
+            expect(employees[0].firstName).toEqual('Dwight');
+            expect(employees[1].firstName).toEqual('Franklin');
           });
+      })); // should return an Observable<Array<Employee>>
+  }); // getEmployees
+
+  describe('readSingleEmployee', () => {
+    let mockResponse;
+    beforeEach(() => {
+      mockResponse = {
+        'id': '5a7e',
+        'firstName': 'Dwight',
+        'middleName': 'D',
+        'lastName': 'Eisenhower',
+        'empId': '21',
+        'hireDate': ' 3/23/12'
+      };
+    });
+
+    // spec
+    it('should return an Observable<Employee>',
+      inject([EmployeeService, XHRBackend], (employeeService, mockBackend) => {
+
+        // This is called every time someone subscribes to
+        // an http call.
+        mockBackend.connections.subscribe((connection) => {
+          // Here we want to fake the http response.
+          connection.mockRespond(new Response(new ResponseOptions({
+            body: JSON.stringify(mockResponse)
+          })));
+        });
+
+        // Call to service
+        employeeService.readSingleEmployee()
+          .subscribe(employee => {
+            expect(employee.firstName).toEqual('Dwight');
+          });
+      })); // should return an Observable<Employee>
+  }); // readSingleEmployee
+
+  describe('createEmployee', () => {
+    let mockInput;
+    beforeEach(() => {
+      mockInput = new Employee('', 'Dwight', 'D', 'Eisenhower', '21', ' 3/23/12');
+    });
+
+    // spec
+    it('should return an Observable<Employee> ',
+      inject([EmployeeService, XHRBackend], (employeeService, mockBackend) => {
+
+        // This is called every time someone subscribes to
+        // an http call.
+        mockBackend.connections.subscribe((connection: MockConnection) => {
+          // Here we want to fake the http response.
+          expect(connection.request.method).toBe(RequestMethod.Post);
+          connection.mockRespond(new Response(new ResponseOptions({
+            body: JSON.stringify(mockInput),
+            status: 200})));
+
+        });
+
+        // Call to service
+        employeeService.createEmployee(mockInput)
+          .subscribe(response => {
+            console.log('***', response);
+            expect(response).toBeDefined();
+            console.log('call response', response);
+
+          });
+      })); // should return a success status
+  }); // createEmployee
+
+  describe('updateEmployee', () => {
+    let mockInput;
+    beforeEach(() => {
+      mockInput = new Employee('123', 'Dwight', 'D', 'Eisenhower', '21', ' 3/23/12');
+    });
+
+    // spec
+    it('should return an Observable<Employee> ',
+      inject([EmployeeService, XHRBackend], (employeeService, mockBackend) => {
+
+        // This is called every time someone subscribes to
+        // an http call.
+        mockBackend.connections.subscribe((connection: MockConnection) => {
+          // Here we want to fake the http response.
+          expect(connection.request.method).toBe(RequestMethod.Put);
+          connection.mockRespond(new Response(new ResponseOptions({
+            body: JSON.stringify(mockInput),
+            status: 200})));
+        });
+
+        // Call to service
+        employeeService.updateEmployee(mockInput)
+          .subscribe(response => {
+            console.log('***', response);
+            expect(response).toBeDefined();
+            console.log('call response', response);
+
+          });
+      })); // should return a success status
+  }); // updateEmployee
+
+  describe('deleteEmployee', () => {
+    let mockInput;
+    beforeEach(() => {
+      mockInput = new Employee('123', 'Dwight', 'D', 'Eisenhower', '21', ' 3/23/12');
+    });
+
+    // spec
+    it('should return an Observable<Employee> ',
+      inject([EmployeeService, XHRBackend], (employeeService, mockBackend) => {
+
+        // This is called every time someone subscribes to
+        // an http call.
+        mockBackend.connections.subscribe((connection: MockConnection) => {
+          // Here we want to fake the http response.
+          expect(connection.request.method).toBe(RequestMethod.Delete);
+          connection.mockRespond(new Response(new ResponseOptions({
+            body: JSON.stringify(mockInput),
+            status: 200})));
+        });
+
+        // Call to service
+        employeeService.deleteEmployee(mockInput)
+          .subscribe(response => {
+            console.log('***', response);
+            expect(response).toBeDefined();
+            console.log('call response', response);
+
+          });
+      })); // should return a success status
+  }); // updateEmployee
+
+  describe('handleError', () => {
+    let error;
+
+    beforeEach(() => {
+      error = new Response(new ResponseOptions({
+        status: 409,
+        url: 'example.com'
       }));
-  });
+    });
+
+    it('should return an throw an Observable error',
+      inject([EmployeeService, XHRBackend], (employeeService, mockBackend) => {
+      employeeService.handleError(error)
+      .subscribe(response => () => {
+        fail('expected error');
+      },
+      (errors) => {
+        expect(errors).toBe(`Error status code 409 at example.com`)
+      });
+    })); // should return an throw an Observable error
+  }); // handleError
 });

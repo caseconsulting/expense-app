@@ -5,6 +5,15 @@ import 'rxjs/Rx';
 
 const employeeRoute = 'http://localhost:3000/employees/';
 
+/**
+*@param id
+*@param firstName
+*@param middleName
+*@param lastName
+*@param empId
+*@param hireDate
+*/
+
 export class Employee {
 
   constructor(
@@ -38,10 +47,7 @@ export class EmployeeService {
     console.log('testing** ', employee);
     return this.http
       .post(employeeRoute, JSON.stringify(employee), options)
-      .map((res: Response) => {
-        res.json();
-        console.log(res)
-      })
+      .map((response: Response) =>  <Employee>response.json())
       .catch(this.handleError);
   }
 
@@ -64,10 +70,7 @@ export class EmployeeService {
     console.log('testing ', employee);
     return this.http
       .put(employeeRoute + employee.id, JSON.stringify(employee), options)
-      .map((res: Response) => {
-        res.json();
-        console.log(res)
-      })
+      .map((res: Response) => <Employee>res.json())
       .catch(this.handleError);
   }
 
@@ -83,7 +86,7 @@ export class EmployeeService {
       .catch(this.handleError);
   }
 
-  private handleError(error: Response) {
+   handleError(error: Response) {
     console.error(error);
     const msg = `Error status code ${error.status} at ${error.url}`;
     return Observable.throw(msg);
