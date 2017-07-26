@@ -15,11 +15,7 @@ export class EmployeeFormCreateComponent {
   reviewing = false;
   model = new Employee('', '', '', '', '', '');
 
-  onSubmit() { this.reviewing = true; }
-
-  constructor(private employeeService: EmployeeService, private updateListService: UpdateListService) { }
-
-  create(employee: Employee) {
+  onSubmit(employee: Employee) {
     console.log('calling create on ', employee.firstName);
     this.employeeService.createEmployee(employee)
       .subscribe(
@@ -28,7 +24,9 @@ export class EmployeeFormCreateComponent {
           this.hideSubmission(true);
       },
       error => this.errHandle.emit(error));
-  }
+     }
+
+  constructor(private employeeService: EmployeeService, private updateListService: UpdateListService) { }
 
   hideSubmission(remove: boolean) {
     console.log('canceling submission ', remove);

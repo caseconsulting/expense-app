@@ -39,14 +39,14 @@
         </div>
       </div>
 
-      <button type="submit" class="btn btn-success" (click)="onSubmit();" [disabled]="!employeeForm.form.valid || employeeForm.form.pristine">Create</button>
+      <button type="submit" class="btn btn-success" (click)="onSubmit(model);" [disabled]="!employeeForm.form.valid || employeeForm.form.pristine">Create</button>
 
       <button class="btn btn-default" (click)="hideSubmission(false)">Cancel</button>
     </form>
   </div>
 
   <!--  -->
-  <div [hidden]="!reviewing">
+  <!-- <div [hidden]="!reviewing">
     <h2>{{ model.firstName }} {{ model.middleName }} {{ model.lastName }}</h2>
     <div class="row">
       <div class="col-xs-3"> Employee ID:</div>
@@ -60,4 +60,4 @@
     <button type="submit" class="btn btn-success" (click)="create(model)">Submit</button>
     <button class="btn btn-default" (click)="reviewing=false">Wait a second..</button>
   </div>
-</div>
+</div> -->
