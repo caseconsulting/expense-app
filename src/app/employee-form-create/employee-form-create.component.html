@@ -39,13 +39,13 @@
         </div>
       </div>
 
-      <button type="submit" class="btn btn-success" (click)="onSubmit(model);" [disabled]="!employeeForm.form.valid || employeeForm.form.pristine">Create</button>
+      <button type="submit" class="btn btn-success" (click)="onSubmit(model);" [disabled]="!employeeForm.form.valid || employeeForm.form.pristine">Submit</button>
 
-      <button class="btn btn-default" (click)="hideSubmission(false)">Cancel</button>
+      <button class="btn btn-default" routerLink="" (click)="goBack()">Go Back</button>
     </form>
   </div>
 
-  <!--  -->
+
   <!-- <div [hidden]="!reviewing">
     <h2>{{ model.firstName }} {{ model.middleName }} {{ model.lastName }}</h2>
     <div class="row">

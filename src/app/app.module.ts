@@ -20,6 +20,7 @@ import { EmployeeFormCreateComponent } from './employee-form-create/employee-for
 
 import { EmployeeService} from './employee/employee.service';
 import { UpdateListService } from './update-list.service';
+import { EmployeePreviewComponent } from './employee-preview/employee-preview.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { UpdateListService } from './update-list.service';
     EmployeeFormComponent,
     DeleteConfirmComponent,
     EmployeeFormCreateComponent,
-    routableComponents
+    routableComponents,
+    EmployeePreviewComponent
   ],
   imports: [
     BrowserModule,

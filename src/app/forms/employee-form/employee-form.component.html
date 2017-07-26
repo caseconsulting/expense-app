@@ -40,7 +40,7 @@
       </div>
 
       <button type="submit" class="btn btn-success" (click)="update(model); employeeForm.reset(model);" [disabled]="!employeeForm.form.valid || employeeForm.form.pristine">Update</button>
-      <button class="btn btn-default" (click)="editing=false">Cancel</button>
+      <button class="btn btn-default" routerLink="" (click)="editing=false">Cancel</button>
     </form>
   </div>
 

@@ -9,12 +9,14 @@ import { CreateBtnComponent } from './create-btn/create-btn.component';
 import { EmployeeFormComponent } from './forms/employee-form/employee-form.component';
 import { DeleteConfirmComponent } from './delete-confirm/delete-confirm.component';
 import { EmployeeFormCreateComponent } from './employee-form-create/employee-form-create.component';
+import { EmployeePreviewComponent } from './employee-preview/employee-preview.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '' },
   { path: '', component: BodyComponent },
   { path: 'employees', component: EmployeeListComponent },
-  { path: 'employees/:id', component: EmployeeFormComponent },
+  { path: 'employee/:id', component: EmployeePreviewComponent },
+  { path: 'employee/update/:id', component: EmployeeFormCreateComponent },
   { path: 'create', component: EmployeeFormCreateComponent },
   // { path: '**', pathMatch: 'full', component: PageNotFoundComponent }
 ];

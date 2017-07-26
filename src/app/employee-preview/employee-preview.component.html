@@ -1,0 +1,14 @@
+<div *ngIf="model">
+  <h2>{{ model.firstName }} {{ model.middleName }} {{ model.lastName }}</h2>
+  <div class="row">
+    <div class="col-xs-3"> Employee ID:</div>
+    <div class="col-xs-9  pull-left"> {{ model.empId }} </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-3"> Hire Date </div>
+    <div class="col-xs-9  pull-left"> {{ model.hireDate | date:'MM/dd/y' }} </div>
+  </div>
+  <br>
+  <button type="submit" class="btn btn-secondary" [routerLink]="['/employee/update', model.id]">Edit</button>
+  <button class="btn btn-default" routerLink='/'>Hide</button>
+</div>
