@@ -44,7 +44,8 @@ export class EmployeeService {
 
     return this.http
       .post(employeeRoute, JSON.stringify(employee), options)
-      .map((response: Response) =>  <Employee>response.json())
+      .map((response: Response) => <Employee>response.json())
+      .do(data => console.log('sending ', data.id))
       .catch(this.handleError);
   }
 
@@ -77,7 +78,7 @@ export class EmployeeService {
       .catch(this.handleError);
   }
 
-   handleError(error: Response) {
+  handleError(error: Response) {
     const msg = `Error status code ${error.status} at ${error.url}`;
     return Observable.throw(msg);
   }
