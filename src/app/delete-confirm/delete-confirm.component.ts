@@ -3,6 +3,7 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 import { Employee, EmployeeService } from '../employee/employee.service';
 import { UpdateListService } from '../update-list.service';
+import { ErrorService } from '../error/error.service';
 @Component({
   selector: 'exp-delete-confirm',
   templateUrl: './delete-confirm.component.html',
@@ -14,7 +15,8 @@ export class DeleteConfirmComponent {
   errorMessage: string;
   constructor(private modalService: NgbModal,
     private employeeService: EmployeeService,
-    private updateListService: UpdateListService) { }
+    private updateListService: UpdateListService,
+    private errorService: ErrorService) { }
 
   open(content) {
     this.modalService.open(content).result.then((result) => {
@@ -25,7 +27,7 @@ export class DeleteConfirmComponent {
       this.employeeService.deleteEmployee(this.modelToDelte)
         .subscribe(
         () => { this.updateListService.announceUpdate('remove') },
-        error => this.errorMessage = <any>error
+        error => this.errorService.announceError(error)
         );
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;

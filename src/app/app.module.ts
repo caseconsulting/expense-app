@@ -13,10 +13,12 @@ import { EmployeeListComponent } from './employee/employee-list.component';
 import { CreateBtnComponent } from './create-btn/create-btn.component';
 import { DeleteConfirmComponent } from './delete-confirm/delete-confirm.component';
 import { EmployeeFormCreateComponent } from './employee-form-create/employee-form-create.component';
+import { EmployeePreviewComponent } from './employee-preview/employee-preview.component';
+import { ErrorComponent } from './error/error.component';
 
 import { EmployeeService} from './employee/employee.service';
 import { UpdateListService } from './update-list.service';
-import { EmployeePreviewComponent } from './employee-preview/employee-preview.component';
+import { ErrorService } from './error/error.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { EmployeePreviewComponent } from './employee-preview/employee-preview.co
     DeleteConfirmComponent,
     EmployeeFormCreateComponent,
     routableComponents,
-    EmployeePreviewComponent
+    EmployeePreviewComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,7 @@ import { EmployeePreviewComponent } from './employee-preview/employee-preview.co
     NgbModule.forRoot(),
     ExpRoutingModule
   ],
-  providers: [EmployeeService, UpdateListService],
+  providers: [EmployeeService, UpdateListService, ErrorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

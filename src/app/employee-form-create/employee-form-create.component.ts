@@ -3,6 +3,7 @@ import { Employee, EmployeeService } from '../employee/employee.service';
 import { UpdateListService } from '../update-list.service';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
+import { ErrorService } from '../error/error.service';
 
 
 @Component({
@@ -24,7 +25,8 @@ export class EmployeeFormCreateComponent implements OnInit {
       (res) => {
         this.router.navigate(['/employee', res.id]); // preview
         this.updateListService.announceUpdate('create'); // update the list
-      }
+      },
+      error => this.errorService.announceError(error)
       );
     //  error => this.errHandle.emit(error));
   }
@@ -33,7 +35,8 @@ export class EmployeeFormCreateComponent implements OnInit {
     private employeeService: EmployeeService,
     private updateListService: UpdateListService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private errorService: ErrorService) { }
 
   ngOnInit() {
     if (!this.employee) {
@@ -49,7 +52,7 @@ export class EmployeeFormCreateComponent implements OnInit {
                 this.model = returnedEmployee;
                 this.title = 'Update';
               },
-              error => this.errorMessage = <any>error)
+              error => this.errorService.announceError(error))
           } else {
             this.model = new Employee('', '', '', '', '', '');
             this.title = 'Create';
