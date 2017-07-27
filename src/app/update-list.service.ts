@@ -17,7 +17,4 @@ export class UpdateListService {
     this.updateAnnouncedSource.next(caller);
   }
 
-  // confirmMission(astronaut: string) {
-  //   this.missionConfirmedSource.next(astronaut);
-  // }
 }

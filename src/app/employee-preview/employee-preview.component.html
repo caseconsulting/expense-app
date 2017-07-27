@@ -1,4 +1,5 @@
 <div *ngIf="model">
+  <button class="btn btn-default" routerLink='/'><i class="fa fa-times"></i></button>
   <h2>{{ model.firstName }} {{ model.middleName }} {{ model.lastName }}</h2>
   <div class="row">
     <div class="col-xs-3"> Employee ID:</div>
@@ -10,5 +11,5 @@
   </div>
   <br>
   <button type="submit" class="btn btn-secondary" [routerLink]="['/employee/update', model.id]">Edit</button>
-  <button class="btn btn-default" routerLink='/'>Hide</button>
+  <exp-delete-confirm [modelToDelte]="model"></exp-delete-confirm>
 </div>

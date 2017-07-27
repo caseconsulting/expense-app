@@ -14,6 +14,7 @@ export class EmployeeFormCreateComponent implements OnInit {
   private id: any;
   model: Employee;
   employee: Employee;
+  title = '';
   errorMessage: string;
 
   onSubmit(employee: Employee) {
@@ -38,15 +39,20 @@ export class EmployeeFormCreateComponent implements OnInit {
         .params
         .map(params => params['id'])
         .do(id => this.id = id)
-        .subscribe(id => this.employeeService.readSingleEmployee(this.id)
-          .subscribe(
-          returnedEmployee =>
-            this.model = returnedEmployee,
-          error => {
+        .subscribe(id => {
+          if (id) {
+            this.employeeService.readSingleEmployee(this.id)
+              .subscribe(
+              returnedEmployee => {
+                this.model = returnedEmployee;
+                this.title = 'Update';
+              },
+              error => this.errorMessage = <any>error)
+          } else {
             this.model = new Employee('', '', '', '', '', '');
-            this.errorMessage = <any>error
+            this.title = 'Create';
           }
-          ));
+        });
     }
   }
 

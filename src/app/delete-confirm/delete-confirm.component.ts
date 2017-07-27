@@ -1,25 +1,32 @@
-import {Component, Output, EventEmitter} from '@angular/core';
+import {Component, Input, EventEmitter} from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
-import { Employee } from '../employee/employee.service';
-
+import { Employee, EmployeeService } from '../employee/employee.service';
+import { UpdateListService } from '../update-list.service';
 @Component({
   selector: 'exp-delete-confirm',
   templateUrl: './delete-confirm.component.html',
   styleUrls: ['./delete-confirm.component.css']
 })
 export class DeleteConfirmComponent {
-  @Output() delete = new EventEmitter<boolean>();
+  @Input() modelToDelte: Employee;
   closeResult: string;
-
-  constructor(private modalService: NgbModal) { }
+  errorMessage: string;
+  constructor(private modalService: NgbModal,
+    private employeeService: EmployeeService,
+    private updateListService: UpdateListService) { }
 
   open(content) {
     this.modalService.open(content).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
       // call delete here inside the promise. When the promise resolves, delete has been
       // clicked and these instructions will execute
-      this.delete.emit(true);
+
+      this.employeeService.deleteEmployee(this.modelToDelte)
+        .subscribe(
+        () => { this.updateListService.announceUpdate('remove') },
+        error => this.errorMessage = <any>error
+        );
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });

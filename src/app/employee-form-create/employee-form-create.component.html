@@ -1,6 +1,6 @@
 <div>
-  <div [hidden]="reviewing">
-    <h1>Employee Form</h1>
+  <div *ngIf="model">
+    <h1>{{title}} Employee Form</h1>
     <form (ngSubmit)="onSubmit()" #employeeForm="ngForm">
 
       <div class="form-group">
@@ -39,25 +39,8 @@
         </div>
       </div>
 
-      <button type="submit" class="btn btn-success" (click)="onSubmit(model);" [disabled]="!employeeForm.form.valid || employeeForm.form.pristine">Submit</button>
+      <button type="submit" class="btn btn-success" (click)="onSubmit(model);" [disabled]="!employeeForm.form.valid || employeeForm.form.pristine">{{title}}</button>
 
       <button class="btn btn-default" routerLink="" (click)="goBack()">Go Back</button>
     </form>
   </div>
-
-
-  <!-- <div [hidden]="!reviewing">
-    <h2>{{ model.firstName }} {{ model.middleName }} {{ model.lastName }}</h2>
-    <div class="row">
-      <div class="col-xs-3"> Employee ID:</div>
-      <div class="col-xs-9  pull-left"> {{ model.empId }} </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-3"> Hire Date </div>
-      <div class="col-xs-9  pull-left"> {{ model.hireDate | date:'MM/dd/y' }} </div>
-    </div>
-    <br>
-    <button type="submit" class="btn btn-success" (click)="create(model)">Submit</button>
-    <button class="btn btn-default" (click)="reviewing=false">Wait a second..</button>
-  </div>
-</div> -->
