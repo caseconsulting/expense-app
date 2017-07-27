@@ -126,9 +126,7 @@ describe('EmployeeService', () => {
         // Call to service
         employeeService.createEmployee(mockInput)
           .subscribe(response => {
-            console.log('***', response);
             expect(response).toBeDefined();
-            console.log('call response', response);
 
           });
       })); // should return a success status
@@ -157,10 +155,7 @@ describe('EmployeeService', () => {
         // Call to service
         employeeService.updateEmployee(mockInput)
           .subscribe(response => {
-            console.log('***', response);
             expect(response).toBeDefined();
-            console.log('call response', response);
-
           });
       })); // should return a success status
   }); // updateEmployee
@@ -188,9 +183,7 @@ describe('EmployeeService', () => {
         // Call to service
         employeeService.deleteEmployee(mockInput)
           .subscribe(response => {
-            console.log('***', response);
             expect(response).toBeDefined();
-            console.log('call response', response);
 
           });
       })); // should return a success status
