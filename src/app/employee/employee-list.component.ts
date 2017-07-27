@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Employee, EmployeeService} from './employee.service';
 import { UpdateListService } from '../update-list.service';
 import { Subscription } from 'rxjs/Subscription';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'exp-employee-list',
   templateUrl: './employee-list.component.html',
@@ -19,7 +19,9 @@ export class EmployeeListComponent implements OnInit {
   subscription: Subscription;
   reloadList = false;
 
-  constructor(private employeeService: EmployeeService, private updateListService: UpdateListService) {
+  constructor(private employeeService: EmployeeService,
+    private updateListService: UpdateListService,
+    private router: Router) {
 
     this.subscription = updateListService.updateAnnounced$.subscribe(
       caller => this.updateList(caller)
@@ -53,7 +55,7 @@ export class EmployeeListComponent implements OnInit {
   updateList(caller: string) {
     this.getEmployees();
     if (caller === 'remove') {
-      this.selectedEmployee = null;
+      this.router.navigate(['/']);
     }
   }
 
