@@ -4,7 +4,7 @@
     <form #employeeForm="ngForm">
 
       <div class="form-group">
-        <label for="name">First Name</label>
+        <label for="name">First Name <span>*</span></label>
         <input type="text" class="form-control" id="firstName" required [(ngModel)]="model.firstName" name="firstName" #firstName="ngModel">
         <div [hidden]="firstName.valid || firstName.pristine" class="alert alert-danger">
           First name is required
@@ -16,7 +16,7 @@
         <input type="text" class="form-control" id="middleName" required [(ngModel)]="model.middleName" name="middleName">
       </div>
       <div class="form-group">
-        <label for="name">Last Name</label>
+        <label for="name">Last Name <span>*</span></label>
         <input type="text" class="form-control" id="lastName" required [(ngModel)]="model.lastName" name="lastName" #lastName="ngModel">
         <div [hidden]="lastName.valid || lastName.pristine" class="alert alert-danger">
           Last name is required
@@ -24,7 +24,7 @@
       </div>
 
       <div class="form-group">
-        <label for="name">Employee ID</label>
+        <label for="name">Employee ID <span>*</span></label>
         <input type="text" class="form-control" id="empId" required [(ngModel)]="model.empId" name="empId" #empId="ngModel">
         <div [hidden]="empId.valid || empId.pristine" class="alert alert-danger">
           Employee ID is required
@@ -32,7 +32,7 @@
       </div>
 
       <div class="form-group">
-        <label for="name">Hire Date</label>
+        <label for="name">Hire Date <span>*</span></label>
         <input type="text" class="form-control" id="hireDate" required [(ngModel)]="model.hireDate" name="hireDate" #hireDate="ngModel">
         <div [hidden]="hireDate.valid || hireDate.pristine" class="alert alert-danger">
           Hire date is required
