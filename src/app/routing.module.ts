@@ -4,9 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 // components that will have routes
 import { BodyComponent } from './body/body.component';
 import { EmployeeListComponent } from './employee/employee-list.component';
-import { UpdateDeleteBtnComponent } from './update-delete-btn/update-delete-btn.component';
 import { CreateBtnComponent } from './create-btn/create-btn.component';
-import { EmployeeFormComponent } from './forms/employee-form/employee-form.component';
 import { DeleteConfirmComponent } from './delete-confirm/delete-confirm.component';
 import { EmployeeFormCreateComponent } from './employee-form-create/employee-form-create.component';
 import { EmployeePreviewComponent } from './employee-preview/employee-preview.component';
