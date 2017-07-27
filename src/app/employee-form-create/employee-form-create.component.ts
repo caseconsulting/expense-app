@@ -21,9 +21,12 @@ export class EmployeeFormCreateComponent implements OnInit {
     console.log('calling create on ', employee.firstName);
     this.employeeService.createEmployee(employee)
       .subscribe(
-      () => {
-        this.updateListService.announceUpdate('create')
-      });
+      (res) => {
+        console.log(res);
+        this.updateListService.announceUpdate('create');
+        //  this.router.navigate(['/employee', this.model.id]);
+      }
+      );
     //  error => this.errHandle.emit(error));
   }
 
