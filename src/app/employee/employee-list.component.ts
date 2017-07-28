@@ -3,6 +3,7 @@ import { Employee, EmployeeService} from './employee.service';
 import { UpdateListService } from '../update-list.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
+import { ErrorService } from '../error/error.service';
 @Component({
   selector: 'exp-employee-list',
   templateUrl: './employee-list.component.html',
@@ -13,15 +14,14 @@ import { Router } from '@angular/router';
 export class EmployeeListComponent implements OnInit {
   @Output() changed = new EventEmitter<Employee>();
 
-  errorMessage: string;
   selectedEmployee: Employee;
   employees: Employee[];
   subscription: Subscription;
-  reloadList = false;
 
   constructor(private employeeService: EmployeeService,
     private updateListService: UpdateListService,
-    private router: Router) {
+    private router: Router,
+    private errorService: ErrorService) {
 
     this.subscription = updateListService.updateAnnounced$.subscribe(
       caller => this.updateList(caller)
@@ -32,7 +32,7 @@ export class EmployeeListComponent implements OnInit {
     this.employeeService.getEmployees()
       .subscribe(
       employees => this.employees = employees,
-      error => this.errorMessage = <any>error
+      error => this.errorService.announceError({ status: error, type: 'Employee' })
       );
   }
 
@@ -45,22 +45,10 @@ export class EmployeeListComponent implements OnInit {
     console.log('after ', this.selectedEmployee);
   }
 
-  removeFromList(isChanged: boolean) {
-    if (isChanged) {
-      this.getEmployees();
-      this.selectedEmployee = null;
-    }
-  }
-
   updateList(caller: string) {
     this.getEmployees();
     if (caller === 'remove') {
       this.router.navigate(['/']);
     }
-  }
-
-  errHandle(err: any) {
-    this.errorMessage = err;
-    console.log('calling error', err);
   }
 }

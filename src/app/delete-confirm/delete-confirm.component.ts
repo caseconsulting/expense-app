@@ -27,7 +27,7 @@ export class DeleteConfirmComponent {
       this.employeeService.deleteEmployee(this.modelToDelte)
         .subscribe(
         () => { this.updateListService.announceUpdate('remove') },
-        error => this.errorService.announceError(error)
+        error => this.errorService.announceError({ status: error, type: 'Employee' })
         );
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;

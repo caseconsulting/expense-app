@@ -79,8 +79,8 @@ export class EmployeeService {
   }
 
   handleError(error: Response) {
-    const msg = `Error status code ${error.status} at ${error.url}`;
-    return Observable.throw(msg);
+
+    return Observable.throw(error.status);
   }
 
 

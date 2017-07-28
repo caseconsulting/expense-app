@@ -16,7 +16,6 @@ export class EmployeeFormCreateComponent implements OnInit {
   model: Employee;
   employee: Employee;
   title = '';
-  errorMessage: string;
 
   onSubmit(employee: Employee) {
     // console.log('calling create on ', employee.firstName);
@@ -26,7 +25,7 @@ export class EmployeeFormCreateComponent implements OnInit {
         this.router.navigate(['/employee', res.id]); // preview
         this.updateListService.announceUpdate('create'); // update the list
       },
-      error => this.errorService.announceError(error)
+      error => this.errorService.announceError({ status: error, type: 'Employee' })
       );
     //  error => this.errHandle.emit(error));
   }
