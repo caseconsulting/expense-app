@@ -23,7 +23,7 @@ describe('HeaderComponent (inline template)', () => {
     // closes the current TestBed instance to further configuration. You cannot call any more TestBed configuration methods
     // The fixture provides access to the component instance itself and to the
     // DebugElement, which is a handle on the component's DOM element
-    comp = fixture.componentInstance; // BannerComponent test instance
+    comp = fixture.componentInstance; // HeaderComponent test instance
 
     // query for the title <h1> by CSS element selector
     de = fixture.debugElement.query(By.css('h1'));
