@@ -1,3 +1,4 @@
 <div [hidden]="hideError" class="alert alert-danger fade show" role="alert">
+  <button class="close" (click)="hideError=!hideError"><i class="fa fa-times"></i></button>
   <strong>{{errorMessage}}</strong>
 </div>

@@ -1,13 +1,13 @@
-<div *ngIf="model">
+<div *ngIf="model" class="">
   <button class="close" routerLink='/'><i class="fa fa-times"></i></button>
   <h2>{{ model.firstName }} {{ model.middleName }} {{ model.lastName }}</h2>
   <div class="row">
     <div class="col-3"> Employee ID:</div>
-    <div class="col-9  pull-left"> {{ model.empId }} </div>
+    <div class="col-9"> {{ model.empId }} </div>
   </div>
   <div class="row">
     <div class="col-3"> Hire Date: </div>
-    <div class="col-9  pull-left"> {{ model.hireDate | date:'MM/dd/y' }} </div>
+    <div class="col-9"> {{ model.hireDate | date:'MM/dd/y' }} </div>
   </div>
   <br>
   <button type="submit" class="btn btn-secondary" [routerLink]="['/employee/update', model.id]">Edit</button>
