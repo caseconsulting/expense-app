@@ -10,7 +10,6 @@ import { HeaderComponent } from './header/header.component';
 import { NavComponent } from './nav/nav.component';
 import { BodyComponent } from './body/body.component';
 import { EmployeeListComponent } from './employee/employee-list.component';
-import { CreateBtnComponent } from './create-btn/create-btn.component';
 import { DeleteConfirmComponent } from './delete-confirm/delete-confirm.component';
 import { EmployeeFormCreateComponent } from './employee-form-create/employee-form-create.component';
 import { EmployeePreviewComponent } from './employee-preview/employee-preview.component';
@@ -27,7 +26,6 @@ import { ErrorService } from './error/error.service';
     NavComponent,
     BodyComponent,
     EmployeeListComponent,
-    CreateBtnComponent,
     DeleteConfirmComponent,
     EmployeeFormCreateComponent,
     routableComponents,
