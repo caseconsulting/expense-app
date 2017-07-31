@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Data } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { fakeAsync, async, inject, TestBed, getTestBed } from '@angular/core/testing';
+import { fakeAsync, async, inject, TestBed, getTestBed, ComponentFixture, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-
+import { Observable } from 'rxjs/Observable';
 // dummy component with router-outlet
 @Component({
   template: `
@@ -36,7 +36,7 @@ class EmployeePreviewComponent { }
 class EmployeeFormCreateComponent { }
 
 // Tests for router
-fdescribe('component: RoutingComponent', () => {
+xdescribe('component: RoutingComponent', () => {
   let location, router;
 
   beforeEach(() => {
@@ -49,7 +49,14 @@ fdescribe('component: RoutingComponent', () => {
         { path: 'employee/update/:id', component: EmployeeFormCreateComponent },
         { path: 'create', component: EmployeeFormCreateComponent },
       ])],
-      declarations: [RoutingComponent, BodyComponent, EmployeeListComponent, EmployeePreviewComponent, EmployeeFormCreateComponent]
+      declarations: [RoutingComponent, BodyComponent, EmployeeListComponent, EmployeePreviewComponent, EmployeeFormCreateComponent],
+      providers: [
+      // provide a better mock
+      {
+        provide: ActivatedRoute, useValue: {
+          params: Observable.of({'id': 123})
+        }
+      }]
     });
   });
 
@@ -70,8 +77,19 @@ fdescribe('component: RoutingComponent', () => {
   it('should go to employees', async(() => {
     const fixture = TestBed.createComponent(RoutingComponent);
     fixture.detectChanges();
-    router.navigate(['/employees']).then(() => {
+    router.navigate(['employees']).then(() => {
       expect(location.path()).toBe('/employees');
+      console.log('after expect');
+    });
+  }));
+
+  it('should go to employees', fakeAsync(() => {
+    const fixture = TestBed.createComponent(RoutingComponent);
+    fixture.detectChanges();
+    router.params.subscribe( () => {})
+
+    router.navigate(['employees', 234]).then(() => {
+      expect(location.path()).toBe('/employees/234');
       console.log('after expect');
     });
   }));

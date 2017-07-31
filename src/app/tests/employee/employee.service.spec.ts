@@ -2,13 +2,22 @@
 import {fakeAsync, inject, TestBed } from '@angular/core/testing';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 // Service Dependencies
-import {HttpModule, Http, Response, RequestMethod, ResponseOptions, XHRBackend } from '@angular/http';
+import {HttpModule, Http, Response, RequestMethod, ResponseType, ResponseOptions, XHRBackend } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 
 // Service
 import { Employee, EmployeeService } from '../../employee/employee.service';
 
+export class MockError extends Response implements Error {
+
+    name: any;
+    message: any;
+
+    constructor(status: number, body: string = '') {
+        super(new ResponseOptions({status, body}));
+    }
+}
 describe('EmployeeService', () => {
 
   beforeEach(() => {
@@ -106,6 +115,7 @@ describe('EmployeeService', () => {
     let mockInput;
     beforeEach(() => {
       mockInput = new Employee('', 'Dwight', 'D', 'Eisenhower', '21', ' 3/23/12');
+
     });
 
     // spec
@@ -119,7 +129,8 @@ describe('EmployeeService', () => {
           expect(connection.request.method).toBe(RequestMethod.Post);
           connection.mockRespond(new Response(new ResponseOptions({
             body: JSON.stringify(mockInput),
-            status: 200})));
+            status: 200
+          })));
 
         });
 
@@ -127,6 +138,28 @@ describe('EmployeeService', () => {
         employeeService.createEmployee(mockInput)
           .subscribe(response => {
             expect(response).toBeDefined();
+
+          });
+      })); // should return a success status
+
+    it('should call handleError',
+      inject([EmployeeService, XHRBackend], (employeeService, mockBackend) => {
+        const ourError = new MockError(404, 'test');
+        // This is called every time someone subscribes to
+        // an http call.
+        mockBackend.connections.subscribe((connection: MockConnection) => {
+          // Here we want to fake the http response.
+          expect(connection.request.method).toBe(RequestMethod.Post);
+          connection.mockError(ourError);
+
+        });
+        spyOn(employeeService, 'handleError').and.returnValue('test');
+        // Call to service
+        employeeService.createEmployee(mockInput)
+          .subscribe(response => {
+            expect(response).toBeDefined();
+            expect(employeeService.handleError).toHaveBeenCalledWith(ourError, jasmine.any(Object));
+            console.log('after expect');
 
           });
       })); // should return a success status
@@ -149,7 +182,8 @@ describe('EmployeeService', () => {
           expect(connection.request.method).toBe(RequestMethod.Put);
           connection.mockRespond(new Response(new ResponseOptions({
             body: JSON.stringify(mockInput),
-            status: 200})));
+            status: 200
+          })));
         });
 
         // Call to service
@@ -177,7 +211,8 @@ describe('EmployeeService', () => {
           expect(connection.request.method).toBe(RequestMethod.Delete);
           connection.mockRespond(new Response(new ResponseOptions({
             body: JSON.stringify(mockInput),
-            status: 200})));
+            status: 200
+          })));
         });
 
         // Call to service
@@ -201,13 +236,13 @@ describe('EmployeeService', () => {
 
     it('should return an throw an Observable error',
       inject([EmployeeService, XHRBackend], (employeeService, mockBackend) => {
-      employeeService.handleError(error)
-      .subscribe(response => () => {
-        fail('expected error');
-      },
-      (errors) => {
-        expect(errors).toBe(`Error status code 409 at example.com`)
-      });
-    })); // should return an throw an Observable error
+        employeeService.handleError(error)
+          .subscribe(response => () => {
+            fail('expected error');
+          },
+          (errors) => {
+            expect(errors).toBe(`Error status code 409 at example.com`)
+          });
+      })); // should return an throw an Observable error
   }); // handleError
 });
