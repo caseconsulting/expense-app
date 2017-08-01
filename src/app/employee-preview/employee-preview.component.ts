@@ -3,6 +3,7 @@ import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 
 import { UpdateListService } from '../update-list.service';
 import { Employee, EmployeeService } from '../employee/employee.service';
+import { ErrorService } from '../error/error.service';
 
 @Component({
   selector: 'exp-employee-preview',
@@ -13,11 +14,11 @@ export class EmployeePreviewComponent implements OnInit {
 
   private id: any;
   employee: Employee;
-  errorMessage: string;
   model: Employee;
   constructor(private employeeService: EmployeeService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private errorService: ErrorService) { }
 
   ngOnInit() {
     if (!this.employee) {
@@ -29,7 +30,7 @@ export class EmployeePreviewComponent implements OnInit {
           .subscribe(
           returnedEmployee =>
             this.model = returnedEmployee,
-          error => this.errorMessage = <any>error
+          error => this.errorService.announceError({ status: error, type: 'Employee' })
           ));
     }
   }
