@@ -1,17 +1,1 @@
 /* You can add global styles to this file, and also import other style files */
-li:hover {
-      color: #212121;
-      background-color: #B2DFDB;
-      left: .1em;
-      transition: background-color 0.5s ease;
-}
-
-.selected:hover {
-      background-color: #BDBDBD !important;
-      color: #FFFFFF;
-}
-.selected{
-  background-color: #BDBDBD !important;
-  color: #212121;
-
-}

@@ -2,6 +2,7 @@ ul{
   cursor: pointer;
   }
 li{
+  outline: none;
   border-radius: 0 !important;
   border: 0;
   text-align: center;
@@ -9,4 +10,23 @@ li{
   border-bottom-width: thin;
   border-bottom-color: #bdbdbd;
   margin-bottom: 0;
+}
+li:hover {
+  outline: none;
+      color: #212121;
+      background-color: #68CAA6;
+      transition: background-color 0.5s ease;
+}
+
+.selected:hover {
+      color: #212121;
+      outline: none;
+      background-color: #fff;
+}
+.selected{
+  border-left: 6px solid #ccc!important;
+  border-color: #68CAA6!important;
+  outline: none;
+  color: #212121;
+
 }

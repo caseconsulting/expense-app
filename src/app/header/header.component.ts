@@ -12,7 +12,7 @@ import { Component } from '@angular/core';
     color: #38424D;
     }
     span {
-      color: #009688;
+      color: #68CAA6;
     }`]
 })
 export class HeaderComponent {
