@@ -12,7 +12,7 @@ import { ErrorService } from '../error/error.service';
   styleUrls: ['./employee-form-create.component.css']
 })
 export class EmployeeFormCreateComponent implements OnInit {
-  private id: any;
+  id: any;
   model: Employee;
   employee: Employee;
   title = '';
@@ -51,6 +51,7 @@ export class EmployeeFormCreateComponent implements OnInit {
         .do(id => this.id = id)
         .subscribe(id => {
           if (id) {
+            console.log(id);
             this.employeeService.readSingleEmployee(this.id)
               .subscribe(
               returnedEmployee => {
