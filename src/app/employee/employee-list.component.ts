@@ -50,5 +50,7 @@ export class EmployeeListComponent implements OnInit {
     if (caller === 'remove') {
       this.router.navigate(['/']);
     }
+
+
   }
 }

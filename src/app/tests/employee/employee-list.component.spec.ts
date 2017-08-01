@@ -19,7 +19,6 @@ class MockEmployeeService {
   }
 }
 
-
 // @Component({
 //   template: `
 //     <a routerLink="/create">link</a>
@@ -45,8 +44,6 @@ fdescribe('EmployeeListComponent', function() {
   let employeeService;
   let errorService;
 
-
-
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -71,15 +68,14 @@ fdescribe('EmployeeListComponent', function() {
     comp = fixture.componentInstance;
     employeeService = fixture.debugElement.injector.get(EmployeeService);
     errorService = fixture.debugElement.injector.get(ErrorService);
-
   });
-
 
   describe('getEmployees', () => {
 
     afterEach(() => {
       expect(employeeService.getEmployees).toHaveBeenCalled();
     });
+
     describe('when successful', () => {
       beforeEach(() => {
         spyOn(employeeService, 'getEmployees')
@@ -91,6 +87,7 @@ fdescribe('EmployeeListComponent', function() {
         expect(comp.employees).toEqual('test');
       });
     });
+
     describe('when not succcessful', () => {
       let errorStr;
       beforeEach(() => {
@@ -100,11 +97,33 @@ fdescribe('EmployeeListComponent', function() {
         comp.getEmployees();
         spyOn(errorService, 'announceError');
         comp.getEmployees();
-
       });
+
       it('sets employees to value from service', () => {
-        expect(errorService.announceError).toHaveBeenCalledWith({ status: errorStr, type: 'Employee' });
+        expect(errorService.announceError)
+        .toHaveBeenCalledWith({ status: errorStr, type: 'Employee' });
       });
     });
-  });
+  }); // getEmployees
+
+  describe('ngOnInit', () => {
+    beforeEach(() => {
+      spyOn(comp, 'getEmployees');
+      });
+
+      describe('OnInit has been called', () => {
+        it('calls getEmployees', () => {
+          // detects OnInit event
+          fixture.detectChanges();
+          expect(comp.getEmployees).toHaveBeenCalled();
+        }); // calls getEmployees
+      }); // OnInit has been called
+
+      describe('OnInit is never called', () => {
+        it('does not call getEmployees', () => {
+          expect(comp.getEmployees).not.toHaveBeenCalled();
+        }); // does not call getEmployees
+      }); // OnInit is never called
+
+  }); // ngOnInit
 });
