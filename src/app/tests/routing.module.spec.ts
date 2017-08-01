@@ -36,7 +36,7 @@ class EmployeePreviewComponent { }
 class EmployeeFormCreateComponent { }
 
 // Tests for router
-xdescribe('component: RoutingComponent', () => {
+describe('component: RoutingComponent', () => {
   let location, router;
 
   beforeEach(() => {
@@ -83,7 +83,7 @@ xdescribe('component: RoutingComponent', () => {
     });
   }));
 
-  it('should go to employees', fakeAsync(() => {
+  xit('should go to employees', fakeAsync(() => {
     const fixture = TestBed.createComponent(RoutingComponent);
     fixture.detectChanges();
     router.params.subscribe( () => {})

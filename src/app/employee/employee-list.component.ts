@@ -4,6 +4,7 @@ import { UpdateListService } from '../update-list.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
 import { ErrorService } from '../error/error.service';
+
 @Component({
   selector: 'exp-employee-list',
   templateUrl: './employee-list.component.html',
@@ -12,7 +13,8 @@ import { ErrorService } from '../error/error.service';
 })
 
 export class EmployeeListComponent implements OnInit {
-  @Output() changed = new EventEmitter<Employee>();
+  // TODO If this is removed remove Output from the imports as well
+  // @Output() changed = new EventEmitter<Employee>();
 
   selectedEmployee: Employee;
   employees: Employee[];
@@ -38,19 +40,17 @@ export class EmployeeListComponent implements OnInit {
 
   ngOnInit() { this.getEmployees(); }
 
-  select(selectedEmployee: Employee) {
-    console.log('before ', this.selectedEmployee);
-    this.selectedEmployee = selectedEmployee;
-    this.changed.emit(selectedEmployee);
-    console.log('after ', this.selectedEmployee);
-  }
+  // select(selectedEmployee: Employee) {
+  //   console.log('before ', this.selectedEmployee);
+  //   this.selectedEmployee = selectedEmployee;
+  //   // this.changed.emit(selectedEmployee);
+  //   console.log('after ', this.selectedEmployee);
+  // }
 
   updateList(caller: string) {
     this.getEmployees();
     if (caller === 'remove') {
       this.router.navigate(['/']);
     }
-
-
   }
 }

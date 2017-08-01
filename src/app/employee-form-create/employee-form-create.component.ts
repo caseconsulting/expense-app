@@ -18,15 +18,21 @@ export class EmployeeFormCreateComponent implements OnInit {
   title = '';
 
   onSubmit(employee: Employee) {
-    // console.log('calling create on ', employee.firstName);
-    this.employeeService.createEmployee(employee)
-      .subscribe(
+    let result;
+
+    if (this.title === 'Create') {
+      result = this.employeeService.createEmployee(employee);
+    } else {
+      result = this.employeeService.updateEmployee(employee);
+    }
+
+    result.subscribe(
       (res) => {
         this.router.navigate(['/employee', res.id]); // preview
-        this.updateListService.announceUpdate('create'); // update the list
+        this.updateListService.announceUpdate('form'); // update the list
       },
       error => this.errorService.announceError({ status: error, type: 'Employee' })
-      );
+    );
     //  error => this.errHandle.emit(error));
   }
 

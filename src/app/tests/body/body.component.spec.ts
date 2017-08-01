@@ -22,7 +22,7 @@ class ErrorComponent { }
 })
 class CreateBtnComponent { }
 
-fdescribe('BodyComponent', () => {
+describe('BodyComponent', () => {
   let component: BodyComponent;
   let fixture: ComponentFixture<BodyComponent>;
 

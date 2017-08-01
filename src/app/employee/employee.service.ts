@@ -61,7 +61,6 @@ export class EmployeeService {
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
 
-
     return this.http
       .put(employeeRoute + employee.id, JSON.stringify(employee), options)
       .map((res: Response) => <Employee>res.json())

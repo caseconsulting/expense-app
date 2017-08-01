@@ -4,14 +4,15 @@ import { Router } from '@angular/router';
 import { By } from '@angular/platform-browser';
 import { Location, CommonModule } from '@angular/common';
 import { RouterTestingModule } from '@angular/router/testing';
-import { EmployeeListComponent } from '../../employee/employee-list.component';
-import { Employee, EmployeeService} from '../../employee/employee.service';
-import { UpdateListService } from '../../update-list.service';
 import { Http } from '@angular/http';
-import { ErrorService} from '../../error/error.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
+
+import { EmployeeListComponent } from '../../employee/employee-list.component';
+import { Employee, EmployeeService} from '../../employee/employee.service';
+import { UpdateListService } from '../../update-list.service';
+import { ErrorService} from '../../error/error.service';
 
 class MockEmployeeService {
   getEmployees() {
@@ -19,26 +20,7 @@ class MockEmployeeService {
   }
 }
 
-// @Component({
-//   template: `
-//     <a routerLink="/create">link</a>
-//     <router-outlet></router-outlet>
-//   `
-// })
-// class TestComponent {
-//   collName = 'testing';
-//   item = {
-//     _id: 1
-//   };
-// }
-//
-// @Component({
-//   template: ''
-// })
-// class DummyComponent {
-// }
-
-fdescribe('EmployeeListComponent', function() {
+describe('EmployeeListComponent', function() {
   let comp: EmployeeListComponent;
   let fixture: ComponentFixture<EmployeeListComponent>;
   let employeeService;
@@ -124,6 +106,36 @@ fdescribe('EmployeeListComponent', function() {
           expect(comp.getEmployees).not.toHaveBeenCalled();
         }); // does not call getEmployees
       }); // OnInit is never called
-
   }); // ngOnInit
+
+  describe('updateList', () => {
+    let caller;
+    describe('caller is anything but remove', () => {
+      beforeEach(() => {
+        caller = 'form';
+        // removeRoute = ['/'];
+        spyOn(comp, 'getEmployees');
+        });
+        afterEach(() => {
+          expect(comp.getEmployees).toHaveBeenCalled();
+          });
+      it(' updates the list', () => {
+        comp.updateList(caller);
+      }); // router navigates back to home
+    }); // caller is remove
+    describe('caller is remove', () => {
+      beforeEach(() => {
+        caller = 'remove';
+        // removeRoute = ['/'];
+        spyOn(comp, 'getEmployees');
+        });
+        afterEach(() => {
+          expect(comp.getEmployees).toHaveBeenCalled();
+          // expect(router.navigate).toHaveBeenCalledWith(removeRoute);
+          });
+      it(' updates the list, navigates to root', () => {
+        comp.updateList(caller);
+      }); // router navigates back to home
+    }); // caller is remove
+  }); // updateList
 });

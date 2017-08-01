@@ -241,7 +241,7 @@ describe('EmployeeService', () => {
             fail('expected error');
           },
           (errors) => {
-            expect(errors).toBe(`Error status code 409 at example.com`)
+            expect(errors).toBe(409);
           });
       })); // should return an throw an Observable error
   }); // handleError
