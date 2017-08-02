@@ -6,11 +6,16 @@ import { BodyComponent } from './body/body.component';
 import { EmployeeListComponent } from './employee/employee-list.component';
 import { EmployeeFormCreateComponent } from './employee-form-create/employee-form-create.component';
 import { EmployeePreviewComponent } from './employee-preview/employee-preview.component';
+import { ExpenseTypeListComponent } from './expense-type/expense-type-list.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '' },
   { path: '', component: BodyComponent },
-  { path: 'expense-type', component: '' },
+  {
+    path: 'expense-types', component: ExpenseTypeListComponent, children: [
+
+    ]
+  },
   {
     path: 'employees', component: EmployeeListComponent, children: [
       { path: 'create', component: EmployeeFormCreateComponent },
@@ -31,5 +36,6 @@ export const routableComponents = [
   // list of components that will have routes
   EmployeeListComponent,
   EmployeeFormCreateComponent,
-  BodyComponent
+  BodyComponent,
+  ExpenseTypeListComponent
 ];
