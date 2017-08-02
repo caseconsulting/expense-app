@@ -1,10 +1,15 @@
+// Angular
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ExpRoutingModule, routableComponents } from './routing.module';
 
+// 3rd party
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbdDatepickerPopupComponent } from './datepicker/datepicker.component';
+
+// Local Components
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { NavComponent } from './nav/nav.component';
@@ -15,10 +20,12 @@ import { EmployeeFormCreateComponent } from './employee-form-create/employee-for
 import { EmployeePreviewComponent } from './employee-preview/employee-preview.component';
 import { ErrorComponent } from './error/error.component';
 
+// Services
 import { EmployeeService} from './employee/employee.service';
+import { ExpenseTypeService} from './expense-type/expense-type.service';
 import { UpdateListService } from './update-list.service';
 import { ErrorService } from './error/error.service';
-import { NgbdDatepickerPopupComponent } from './datepicker/datepicker.component';
+
 
 @NgModule({
   declarations: [
@@ -41,7 +48,7 @@ import { NgbdDatepickerPopupComponent } from './datepicker/datepicker.component'
     NgbModule.forRoot(),
     ExpRoutingModule
   ],
-  providers: [EmployeeService, UpdateListService, ErrorService],
+  providers: [EmployeeService, ExpenseTypeService, UpdateListService, ErrorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
