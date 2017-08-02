@@ -23,7 +23,7 @@ class MockNgbModal {
   }
 }
 
-fdescribe('DeleteConfirmComponent', () => {
+xdescribe('DeleteConfirmComponent', () => {
   let component: DeleteConfirmComponent;
   let fixture: ComponentFixture<DeleteConfirmComponent>;
   let employeeService, modalService, errorService;
@@ -57,7 +57,7 @@ fdescribe('DeleteConfirmComponent', () => {
     errorService = fixture.debugElement.injector.get(ErrorService);
     modalService = fixture.debugElement.injector.get(NgbModal);
   });
-  fdescribe('open', () => {
+  describe('open', () => {
     let thenFunction;
     afterEach(() => {
       // expect(employeeService.deleteEmployee).toHaveBeenCalled();
@@ -75,7 +75,7 @@ fdescribe('DeleteConfirmComponent', () => {
         expect(component.open).toHaveBeenCalled();
       });
     });
-    xdescribe('when not succcessful', () => {
+    describe('when not succcessful', () => {
       let errorStr;
       beforeEach(() => {
         errorStr = 'testError';

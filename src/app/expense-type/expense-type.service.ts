@@ -18,7 +18,7 @@ export class ExpenseType {
   constructor(
     public id: string,
     public name: string,
-    public budget: string,
+    public budget: number,
     public overdraftFlag: boolean,
   ) { }
 }
