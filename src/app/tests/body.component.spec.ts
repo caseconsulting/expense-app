@@ -2,7 +2,7 @@
 import { Component } from '@angular/core'
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BodyComponent } from '../../body/body.component';
+import { BodyComponent } from '../body/body.component';
 
 @Component({
   selector: 'exp-employee-list',

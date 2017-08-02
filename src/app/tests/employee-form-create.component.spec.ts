@@ -6,12 +6,12 @@ import { FormsModule } from '@angular/forms';
 import { Location, CommonModule } from '@angular/common';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Observable } from 'rxjs/Observable';
-import { Employee, EmployeeService} from '../../employee/employee.service';
-import { UpdateListService } from '../../update-list.service';
-import { ErrorService} from '../../error/error.service';
+import { Employee, EmployeeService} from '../employee/employee.service';
+import { UpdateListService } from '../update-list.service';
+import { ErrorService} from '../error/error.service';
 import { ActivatedRoute, Router, ParamMap, Params } from '@angular/router';
 // Component to be tested
-import { EmployeeFormCreateComponent } from '../../employee-form-create/employee-form-create.component';
+import { EmployeeFormCreateComponent } from '../employee-form-create/employee-form-create.component';
 
 class MockEmployeeService {
   createEmployee(employee: Employee) {
@@ -25,7 +25,7 @@ class MockEmployeeService {
   }
 }
 
-describe('EmployeeFormCreateComponent (inline template)', () => {
+describe('EmployeeFormCreateComponent', () => {
   // Declare utilities and component
   let comp: EmployeeFormCreateComponent;
   let fixture: ComponentFixture<EmployeeFormCreateComponent>;

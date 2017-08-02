@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 
 // Service
-import { Employee, EmployeeService } from '../../employee/employee.service';
+import { Employee, EmployeeService } from '../employee/employee.service';
 
 export class MockError extends Response implements Error {
 

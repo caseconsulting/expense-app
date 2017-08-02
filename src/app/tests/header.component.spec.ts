@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 // Component to be tested
-import { HeaderComponent } from '../../header/header.component';
+import { HeaderComponent } from '../header/header.component';
 
 describe('HeaderComponent (inline template)', () => {
   // Declare utilities and component

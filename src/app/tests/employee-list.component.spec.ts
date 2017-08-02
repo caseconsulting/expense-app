@@ -9,10 +9,10 @@ import { Subscription } from 'rxjs/Subscription';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 
-import { EmployeeListComponent } from '../../employee/employee-list.component';
-import { Employee, EmployeeService} from '../../employee/employee.service';
-import { UpdateListService } from '../../update-list.service';
-import { ErrorService} from '../../error/error.service';
+import { EmployeeListComponent } from '../employee/employee-list.component';
+import { Employee, EmployeeService} from '../employee/employee.service';
+import { UpdateListService } from '../update-list.service';
+import { ErrorService} from '../error/error.service';
 
 class MockEmployeeService {
   getEmployees() {

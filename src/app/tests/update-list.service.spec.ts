@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/Rx';
 
 // Service
-import { UpdateListService } from '../../update-list.service';
+import { UpdateListService } from '../update-list.service';
 
 describe('UpdateListService', () => {
 
