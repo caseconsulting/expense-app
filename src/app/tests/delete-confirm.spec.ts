@@ -7,10 +7,10 @@ import { Observable } from 'rxjs/Observable';
 import { Location, CommonModule } from '@angular/common';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { DeleteConfirmComponent } from '../../delete-confirm/delete-confirm.component';
-import { Employee, EmployeeService } from '../../employee/employee.service';
-import { UpdateListService } from '../../update-list.service';
-import { ErrorService } from '../../error/error.service';
+import { DeleteConfirmComponent } from '../delete-confirm/delete-confirm.component';
+import { Employee, EmployeeService } from '../employee/employee.service';
+import { UpdateListService } from '../update-list.service';
+import { ErrorService } from '../error/error.service';
 
 class MockEmployeeService {
   deleteEmployee() {
@@ -60,7 +60,7 @@ fdescribe('DeleteConfirmComponent', () => {
   fdescribe('open', () => {
     let thenFunction;
     afterEach(() => {
-      //expect(employeeService.deleteEmployee).toHaveBeenCalled();
+      // expect(employeeService.deleteEmployee).toHaveBeenCalled();
     });
     describe('when successful', () => {
       beforeEach(() => {
