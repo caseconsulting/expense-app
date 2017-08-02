@@ -1,27 +1,14 @@
 <!-- Output employees -->
 <div class="row">
-
-
   <div class="col-4">
+    <button id="create-btn" [routerLink]="['create']" class="btn btn-secondary"><i class="fa fa-user-plus fa-2x"></i></button>
     <ul class="list-group">
-      <li class="list-group-item text-center" [routerLink]="['/employee', employee.id]" [class.selected]="employee === selectedEmployee" *ngFor="let employee of employees" (click)="selectedEmployee = employee">
+      <li class="list-group-item text-center" [routerLink]="['/employees', employee.id]" [class.selected]="employee === selectedEmployee" *ngFor="let employee of employees" (click)="selectedEmployee = employee">
         {{ employee.firstName }} {{ employee.middleName }} {{ employee.lastName }}
       </li>
     </ul>
   </div>
-
-
   <div class="col-8">
-    <!-- <exp-employee-form *ngIf="selectedEmployee" [employee]="selectedEmployee" (removeFromList)=removeFromList($event) (updateList)=updateList($event) (errHandle)=errHandle($event)>
-    </exp-employee-form> -->
     <router-outlet></router-outlet>
-    <!-- Output error messages -->
-    <ul class="messages">
-      <li *ngFor="let msg of messages">{{msg}}</li>
-    </ul>
-
-
-    <div class="error" (errHandle)=errHandle($event) *ngIf="errorMessage">{{errorMessage}}</div>
   </div>
-
 </div>

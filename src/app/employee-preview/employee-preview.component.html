@@ -10,6 +10,6 @@
     <div class="col-9"> {{ model.hireDate | date:'MM/dd/y' }} </div>
   </div>
   <br>
-  <button type="submit" class="btn btn-secondary" [routerLink]="['/employee/update', model.id]">Edit</button>
+  <button type="submit" class="btn btn-secondary" [routerLink]="['/employees/', model.id,'update']">Edit</button>
   <exp-delete-confirm [modelToDelte]="model"></exp-delete-confirm>
 </div>

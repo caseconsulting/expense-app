@@ -19,7 +19,7 @@ export class EmployeeFormCreateComponent implements OnInit {
 
   onSubmit(employee: Employee) {
     let result;
-
+    console.log('not me');
     if (this.title === 'Create') {
       result = this.employeeService.createEmployee(employee);
     } else {
@@ -43,6 +43,8 @@ export class EmployeeFormCreateComponent implements OnInit {
     private errorService: ErrorService) { }
 
   ngOnInit() {
+    console.log(this.employee, '**');
+    console.log(this.route.params)
     if (!this.employee) {
       this.route
         .params

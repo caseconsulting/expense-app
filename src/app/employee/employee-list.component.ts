@@ -34,7 +34,7 @@ export class EmployeeListComponent implements OnInit {
     this.employeeService.getEmployees()
       .subscribe(
       employees => this.employees = employees,
-      error => this.errorService.announceError({ status: error, type: 'Employee' })
+      error => this.errorService.announceError({ status: error, type: 'Employees' })
       );
   }
 
@@ -48,6 +48,7 @@ export class EmployeeListComponent implements OnInit {
   // }
 
   updateList(caller: string) {
+    console.log('tis me');
     this.getEmployees();
     if (caller === 'remove') {
       this.router.navigate(['/']);

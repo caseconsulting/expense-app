@@ -10,10 +10,13 @@ import { EmployeePreviewComponent } from './employee-preview/employee-preview.co
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '' },
   { path: '', component: BodyComponent },
-  { path: 'employees', component: EmployeeListComponent },
-  { path: 'employee/:id', component: EmployeePreviewComponent },
-  { path: 'employee/update/:id', component: EmployeeFormCreateComponent },
-  { path: 'create', component: EmployeeFormCreateComponent },
+  {
+    path: 'employees', component: EmployeeListComponent, children: [
+      { path: 'create', component: EmployeeFormCreateComponent },
+      { path: ':id', component: EmployeePreviewComponent },
+      { path: ':id/update', component: EmployeeFormCreateComponent },
+    ]
+  },
   // { path: '**', pathMatch: 'full', component: PageNotFoundComponent }
 ];
 
