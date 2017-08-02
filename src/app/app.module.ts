@@ -26,6 +26,7 @@ import { ExpenseTypeService} from './expense-type/expense-type.service';
 import { UpdateListService } from './update-list.service';
 import { ErrorService } from './error/error.service';
 import { ExpenseTypeListComponent } from './expense-type/expense-type-list.component';
+import { ExpenseTypePreviewComponent } from './expense-type-preview/expense-type-preview.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { ExpenseTypeListComponent } from './expense-type/expense-type-list.compo
     EmployeePreviewComponent,
     ErrorComponent,
     NgbdDatepickerPopupComponent,
-    ExpenseTypeListComponent
+    ExpenseTypeListComponent,
+    ExpenseTypePreviewComponent
   ],
   imports: [
     BrowserModule,

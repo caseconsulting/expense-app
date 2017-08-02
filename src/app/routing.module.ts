@@ -7,13 +7,13 @@ import { EmployeeListComponent } from './employee/employee-list.component';
 import { EmployeeFormCreateComponent } from './employee-form-create/employee-form-create.component';
 import { EmployeePreviewComponent } from './employee-preview/employee-preview.component';
 import { ExpenseTypeListComponent } from './expense-type/expense-type-list.component';
-
+import { ExpenseTypePreviewComponent } from './expense-type-preview/expense-type-preview.component';
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '' },
   { path: '', component: BodyComponent },
   {
     path: 'expense-types', component: ExpenseTypeListComponent, children: [
-
+      { path: ':id', component: ExpenseTypePreviewComponent },
     ]
   },
   {
@@ -37,5 +37,6 @@ export const routableComponents = [
   EmployeeListComponent,
   EmployeeFormCreateComponent,
   BodyComponent,
-  ExpenseTypeListComponent
+  ExpenseTypeListComponent,
+  ExpenseTypePreviewComponent
 ];
