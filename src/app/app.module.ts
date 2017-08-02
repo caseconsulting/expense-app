@@ -27,6 +27,7 @@ import { UpdateListService } from './update-list.service';
 import { ErrorService } from './error/error.service';
 import { ExpenseTypeListComponent } from './expense-type/expense-type-list.component';
 import { ExpenseTypePreviewComponent } from './expense-type-preview/expense-type-preview.component';
+import { DeleteComfirmExpenseTypeComponent } from './delete-comfirm-expense-type/delete-comfirm-expense-type.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { ExpenseTypePreviewComponent } from './expense-type-preview/expense-type
     ErrorComponent,
     NgbdDatepickerPopupComponent,
     ExpenseTypeListComponent,
-    ExpenseTypePreviewComponent
+    ExpenseTypePreviewComponent,
+    DeleteComfirmExpenseTypeComponent
   ],
   imports: [
     BrowserModule,
