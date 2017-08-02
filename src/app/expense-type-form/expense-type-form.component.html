@@ -1,0 +1,38 @@
+<div>
+  <div *ngIf="model">
+    <h1>{{title}} Expense Type</h1>
+    <form #employeeForm="ngForm">
+
+      <div class="form-group">
+        <label for="name">Name <span>*</span></label>
+        <input placeholder="Johnny" type="text" class="form-control" id="firstName" required [(ngModel)]="model.firstName" name="firstName" #firstName="ngModel">
+        <div [hidden]="firstName.valid || firstName.pristine" class="alert alert-danger">
+          A name is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="name">Budget <span>*</span></label>
+        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+          <div class="input-group-addon">$</div>
+          <input placeholder="12345678" type="number" min="0" step="1" class="form-control" id="empId" required [(ngModel)]="model.empId" name="empId" #empId="ngModel">
+          <div [hidden]="empId.valid || empId.pristine" class="alert alert-danger">
+            An amount for the budget alotted to this expense type is required
+          </div>
+        </div>
+      </div>
+
+      <!-- Should be a switch -->
+      <div class="form-group">
+        <label class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input">
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">Overdraft allowed</span>
+        </label>
+      </div>
+
+      <button type="submit" class="btn btn-success" (click)="onSubmit(model);" [disabled]="!employeeForm.form.valid || employeeForm.form.pristine">{{title}}</button>
+
+      <button class="btn btn-default" routerLink="" (click)="goBack()">Go Back</button>
+    </form>
+  </div>

@@ -8,12 +8,15 @@ import { EmployeeFormCreateComponent } from './employee-form-create/employee-for
 import { EmployeePreviewComponent } from './employee-preview/employee-preview.component';
 import { ExpenseTypeListComponent } from './expense-type/expense-type-list.component';
 import { ExpenseTypePreviewComponent } from './expense-type-preview/expense-type-preview.component';
+import { ExpenseTypeFormComponent } from './expense-type-form/expense-type-form.component';
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '' },
   { path: '', component: BodyComponent },
   {
     path: 'expense-types', component: ExpenseTypeListComponent, children: [
+      { path: 'create', component: ExpenseTypeFormComponent },
       { path: ':id', component: ExpenseTypePreviewComponent },
+      { path: ':id/update', component: ExpenseTypeFormComponent },
     ]
   },
   {

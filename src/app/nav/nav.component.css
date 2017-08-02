@@ -1,8 +1,8 @@
 .navbar-fixed-left {
 
-
+  position: fixed;
   border-radius: 0;
-  height: 100%;
+  height: 100vh;
   background-color: #BDBDBD;
   padding-left: 0;
   padding-right: 0;

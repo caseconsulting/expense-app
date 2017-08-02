@@ -10,6 +10,6 @@
     <div class="col-9"> {{ model.odFlag }} </div>
   </div>
   <br>
-  <button type="submit" class="btn btn-secondary" [routerLink]="['/employees/', model.id,'update']">Edit</button>
-  <exp-delete-comfirm-expense-type [modelToDelte]="model"></exp-delete-comfirm-expense-type>
+  <button type="submit" class="btn btn-secondary" [routerLink]="['/expense-types/', model.id,'update']">Edit</button>
+  <exp-delete-confirm [modelToDelte]="model"></exp-delete-confirm>
 </div>

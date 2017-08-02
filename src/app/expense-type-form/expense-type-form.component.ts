@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Employee, EmployeeService } from '../employee/employee.service';
+import { ExpenseType, ExpenseTypeService } from '../expense-type/expense-type.service';
 import { UpdateListService } from '../update-list.service';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
@@ -7,45 +7,45 @@ import { ErrorService } from '../error/error.service';
 
 
 @Component({
-  selector: 'exp-employee-form-create',
-  templateUrl: './employee-form-create.component.html',
-  styleUrls: ['./employee-form-create.component.css']
+  selector: 'exp-expense-type-form',
+  templateUrl: './expense-type-form.component.html',
+  styleUrls: ['./expense-type-form.component.css']
 })
-export class EmployeeFormCreateComponent implements OnInit {
+export class ExpenseTypeFormComponent implements OnInit {
   id: any;
-  model: Employee;
-  employee: Employee;
+  model: ExpenseType;
+  expenseType: ExpenseType;
   title = '';
 
-  onSubmit(employee: Employee) {
+  onSubmit(expenseType: ExpenseType) {
     let result;
     console.log('not me');
     if (this.title === 'Create') {
-      result = this.employeeService.createEmployee(employee);
+      result = this.expenseTypeService.createExpenseType(expenseType);
     } else {
-      result = this.employeeService.updateEmployee(employee);
+      result = this.expenseTypeService.updateExpenseType(expenseType);
     }
 
     result.subscribe(
       (res) => {
-        this.router.navigate(['/employees', res.id]); // preview
+        this.router.navigate(['/expense-type', res.id]); // preview
         this.updateListService.announceUpdate('form'); // update the list
       },
-      error => this.errorService.announceError({ status: error, type: 'Employee' })
+      error => this.errorService.announceError({ status: error, type: 'Expense Type' })
     );
   }
 
   constructor(private location: Location,
-    private employeeService: EmployeeService,
+    private expenseTypeService: ExpenseTypeService,
     private updateListService: UpdateListService,
     private route: ActivatedRoute,
     private router: Router,
     private errorService: ErrorService) { }
 
   ngOnInit() {
-    console.log(this.employee, '**');
+    console.log(this.expenseType, '**');
     console.log(this.route.params)
-    if (!this.employee) {
+    if (!this.expenseType) {
       this.route
         .params
         .map(params => params['id'])
@@ -53,15 +53,15 @@ export class EmployeeFormCreateComponent implements OnInit {
         .subscribe(id => {
           if (id) {
             console.log(id);
-            this.employeeService.readSingleEmployee(this.id)
+            this.expenseTypeService.readSingleExpenseType(this.id)
               .subscribe(
-              returnedEmployee => {
-                this.model = returnedEmployee;
+              returnedExpenseType => {
+                this.model = returnedExpenseType;
                 this.title = 'Update';
               },
               error => this.errorService.announceError(error))
           } else {
-            this.model = new Employee('', '', '', '', '', '');
+            this.model = new ExpenseType('', '', 0, false);
             this.title = 'Create';
           }
         });

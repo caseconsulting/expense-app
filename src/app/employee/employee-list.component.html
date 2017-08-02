@@ -1,6 +1,7 @@
 <!-- Output employees -->
 <div class="row">
   <div class="col-4">
+    <h1>Employees</h1>
     <button id="create-btn" [routerLink]="['create']" class="btn btn-secondary"><i class="fa fa-user-plus fa-2x"></i></button>
     <ul class="list-group">
       <li class="list-group-item text-center" [routerLink]="['/employees', employee.id]" [class.selected]="employee === selectedEmployee" *ngFor="let employee of employees" (click)="selectedEmployee = employee">

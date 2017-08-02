@@ -28,6 +28,7 @@ import { ErrorService } from './error/error.service';
 import { ExpenseTypeListComponent } from './expense-type/expense-type-list.component';
 import { ExpenseTypePreviewComponent } from './expense-type-preview/expense-type-preview.component';
 import { DeleteComfirmExpenseTypeComponent } from './delete-comfirm-expense-type/delete-comfirm-expense-type.component';
+import { ExpenseTypeFormComponent } from './expense-type-form/expense-type-form.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { DeleteComfirmExpenseTypeComponent } from './delete-comfirm-expense-type
     ExpenseTypeListComponent,
     ExpenseTypePreviewComponent,
     DeleteComfirmExpenseTypeComponent
+    ExpenseTypeFormComponent
   ],
   imports: [
     BrowserModule,
