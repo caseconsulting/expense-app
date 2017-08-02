@@ -51,7 +51,7 @@ export class EmployeeListComponent implements OnInit {
     console.log('tis me');
     this.getEmployees();
     if (caller === 'remove') {
-      this.router.navigate(['/']);
+      this.router.navigate(['/employees']);
     }
   }
 }
