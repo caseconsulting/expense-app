@@ -1,5 +1,5 @@
-import {Component, Input, EventEmitter} from '@angular/core';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import {Component, Input} from '@angular/core';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 import { Employee, EmployeeService } from '../employee/employee.service';
 import { UpdateListService } from '../update-list.service';
@@ -12,7 +12,6 @@ import { ErrorService } from '../error/error.service';
 export class DeleteConfirmComponent {
   @Input() modelToDelte: Employee;
   closeResult: string;
-  errorMessage: string;
   constructor(private modalService: NgbModal,
     private employeeService: EmployeeService,
     private updateListService: UpdateListService,
@@ -29,21 +28,6 @@ export class DeleteConfirmComponent {
         () => { this.updateListService.announceUpdate('remove') },
         error => this.errorService.announceError({ status: error, type: 'Employee' })
         );
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
-  }
-
-  // diagnostic
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else if (reason === 'delete') {
-      return 'by clicking delete';
-    } else {
-      return `with: ${reason}`;
-    }
   }
 }

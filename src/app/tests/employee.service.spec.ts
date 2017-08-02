@@ -11,14 +11,14 @@ import { Employee, EmployeeService } from '../employee/employee.service';
 
 export class MockError extends Response implements Error {
 
-    name: any;
-    message: any;
+  name: any;
+  message: any;
 
-    constructor(status: number, body: string = '') {
-        super(new ResponseOptions({status, body}));
-    }
+  constructor(status: number, body: string = '') {
+    super(new ResponseOptions({ status, body }));
+  }
 }
-describe('EmployeeService', () => {
+fdescribe('EmployeeService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -75,6 +75,29 @@ describe('EmployeeService', () => {
             expect(employees[1].firstName).toEqual('Franklin');
           });
       })); // should return an Observable<Array<Employee>>
+
+    it('should call handleError',
+      inject([EmployeeService, XHRBackend], (employeeService, mockBackend) => {
+        const ourError = new MockError(404, 'test');
+        // This is called every time someone subscribes to
+        // an http call.
+        mockBackend.connections.subscribe((connection: MockConnection) => {
+          // Here we want to fake the http response.
+          expect(connection.request.method).toBe(RequestMethod.Get);
+          connection.mockError(ourError);
+
+        });
+        spyOn(employeeService, 'handleError').and.returnValue('test');
+        // Call to service
+        employeeService.getEmployees()
+          .subscribe(response => {
+            expect(response).toBeDefined();
+            expect(employeeService.handleError).toHaveBeenCalledWith(ourError, jasmine.any(Object));
+            console.log('after expect**', employeeService.handleError);
+
+          });
+      })); // should call handleError
+
   }); // getEmployees
 
   describe('readSingleEmployee', () => {
@@ -109,6 +132,27 @@ describe('EmployeeService', () => {
             expect(employee.firstName).toEqual('Dwight');
           });
       })); // should return an Observable<Employee>
+    it('should call handleError',
+      inject([EmployeeService, XHRBackend], (employeeService, mockBackend) => {
+        const ourError = new MockError(404, 'test');
+        // This is called every time someone subscribes to
+        // an http call.
+        mockBackend.connections.subscribe((connection: MockConnection) => {
+          // Here we want to fake the http response.
+          expect(connection.request.method).toBe(RequestMethod.Get);
+          connection.mockError(ourError);
+
+        });
+        spyOn(employeeService, 'handleError').and.returnValue('test');
+        // Call to service
+        employeeService.readSingleEmployee(mockResponse.id)
+          .subscribe(response => {
+            expect(response).toBeDefined();
+            expect(employeeService.handleError).toHaveBeenCalledWith(ourError, jasmine.any(Object));
+            console.log('after expect**', employeeService.handleError);
+
+          });
+      })); // should call handleError
   }); // readSingleEmployee
 
   describe('createEmployee', () => {
@@ -162,7 +206,7 @@ describe('EmployeeService', () => {
             console.log('after expect');
 
           });
-      })); // should return a success status
+      })); // should call handleError
   }); // createEmployee
 
   describe('updateEmployee', () => {
@@ -192,6 +236,27 @@ describe('EmployeeService', () => {
             expect(response).toBeDefined();
           });
       })); // should return a success status
+    it('should call handleError',
+      inject([EmployeeService, XHRBackend], (employeeService, mockBackend) => {
+        const ourError = new MockError(404, 'test');
+        // This is called every time someone subscribes to
+        // an http call.
+        mockBackend.connections.subscribe((connection: MockConnection) => {
+          // Here we want to fake the http response.
+          expect(connection.request.method).toBe(RequestMethod.Put);
+          connection.mockError(ourError);
+
+        });
+        spyOn(employeeService, 'handleError').and.returnValue('test');
+        // Call to service
+        employeeService.updateEmployee(mockInput)
+          .subscribe(response => {
+            expect(response).toBeDefined();
+            expect(employeeService.handleError).toHaveBeenCalledWith(ourError, jasmine.any(Object));
+            console.log('after expect**', employeeService.handleError);
+
+          });
+      })); // should call handleError
   }); // updateEmployee
 
   describe('deleteEmployee', () => {
@@ -222,6 +287,27 @@ describe('EmployeeService', () => {
 
           });
       })); // should return a success status
+    it('should call handleError',
+      inject([EmployeeService, XHRBackend], (employeeService, mockBackend) => {
+        const ourError = new MockError(404, 'test');
+        // This is called every time someone subscribes to
+        // an http call.
+        mockBackend.connections.subscribe((connection: MockConnection) => {
+          // Here we want to fake the http response.
+          expect(connection.request.method).toBe(RequestMethod.Delete);
+          connection.mockError(ourError);
+
+        });
+        spyOn(employeeService, 'handleError').and.returnValue('test');
+        // Call to service
+        employeeService.deleteEmployee(mockInput)
+          .subscribe(response => {
+            expect(response).toBeDefined();
+            expect(employeeService.handleError).toHaveBeenCalledWith(ourError, jasmine.any(Object));
+            console.log('after expect**', employeeService.handleError);
+
+          });
+      })); // should call handleError
   }); // updateEmployee
 
   describe('handleError', () => {

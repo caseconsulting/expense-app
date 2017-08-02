@@ -32,8 +32,13 @@ export class EmployeeFormCreateComponent implements OnInit {
         this.updateListService.announceUpdate('form'); // update the list
       },
       error => this.errorService.announceError({ status: error, type: 'Employee' })
+<<<<<<< HEAD
     );
     //  error => this.errHandle.emit(error));
+=======
+      );
+
+>>>>>>> routing: started delete confirm test (no-verify)
   }
 
   constructor(private location: Location,
