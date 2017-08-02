@@ -10,6 +10,7 @@ import { EmployeePreviewComponent } from './employee-preview/employee-preview.co
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '' },
   { path: '', component: BodyComponent },
+  { path: 'expense-type', component: '' },
   {
     path: 'employees', component: EmployeeListComponent, children: [
       { path: 'create', component: EmployeeFormCreateComponent },
