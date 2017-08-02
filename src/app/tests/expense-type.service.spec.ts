@@ -18,7 +18,7 @@ export class MockError extends Response implements Error {
     super(new ResponseOptions({ status, body }));
   }
 }
-fdescribe('ExpenseTypeService', () => {
+describe('ExpenseTypeService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({

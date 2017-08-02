@@ -25,6 +25,7 @@ import { EmployeeService} from './employee/employee.service';
 import { ExpenseTypeService} from './expense-type/expense-type.service';
 import { UpdateListService } from './update-list.service';
 import { ErrorService } from './error/error.service';
+import { ExpenseTypeListComponent } from './expense-type/expense-type-list.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { ErrorService } from './error/error.service';
     routableComponents,
     EmployeePreviewComponent,
     ErrorComponent,
-    NgbdDatepickerPopupComponent
+    NgbdDatepickerPopupComponent,
+    ExpenseTypeListComponent
   ],
   imports: [
     BrowserModule,
