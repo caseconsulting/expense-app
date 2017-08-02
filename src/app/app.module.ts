@@ -18,6 +18,7 @@ import { ErrorComponent } from './error/error.component';
 import { EmployeeService} from './employee/employee.service';
 import { UpdateListService } from './update-list.service';
 import { ErrorService } from './error/error.service';
+import { NgbdDatepickerPopupComponent } from './datepicker/datepicker.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ErrorService } from './error/error.service';
     EmployeeFormCreateComponent,
     routableComponents,
     EmployeePreviewComponent,
-    ErrorComponent
+    ErrorComponent,
+    NgbdDatepickerPopupComponent
   ],
   imports: [
     BrowserModule,
