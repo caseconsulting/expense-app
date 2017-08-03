@@ -46,7 +46,7 @@ import { ExpenseTypeFormComponent } from './expense-type-form/expense-type-form.
     NgbdDatepickerPopupComponent,
     ExpenseTypeListComponent,
     ExpenseTypePreviewComponent,
-    DeleteComfirmExpenseTypeComponent
+    DeleteComfirmExpenseTypeComponent,
     ExpenseTypeFormComponent
   ],
   imports: [
