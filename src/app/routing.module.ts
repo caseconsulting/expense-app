@@ -11,9 +11,12 @@ import { ExpenseTypePreviewComponent } from './expense-type-preview/expense-type
 import { ExpenseTypeFormComponent } from './expense-type-form/expense-type-form.component';
 import { ExpenseListComponent } from './expense/expense-list.component';
 import { ExpensePreviewComponent } from './expense-preview/expense-preview.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: '' },
+  { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
   { path: '', component: BodyComponent },
+  { path: 'dashboard', component: DashboardComponent },
   {
     path: 'expenses', component: ExpenseListComponent, children: [
       // { path: 'create', component: ExpenseFormComponent },

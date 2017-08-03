@@ -24,6 +24,8 @@ import { ExpenseTypePreviewComponent } from './expense-type-preview/expense-type
 import { DeleteComfirmExpenseTypeComponent } from './delete-comfirm-expense-type/delete-comfirm-expense-type.component';
 import { ExpenseTypeFormComponent } from './expense-type-form/expense-type-form.component';
 import { ExpenseListComponent } from './expense/expense-list.component';
+import { ExpensePreviewComponent } from './expense-preview/expense-preview.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 // Services
 import { EmployeeService} from './employee/employee.service';
@@ -31,7 +33,6 @@ import { ExpenseTypeService} from './expense-type/expense-type.service';
 import { UpdateListService } from './update-list.service';
 import { ErrorService } from './error/error.service';
 import { ExpenseService } from './expense/expense.service';
-import { ExpensePreviewComponent } from './expense-preview/expense-preview.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { ExpensePreviewComponent } from './expense-preview/expense-preview.compo
     DeleteComfirmExpenseTypeComponent,
     ExpenseTypeFormComponent,
     ExpenseListComponent,
-    ExpensePreviewComponent
+    ExpensePreviewComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
