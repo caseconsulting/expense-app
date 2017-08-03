@@ -5,7 +5,7 @@
     <button id="create-btn" [routerLink]="['create']" class="btn btn-secondary"><i class="fa fa-user-plus fa-2x"></i></button>
     <ul class="list-group">
       <li class="list-group-item text-center" [routerLink]="['/expenses', expense.id]" [class.selected]="expense === selectedExpense" *ngFor="let expense of expenses" (click)="selectedExpense = expense">
-        {{ expense.name }}
+        {{ expense.description }}
       </li>
     </ul>
   </div>

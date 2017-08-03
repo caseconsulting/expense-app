@@ -1,0 +1,34 @@
+<div *ngIf="model" class="">
+  <button class="close" routerLink='/expense-types'><i class="fa fa-times"></i></button>
+  <h2>{{ model.description }}</h2>
+  <br>
+  <div class="row">
+    <div class="col-3"> Cost:</div>
+    <div class="col-9"> {{ model.cost | currency:'USD':true:'1.2-2' }} </div>
+  </div>
+  <div class="row">
+    <div class="col-3"> Expense: </div>
+    <div class="col-9"> {{ model.expenseTypeId }} </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-3"> Purchase Date:</div>
+    <div class="col-9"> {{ model.purchaseDate | date }} </div>
+  </div>
+  <div class="row">
+    <div class="col-3"> Reimbursed Date: </div>
+    <div class="col-9"> {{ model.purchaseDate | date }} </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-3"> Employee: </div>
+    <div class="col-9"> {{ model.userId }} </div>
+  </div>
+  <div class="row">
+    <div class="col-3"> Notes: </div>
+    <div class="col-9"> {{ model.note }} </div>
+  </div>
+  <br>
+  <button type="submit" class="btn btn-secondary" [routerLink]="['/expense-types/', model.id,'update']">Edit</button>
+  <exp-delete-confirm [modelToDelte]="model"></exp-delete-confirm>
+</div>

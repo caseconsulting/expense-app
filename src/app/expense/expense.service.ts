@@ -14,7 +14,7 @@ export class Expense {
     public cost: number,
     public description: string,
     public note: string,
-    public receipt: boolean,
+    public receipt: string,
     public expenseTypeId: string,
     public userId: string
   ) { }
