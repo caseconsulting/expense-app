@@ -1,6 +1,8 @@
-ul{
+ul .list-group {
   cursor: pointer;
+  font-family: 'Quicksand', sans-serif;
   }
+
 li{
   outline: none;
   border-radius: 0 !important;
@@ -11,6 +13,7 @@ li{
   border-bottom-color: #bdbdbd;
   margin-bottom: 0;
 }
+
 li:hover {
   outline: none;
       color: #212121;

@@ -1,7 +1,9 @@
-ul{
+ul  {
   cursor: pointer;
+  font-family: 'Quicksand', sans-serif;
   }
-li{
+li .list-group-item .text-center {
+  font-family: 'Open Sans';
   outline: none;
   border-radius: 0 !important;
   border: 0;

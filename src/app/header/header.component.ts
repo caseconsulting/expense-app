@@ -9,7 +9,10 @@ import { Component } from '@angular/core';
     `h1 {
     font-family: 'Quicksand', sans-serif;
     font-weight: bold;
+    font-size: 48px;
     color: #38424D;
+    padding-top: 1%;
+    padding-bottom: 2%;
     }
     span {
       color: #68CAA6;
