@@ -69,11 +69,10 @@ export class EmployeeFormCreateComponent implements OnInit {
   }
 
   goBack(): void {
-    this.location.back();
+     if (this.title === 'Update') {
+       this.router.navigate(['/employees', this.model.id]); // preview
+     } else {
+       this.router.navigate(['/employees']); // list
+     }
   }
-
-
-  // keep this last
-  // TODO remove when finished testing
-  get diagnostic() { return JSON.stringify(this.model); }
 }

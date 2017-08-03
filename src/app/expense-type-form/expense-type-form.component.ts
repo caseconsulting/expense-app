@@ -68,7 +68,11 @@ export class ExpenseTypeFormComponent implements OnInit {
   }
 
   goBack(): void {
-    this.location.back();
+     if (this.title === 'Update') {
+       this.router.navigate(['/expense-types', this.model.id]); // preview
+     } else {
+       this.router.navigate(['//expense-types']); // list
+     }
   }
 
 
