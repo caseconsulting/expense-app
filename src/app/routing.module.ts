@@ -13,15 +13,16 @@ import { ExpenseListComponent } from './expense/expense-list.component';
 import { ExpensePreviewComponent } from './expense-preview/expense-preview.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
+import { ExpenseFormComponent } from './expense-form/expense-form.component';
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
   { path: '', component: BodyComponent },
   { path: 'dashboard', component: DashboardComponent },
   {
     path: 'expenses', component: ExpenseListComponent, children: [
-      // { path: 'create', component: ExpenseFormComponent },
+      { path: 'create', component: ExpenseFormComponent },
       { path: ':id', component: ExpensePreviewComponent },
-      // { path: ':id/update', component: ExpenseFormComponent },
+      { path: ':id/update', component: ExpenseFormComponent },
     ]
   },
   {

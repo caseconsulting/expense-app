@@ -1,0 +1,82 @@
+<div>
+  <div *ngIf="model">
+    <h1>{{title}} Expense Form</h1>
+    <form #employeeForm="ngForm">
+
+      <div class="form-group">
+        <label for="name"> Description <span>*</span></label>
+        <input placeholder="Parking Ticket..." type="text" class="form-control" id="description" required [(ngModel)]="model.description" name="description" #description="ngModel">
+        <div [hidden]="description.valid || description.pristine" class="alert alert-danger">
+          First name is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="name">Purchase Date <span>*</span></label>
+        <input placeholder="01/01/1970" type="date" class="form-control" id="purchaseDate" required [(ngModel)]="model.purchaseDate" name="purchaseDate" #purchaseDate="ngModel">
+        <!-- <ngbd-datepicker-popup placeholder="01/01/1970" type="date" class="form-control" id="hireDate" required [(ngModel)]="model.hireDate" name="hireDate" #hireDate="ngModel"></ngbd-datepicker-popup> -->
+        <div [hidden]="purchaseDate.valid || purchaseDate.pristine" class="alert alert-danger">
+          Hire date is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="name">Reimburse Date <span>*</span></label>
+        <input placeholder="01/01/1970" type="date" class="form-control" id="reimburseDate" required [(ngModel)]="model.reimburseDate" name="reimburseDate" #reimburseDate="ngModel">
+        <!-- <ngbd-datepicker-popup placeholder="01/01/1970" type="date" class="form-control" id="hireDate" required [(ngModel)]="model.hireDate" name="hireDate" #hireDate="ngModel"></ngbd-datepicker-popup> -->
+        <div [hidden]="reimburseDate.valid || reimburseDate.pristine" class="alert alert-danger">
+          Hire date is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="name">Cost <span>*</span></label>
+        <div class="input-group">
+          <div class="input-group-addon">$</div>
+          <input placeholder="1350.00" type="number" min="0" step="1" class="form-control" id="cost" required [(ngModel)]="model.cost" name="cost" #cost="ngModel">
+        </div>
+        <div [hidden]="cost.valid || cost.pristine" class="alert alert-danger">
+          An amount for the budget alotted to this expense type is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="name">Note</label>
+        <input placeholder="The sign was put up after I parked there... I swear" type="text" class="form-control" id="note" required [(ngModel)]="model.note" name="note">
+      </div>
+
+      <div class="form-group">
+        <label for="name">Receipt<span>*</span></label>
+        <div>
+          <label class="custom-file">
+            <input type="file" id="file" class="custom-file-input">
+            <span id="chooseFile" class="custom-file-control"></span>
+          </label>
+        </div>
+
+      </div>
+
+      <!-- Get a list of all available expense categories and populate the dropdown menu -->
+      <div class="form-group">
+        <label for="name">Expense ID <span>*</span></label>
+        <input placeholder="12345678" type="number" min="0" step="1" class="form-control" id="expId" required [(ngModel)]="model.expId" name="expId" #expId="ngModel">
+        <div [hidden]="expId.valid || expId.pristine" class="alert alert-danger">
+          Employee ID is required
+        </div>
+      </div>
+
+      <!-- Eventually this can be a hidden variable -->
+      <div class="form-group">
+        <label for="name">Employee <span>*</span></label>
+        <input placeholder="12345678" type="number" min="0" step="1" class="form-control" id="empId" required [(ngModel)]="model.empId" name="empId" #empId="ngModel">
+        <div [hidden]="empId.valid || empId.pristine" class="alert alert-danger">
+          Employee ID is required
+        </div>
+      </div>
+
+
+      <button type="submit" class="btn btn-success" (click)="onSubmit(model);" [disabled]="!employeeForm.form.valid || employeeForm.form.pristine">{{title}}</button>
+
+      <button class="btn btn-default" routerLink="" (click)="goBack()">Go Back</button>
+    </form>
+  </div>

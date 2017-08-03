@@ -23,10 +23,10 @@ class MockNgbModal {
   }
 }
 
-xdescribe('DeleteConfirmComponent', () => {
+describe('DeleteConfirmComponent', () => {
   let component: DeleteConfirmComponent;
   let fixture: ComponentFixture<DeleteConfirmComponent>;
-  let employeeService, modalService, errorService;
+  let employeeService, modalService, errorService, updateListService;
   const content = '#content';
 
 
@@ -54,41 +54,63 @@ xdescribe('DeleteConfirmComponent', () => {
     fixture = TestBed.createComponent(DeleteConfirmComponent);
     component = fixture.componentInstance;
     employeeService = fixture.debugElement.injector.get(EmployeeService);
+    updateListService = fixture.debugElement.injector.get(UpdateListService);
     errorService = fixture.debugElement.injector.get(ErrorService);
     modalService = fixture.debugElement.injector.get(NgbModal);
   });
-  describe('open', () => {
-    let thenFunction;
+  describe('confirmDelete', () => {
+
     afterEach(() => {
-      // expect(employeeService.deleteEmployee).toHaveBeenCalled();
+      expect(employeeService.deleteEmployee).toHaveBeenCalledWith(component.modelToDelte);
     });
     describe('when successful', () => {
       beforeEach(() => {
-        thenFunction = jasmine.any(Function);
-        spyOn(modalService, 'open')
-          .and.returnValue(Promise.resolve);
-
+        spyOn(employeeService, 'deleteEmployee')
+          .and.returnValue(Observable.of('test'));
+        spyOn(updateListService, 'announceUpdate');
+        spyOn(errorService, 'announceError');
       });
-
-      it('sets employees to value from service', () => {
-        component.open(content);
-        expect(component.open).toHaveBeenCalled();
+      afterEach(() => {
+        expect(updateListService.announceUpdate).toHaveBeenCalledWith('remove');
+        expect(errorService.announceError).not.toHaveBeenCalled();
+      });
+      it('deletes the employee and returns an observable', () => {
+        component.confirmDelete();
       });
     });
-    describe('when not succcessful', () => {
+
+    describe('when not successful', () => {
       let errorStr;
       beforeEach(() => {
-        errorStr = 'testError';
-        spyOn(modalService, 'open')
+        errorStr = 'testError'
+        spyOn(employeeService, 'deleteEmployee')
           .and.returnValue(Observable.throw(errorStr));
-        component.open(content);
+        spyOn(updateListService, 'announceUpdate');
         spyOn(errorService, 'announceError');
-        component.open(content);
-
       });
-      it('sets employees to value from service', () => {
+      afterEach(() => {
         expect(errorService.announceError).toHaveBeenCalledWith({ status: errorStr, type: 'Employee' });
+        expect(updateListService.announceUpdate).not.toHaveBeenCalled();
+      });
+      it('does not delete the employee and calls errorService', () => {
+        component.confirmDelete();
       });
     });
+
   });
+
+  // Problem: Return a promise and check to see if service was called
+  xdescribe('open', () => {
+    let contents;
+    beforeEach(() => {
+      contents = '{content}';
+      spyOn(modalService, 'open').and.returnValue('{result}');
+      afterEach(() => {
+        expect(modalService.open).toHaveBeenCalled();
+      });
+      it('should make a call to modalService', () => {
+        component.open(content);
+      });
+    });
+  }); // open
 });

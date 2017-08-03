@@ -17,17 +17,16 @@ export class DeleteConfirmComponent {
     private updateListService: UpdateListService,
     private errorService: ErrorService) { }
 
-  open(content) {
-    this.modalService.open(content).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-      // call delete here inside the promise. When the promise resolves, delete has been
-      // clicked and these instructions will execute
+confirmDelete() {
+  this.employeeService.deleteEmployee(this.modelToDelte)
+    .subscribe(
+    () => { this.updateListService.announceUpdate('remove') },
+    error => this.errorService.announceError({ status: error, type: 'Employee' })
+    );
+}
 
-      this.employeeService.deleteEmployee(this.modelToDelte)
-        .subscribe(
-        () => { this.updateListService.announceUpdate('remove') },
-        error => this.errorService.announceError({ status: error, type: 'Employee' })
-        );
-    });
+  open(content) {
+    // lol...
+    this.modalService.open(content).result.then(this.confirmDelete.bind(this));
   }
 }

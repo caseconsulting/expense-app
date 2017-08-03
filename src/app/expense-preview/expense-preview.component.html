@@ -1,5 +1,5 @@
 <div *ngIf="model" class="">
-  <button class="close" routerLink='/expense-types'><i class="fa fa-times"></i></button>
+  <button class="close" routerLink='/expenses'><i class="fa fa-times"></i></button>
   <h2>{{ model.description }}</h2>
   <br>
   <div class="row">
@@ -29,6 +29,6 @@
     <div class="col-9"> {{ model.note }} </div>
   </div>
   <br>
-  <button type="submit" class="btn btn-secondary" [routerLink]="['/expense-types/', model.id,'update']">Edit</button>
+  <button type="submit" class="btn btn-secondary" [routerLink]="['/expenses/', model.id, 'update']">Edit</button>
   <exp-delete-confirm [modelToDelte]="model"></exp-delete-confirm>
 </div>
