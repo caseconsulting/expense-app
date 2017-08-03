@@ -19,7 +19,6 @@ export class ExpenseTypeFormComponent implements OnInit {
 
   onSubmit(expenseType: ExpenseType) {
     let result;
-    console.log('not me');
     if (this.title === 'Create') {
       result = this.expenseTypeService.createExpenseType(expenseType);
     } else {
@@ -28,7 +27,7 @@ export class ExpenseTypeFormComponent implements OnInit {
 
     result.subscribe(
       (res) => {
-        this.router.navigate(['/expense-type', res.id]); // preview
+        this.router.navigate(['/expense-types', res.id]); // preview
         this.updateListService.announceUpdate('form'); // update the list
       },
       error => this.errorService.announceError({ status: error, type: 'Expense Type' })

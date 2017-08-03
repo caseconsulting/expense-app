@@ -19,17 +19,18 @@ import { DeleteConfirmComponent } from './delete-confirm/delete-confirm.componen
 import { EmployeeFormCreateComponent } from './employee-form-create/employee-form-create.component';
 import { EmployeePreviewComponent } from './employee-preview/employee-preview.component';
 import { ErrorComponent } from './error/error.component';
+import { ExpenseTypeListComponent } from './expense-type/expense-type-list.component';
+import { ExpenseTypePreviewComponent } from './expense-type-preview/expense-type-preview.component';
+import { DeleteComfirmExpenseTypeComponent } from './delete-comfirm-expense-type/delete-comfirm-expense-type.component';
+import { ExpenseTypeFormComponent } from './expense-type-form/expense-type-form.component';
+import { ExpenseListComponent } from './expense/expense-list.component';
 
 // Services
 import { EmployeeService} from './employee/employee.service';
 import { ExpenseTypeService} from './expense-type/expense-type.service';
 import { UpdateListService } from './update-list.service';
 import { ErrorService } from './error/error.service';
-import { ExpenseTypeListComponent } from './expense-type/expense-type-list.component';
-import { ExpenseTypePreviewComponent } from './expense-type-preview/expense-type-preview.component';
-import { DeleteComfirmExpenseTypeComponent } from './delete-comfirm-expense-type/delete-comfirm-expense-type.component';
-import { ExpenseTypeFormComponent } from './expense-type-form/expense-type-form.component';
-
+import { ExpenseService } from './expense/expense.service';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { ExpenseTypeFormComponent } from './expense-type-form/expense-type-form.
     ExpenseTypeListComponent,
     ExpenseTypePreviewComponent,
     DeleteComfirmExpenseTypeComponent,
-    ExpenseTypeFormComponent
+    ExpenseTypeFormComponent,
+    ExpenseListComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +58,12 @@ import { ExpenseTypeFormComponent } from './expense-type-form/expense-type-form.
     NgbModule.forRoot(),
     ExpRoutingModule
   ],
-  providers: [EmployeeService, ExpenseTypeService, UpdateListService, ErrorService],
+  providers: [EmployeeService,
+    ExpenseTypeService,
+    UpdateListService,
+    ErrorService,
+    ExpenseService],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

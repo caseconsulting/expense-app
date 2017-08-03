@@ -1,6 +1,7 @@
 <div *ngIf="model" class="">
   <button class="close" routerLink='/expense-types'><i class="fa fa-times"></i></button>
   <h2>{{ model.name }}</h2>
+  <br>
   <div class="row">
     <div class="col-3"> Budget:</div>
     <div class="col-9"> {{ model.budget | currency:'USD':true:'1.2-2' }} </div>

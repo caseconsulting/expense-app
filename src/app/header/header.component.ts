@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'exp-header',
 
-  template: `<h1><span>{{specialE}}</span>{{title}}</h1>`,
+  template: `<h1 class="text-center"><span>{{specialE}}</span>{{title}}</h1>`,
 
   styles: [
     `h1 {
