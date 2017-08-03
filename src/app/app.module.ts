@@ -33,6 +33,7 @@ import { ExpenseTypeService} from './expense-type/expense-type.service';
 import { UpdateListService } from './update-list.service';
 import { ErrorService } from './error/error.service';
 import { ExpenseService } from './expense/expense.service';
+import { DeleteConfirmExpenseComponent } from './delete-confirm-expense/delete-confirm-expense.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { ExpenseService } from './expense/expense.service';
     ExpenseTypeFormComponent,
     ExpenseListComponent,
     ExpensePreviewComponent,
-    DashboardComponent
+    DashboardComponent,
+    DeleteConfirmExpenseComponent
   ],
   imports: [
     BrowserModule,

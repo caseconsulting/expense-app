@@ -1,0 +1,22 @@
+<ng-template #content let-c="close" let-d="dismiss">
+
+  <div class="modal-header">
+    <!-- <h4 class="modal-title">Confirm</h4> -->
+    <i class="fa fa-times-circle-o fa-3x"></i>
+    <p>Are you sure you want to continue?</p>
+
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="text-center modal-body">
+
+    <button type="button" class="btn btn-default" (click)="d('cancel')">Cancel</button>
+    <button type="button" class="btn btn-danger" (click)="c('delete')">Delete</button>
+
+  </div>
+
+
+</ng-template>
+
+<button class="btn btn-danger" (click)="open(content)">Delete</button>
