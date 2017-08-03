@@ -20,7 +20,7 @@ class MockExpenseTypeService {
   }
 }
 
-fdescribe('ExpenseTypeListComponent', function() {
+describe('ExpenseTypeListComponent', function() {
   let comp: ExpenseTypeListComponent;
   let fixture: ComponentFixture<ExpenseTypeListComponent>;
   let employeeService;

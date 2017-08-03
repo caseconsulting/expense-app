@@ -83,7 +83,7 @@ describe('EmployeeListComponent', function() {
 
       it('sets employees to value from service', () => {
         expect(errorService.announceError)
-        .toHaveBeenCalledWith({ status: errorStr, type: 'Employee' });
+        .toHaveBeenCalledWith({ status: errorStr, type: 'Employees' });
       });
     });
   }); // getEmployees

@@ -83,7 +83,7 @@ describe('EmployeeFormCreateComponent', () => {
         });
         afterEach(() => {
           expect(employeeService.createEmployee).toHaveBeenCalledWith(employee);
-          expect(router.navigate).toHaveBeenCalledWith(['/employee', undefined]);
+          expect(router.navigate).toHaveBeenCalledWith(['/employees', undefined]);
         });
         it('will call createEmployee', () => {
           employeeService.createEmployee(employee);
@@ -121,7 +121,7 @@ describe('EmployeeFormCreateComponent', () => {
         });
         afterEach(() => {
           expect(employeeService.updateEmployee).toHaveBeenCalledWith(employee);
-          expect(router.navigate).toHaveBeenCalledWith(['/employee', undefined]);
+          expect(router.navigate).toHaveBeenCalledWith(['/employees', undefined]);
         });
         it('will call updateEmployee', () => {
           employeeService.updateEmployee(employee);

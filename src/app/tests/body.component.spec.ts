@@ -22,6 +22,12 @@ class ErrorComponent { }
 })
 class CreateBtnComponent { }
 
+@Component({
+  selector: 'router-outlet',
+  template: ''
+})
+class RouterOutletComponent { }
+
 describe('BodyComponent', () => {
   let component: BodyComponent;
   let fixture: ComponentFixture<BodyComponent>;
@@ -29,7 +35,7 @@ describe('BodyComponent', () => {
 // Declare all components being called within this component
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BodyComponent, EmployeeListComponent, ErrorComponent, CreateBtnComponent ]
+      declarations: [ BodyComponent, EmployeeListComponent, ErrorComponent, CreateBtnComponent, RouterOutletComponent ]
     })
     // compile components
     .compileComponents();
