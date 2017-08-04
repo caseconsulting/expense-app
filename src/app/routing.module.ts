@@ -11,9 +11,10 @@ import { ExpenseTypePreviewComponent } from './expense-type-preview/expense-type
 import { ExpenseTypeFormComponent } from './expense-type-form/expense-type-form.component';
 import { ExpenseListComponent } from './expense/expense-list.component';
 import { ExpensePreviewComponent } from './expense-preview/expense-preview.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-
 import { ExpenseFormComponent } from './expense-form/expense-form.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { HelpComponent } from './help/help.component';
+
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
   { path: '', component: BodyComponent },
@@ -39,6 +40,7 @@ const routes: Routes = [
       { path: ':id/update', component: EmployeeFormCreateComponent },
     ]
   },
+  { path: 'help', component: HelpComponent }
   // { path: '**', pathMatch: 'full', component: PageNotFoundComponent }
 ];
 

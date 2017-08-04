@@ -1,0 +1,38 @@
+.fa {
+  color: #68CAA6;
+}
+
+.fa-code{
+  font-size: 20px;
+}
+
+h2 {
+  font-family: 'Quicksand', sans-serif;
+  color: #38424D;
+}
+
+h3 {
+  font-family: 'Quicksand', sans-serif;
+  color: #38424D;
+}
+
+h4 {
+  font-family: 'Quicksand', sans-serif;
+  color: #38424D;
+}
+
+h5 {
+  font-family: 'Quicksand', sans-serif;
+  color: #38424D;
+}
+
+li {
+  font-family: 'Quicksand';
+  font-size: 18px;
+  color: #38424D;
+}
+
+#expenseType {
+  border-left: thin;
+  border-right: thin;
+}
