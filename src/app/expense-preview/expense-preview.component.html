@@ -8,9 +8,8 @@
   </div>
   <div class="row">
     <div class="col-3"> Expense: </div>
-    <div class="col-9"> {{ model.expenseTypeId }} </div>
+    <div class="col-9"> {{ expenseTypeName }} </div>
   </div>
-  <br>
   <div class="row">
     <div class="col-3"> Purchase Date:</div>
     <div class="col-9"> {{ model.purchaseDate | date }} </div>
@@ -19,7 +18,6 @@
     <div class="col-3"> Reimbursed Date: </div>
     <div class="col-9"> {{ model.purchaseDate | date }} </div>
   </div>
-  <br>
   <div class="row">
     <div class="col-3"> Employee: </div>
     <div class="col-9"> {{ model.userId }} </div>
@@ -28,7 +26,6 @@
     <div class="col-3"> Notes: </div>
     <div class="col-9"> {{ model.note }} </div>
   </div>
-  <br>
   <button type="submit" class="btn btn-secondary" [routerLink]="['/expenses/', model.id, 'update']">Edit</button>
-  <exp-delete-confirm [modelToDelte]="model"></exp-delete-confirm>
+  <exp-delete-confirm-expense [modelToDelte]="model"></exp-delete-confirm-expense>
 </div>
