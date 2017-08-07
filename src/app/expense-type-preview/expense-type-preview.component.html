@@ -1,14 +1,16 @@
 <div *ngIf="model" class="">
-  <button class="close" routerLink='/expense-types'><i class="fa fa-times"></i></button>
-  <h2>{{ model.name }}</h2>
+  <div class="row">
+    <h2 class="col-5">{{ model.name }}</h2>
+    <button class="close" routerLink='/expense-types'><i class="fa fa-times"></i></button>
+  </div>
   <br>
   <div class="row">
     <div class="col-3"> Budget:</div>
-    <div class="col-9"> {{ model.budget | currency:'USD':true:'1.2-2' }} </div>
+    <div class="col-3"> {{ model.budget | currency:'USD':true:'1.2-2' }} </div>
   </div>
   <div class="row">
     <div class="col-3"> Overdraft: </div>
-    <div class="col-9"> {{ model.odFlag }} </div>
+    <div class="col-3"> {{ model.odFlag }} </div>
   </div>
   <br>
   <button type="submit" class="btn btn-secondary" [routerLink]="['/expense-types/', model.id,'update']">Edit</button>

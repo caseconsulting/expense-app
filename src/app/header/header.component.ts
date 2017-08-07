@@ -13,7 +13,7 @@ import { Component } from '@angular/core';
     color: #38424D;
     padding-top: 1%;
     padding-bottom: 2%;
-    }
+  }
     span {
       color: #68CAA6;
     }`]
