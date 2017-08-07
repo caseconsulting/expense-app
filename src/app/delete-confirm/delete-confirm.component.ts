@@ -10,7 +10,7 @@ import { ErrorService } from '../error/error.service';
   styleUrls: ['./delete-confirm.component.css']
 })
 export class DeleteConfirmComponent {
-  @Input() modelToDelte: Employee;
+  @Input() modelToDelete: Employee;
   closeResult: string;
   constructor(private modalService: NgbModal,
     private employeeService: EmployeeService,
@@ -18,7 +18,7 @@ export class DeleteConfirmComponent {
     private errorService: ErrorService) { }
 
 confirmDelete() {
-  this.employeeService.deleteEmployee(this.modelToDelte)
+  this.employeeService.deleteEmployee(this.modelToDelete)
     .subscribe(
     () => { this.updateListService.announceUpdate('remove') },
     error => this.errorService.announceError({ status: error, type: 'Employee' })

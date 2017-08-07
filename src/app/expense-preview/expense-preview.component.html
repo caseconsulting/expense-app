@@ -27,5 +27,5 @@
     <div class="col-9"> {{ model.note }} </div>
   </div>
   <button type="submit" class="btn btn-secondary" [routerLink]="['/expenses/', model.id, 'update']">Edit</button>
-  <exp-delete-confirm-expense [modelToDelte]="model"></exp-delete-confirm-expense>
+  <exp-delete-confirm-expense [modelToDelete]="model"></exp-delete-confirm-expense>
 </div>

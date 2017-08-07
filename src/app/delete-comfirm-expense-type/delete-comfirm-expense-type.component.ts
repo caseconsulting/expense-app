@@ -10,7 +10,7 @@ import { ErrorService } from '../error/error.service';
   styleUrls: ['./delete-comfirm-expense-type.component.css']
 })
 export class DeleteComfirmExpenseTypeComponent {
-  @Input() modelToDelte: ExpenseType;
+  @Input() modelToDelete: ExpenseType;
   closeResult: string;
   constructor(private modalService: NgbModal,
     private expenseTypeService: ExpenseTypeService,
@@ -23,7 +23,7 @@ export class DeleteComfirmExpenseTypeComponent {
       // call delete here inside the promise. When the promise resolves, delete has been
       // clicked and these instructions will execute
 
-      this.expenseTypeService.deleteExpenseType(this.modelToDelte)
+      this.expenseTypeService.deleteExpenseType(this.modelToDelete)
         .subscribe(
         () => { this.updateListService.announceUpdate('remove') },
         error => this.errorService.announceError({ status: error, type: 'Expense Type' })
