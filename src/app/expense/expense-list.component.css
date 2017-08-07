@@ -2,6 +2,7 @@ ul{
   cursor: pointer;
   }
 li{
+font-family: 'Quicksand', sans-serif;
   outline: none;
   border-radius: 0 !important;
   border: 0;

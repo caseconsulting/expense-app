@@ -40,13 +40,6 @@ export class EmployeeListComponent implements OnInit {
 
   ngOnInit() { this.getEmployees(); }
 
-  // select(selectedEmployee: Employee) {
-  //   console.log('before ', this.selectedEmployee);
-  //   this.selectedEmployee = selectedEmployee;
-  //   // this.changed.emit(selectedEmployee);
-  //   console.log('after ', this.selectedEmployee);
-  // }
-
   updateList(caller: string) {
     console.log('tis me');
     this.getEmployees();

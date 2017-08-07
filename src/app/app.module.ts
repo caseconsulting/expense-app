@@ -21,12 +21,10 @@ import { EmployeePreviewComponent } from './employee-preview/employee-preview.co
 import { ErrorComponent } from './error/error.component';
 import { ExpenseTypeListComponent } from './expense-type/expense-type-list.component';
 import { ExpenseTypePreviewComponent } from './expense-type-preview/expense-type-preview.component';
-import { DeleteComfirmExpenseTypeComponent } from './delete-comfirm-expense-type/delete-comfirm-expense-type.component';
 import { ExpenseTypeFormComponent } from './expense-type-form/expense-type-form.component';
 import { ExpenseListComponent } from './expense/expense-list.component';
 import { ExpensePreviewComponent } from './expense-preview/expense-preview.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { DeleteConfirmExpenseComponent } from './delete-confirm-expense/delete-confirm-expense.component';
 import { ExpenseFormComponent } from './expense-form/expense-form.component';
 
 // Services
@@ -52,12 +50,10 @@ import { HelpComponent } from './help/help.component'
     NgbdDatepickerPopupComponent,
     ExpenseTypeListComponent,
     ExpenseTypePreviewComponent,
-    DeleteComfirmExpenseTypeComponent,
     ExpenseTypeFormComponent,
     ExpenseListComponent,
     ExpensePreviewComponent,
     DashboardComponent,
-    DeleteConfirmExpenseComponent,
     ExpenseFormComponent,
     HelpComponent,
   ],

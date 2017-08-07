@@ -1,9 +1,8 @@
-ul .list-group {
+ul{
   cursor: pointer;
-  font-family: 'Quicksand', sans-serif;
   }
-
 li{
+font-family: 'Quicksand', sans-serif;
   outline: none;
   border-radius: 0 !important;
   border: 0;
@@ -13,7 +12,6 @@ li{
   border-bottom-color: #bdbdbd;
   margin-bottom: 0;
 }
-
 li:hover {
   outline: none;
       color: #212121;
