@@ -1,17 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { Expense, ExpenseService } from '../expense/expense.service';
 import { ExpenseType, ExpenseTypeService } from '../expense-type/expense-type.service';
+import { EmployeeService, Employee } from '../employee/employee.service';
 import { UpdateListService } from '../update-list.service';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { ErrorService } from '../error/error.service';
 import * as moment from 'moment';
-import {NgbDateParserFormatter, NgbDateStruct, NgbDatepicker} from '@ng-bootstrap/ng-bootstrap';
+import {NgbDateParserFormatter, NgbDateStruct, NgbDatepicker, NgbTypeaheadConfig} from '@ng-bootstrap/ng-bootstrap';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+
+
+const states = ['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansas', 'California', 'Colorado',
+'Connecticut', 'Delaware', 'District Of Columbia', 'Federated States Of Micronesia', 'Florida', 'Georgia',
+'Guam', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine',
+'Marshall Islands', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana',
+'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
+'Northern Mariana Islands', 'Ohio', 'Oklahoma', 'Oregon', 'Palau', 'Pennsylvania', 'Puerto Rico', 'Rhode Island',
+'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virgin Islands', 'Virginia',
+'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
 
 @Component({
   selector: 'exp-expense-form',
   templateUrl: './expense-form.component.html',
-  styleUrls: ['./expense-form.component.css']
+  styleUrls: ['./expense-form.component.css'],
+  providers: [NgbTypeaheadConfig]
 })
 export class ExpenseFormComponent implements OnInit {
   id: any;
@@ -20,6 +36,8 @@ export class ExpenseFormComponent implements OnInit {
   expenseTypes: ExpenseType;
   selectedExpenseType: string;
   title = '';
+  employees: Employee[];
+  namesArray = ['', '', ''];
 
   onSubmit(expense: Expense) {
     expense.receipt = 'N/A';
@@ -66,7 +84,9 @@ export class ExpenseFormComponent implements OnInit {
     private router: Router,
     private errorService: ErrorService,
     private expenseTypeService: ExpenseTypeService,
-    private parser: NgbDateParserFormatter) { }
+    private parser: NgbDateParserFormatter,
+    config: NgbTypeaheadConfig,
+    private employeeService: EmployeeService) { config.showHint = true; }
 
   ngOnInit() {
     console.log(this.route.params)
@@ -95,6 +115,20 @@ export class ExpenseFormComponent implements OnInit {
         });
     }
     this.getExpenseTypes();
+    this.employeeService.getEmployees()
+    .subscribe(
+      listOfEmployees => {
+        this.employees = listOfEmployees;
+         console.log(listOfEmployees);
+        for (let i = 0; i < listOfEmployees.length; i++) {
+          console.log(listOfEmployees.length);
+          this.namesArray.push(`${listOfEmployees[i].firstName} ${listOfEmployees[i].lastName}`);
+
+        }
+      },
+      error => this.errorService.announceError(error)
+    );
+
   }
   getExpenseTypes() {
     this.expenseTypeService.getExpenseTypes()
@@ -114,6 +148,20 @@ export class ExpenseFormComponent implements OnInit {
     this.model.expenseTypeId = this.selectedExpenseType;
     console.log(this.selectedExpenseType);
   }
+
+  search = (text$: Observable<string>) =>
+   text$
+     .debounceTime(200)
+     .distinctUntilChanged()
+     .map(term => {
+
+
+
+       console.log(this.namesArray);
+
+       return term.length < 1 ? [] : this.namesArray.filter(
+       v => v.toLowerCase().startsWith(term.toLocaleLowerCase())).splice(0, 10);
+     });
 
 
   // keep this last

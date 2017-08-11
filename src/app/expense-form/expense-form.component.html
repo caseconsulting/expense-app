@@ -80,12 +80,16 @@
         </select>
       </div>
       <!-- Eventually this can be a hidden variable -->
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label for="name">Employee <span>*</span></label>
         <input placeholder="12345678" type="text" min="0" step="1" class="form-control" id="userId" required [(ngModel)]="model.userId" name="userId" #userId="ngModel">
         <div [hidden]="userId.valid || userId.pristine" class="alert alert-danger">
           Employee ID is required
         </div>
+      </div> -->
+
+      <div class="form-group">
+        <input id="userId" type="text" class="form-control" [(ngModel)]="model.userId" [ngbTypeahead]="search" name="userId" #userId="ngModel" />
       </div>
 
 

@@ -6,6 +6,7 @@ import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { ErrorService } from '../error/error.service';
 import * as moment from 'moment';
 
+
 @Component({
   selector: 'exp-expense-type-form',
   templateUrl: './expense-type-form.component.html',
@@ -39,7 +40,8 @@ export class ExpenseTypeFormComponent implements OnInit {
     private updateListService: UpdateListService,
     private route: ActivatedRoute,
     private router: Router,
-    private errorService: ErrorService) { }
+    private errorService: ErrorService,
+  ) {  }
 
   ngOnInit() {
     console.log(this.expenseType, '**');
@@ -74,7 +76,6 @@ export class ExpenseTypeFormComponent implements OnInit {
        this.router.navigate(['//expense-types']); // list
      }
   }
-
 
   // keep this last
   // TODO remove when finished testing
