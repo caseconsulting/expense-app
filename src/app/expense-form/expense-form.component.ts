@@ -50,10 +50,13 @@ export class ExpenseFormComponent implements OnInit {
     return momentDate.format('YYYY-MM-DD');
   }
 
-  datePreviewSetup(d1, d2) {
-    d1.open();
-    d2.close();
-    console.log(this.dateParser.parse('12-12-2012'));
+  datePreviewSetup(focusedCal, otherCal) {
+    focusedCal.open();
+    otherCal.close();
+  }
+
+  dateStringToObject(date: string) {
+    return this.parser.parse(date);
   }
 
   constructor(private location: Location,
@@ -63,7 +66,7 @@ export class ExpenseFormComponent implements OnInit {
     private router: Router,
     private errorService: ErrorService,
     private expenseTypeService: ExpenseTypeService,
-    private dateParser: NgbDateParserFormatter) { }
+    private parser: NgbDateParserFormatter) { }
 
   ngOnInit() {
     console.log(this.route.params)
@@ -80,6 +83,8 @@ export class ExpenseFormComponent implements OnInit {
               returnedExpense => {
                 this.model = returnedExpense;
                 this.title = 'Update';
+                this.model.purchaseDate = this.dateStringToObject(this.model.purchaseDate);
+                this.model.reimbursedDate = this.dateStringToObject(this.model.reimbursedDate);
                 console.log(this.model, '***');
               },
               error => this.errorService.announceError(error))

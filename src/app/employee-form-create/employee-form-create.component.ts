@@ -81,13 +81,7 @@ export class EmployeeFormCreateComponent implements OnInit {
   }
 
 dateStringToObject(date: string) {
-  const tempDateObj = this.parser.parse(date);
-  const displayedDateObj = {
-    month: tempDateObj.month,
-    day: tempDateObj.day,
-    year: tempDateObj.year
-  };
-  return displayedDateObj;
+  return this.parser.parse(date);
 }
 
   goBack(): void {

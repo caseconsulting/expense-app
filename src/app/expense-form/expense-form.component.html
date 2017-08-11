@@ -82,7 +82,7 @@
       <!-- Eventually this can be a hidden variable -->
       <div class="form-group">
         <label for="name">Employee <span>*</span></label>
-        <input placeholder="12345678" type="number" min="0" step="1" class="form-control" id="userId" required [(ngModel)]="model.userId" name="userId" #userId="ngModel">
+        <input placeholder="12345678" type="text" min="0" step="1" class="form-control" id="userId" required [(ngModel)]="model.userId" name="userId" #userId="ngModel">
         <div [hidden]="userId.valid || userId.pristine" class="alert alert-danger">
           Employee ID is required
         </div>

@@ -9,8 +9,8 @@ export class Expense {
 
   constructor(
     public id: string,
-    public purchaseDate: string,
-    public reimbursedDate: string,
+    public purchaseDate: any,
+    public reimbursedDate: any,
     public cost: number,
     public description: string,
     public note: string,
