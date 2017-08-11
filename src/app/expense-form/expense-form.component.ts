@@ -5,7 +5,8 @@ import { UpdateListService } from '../update-list.service';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { ErrorService } from '../error/error.service';
-
+import * as moment from 'moment';
+import {NgbDateParserFormatter, NgbDateStruct, NgbDatepicker} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'exp-expense-form',
@@ -24,6 +25,8 @@ export class ExpenseFormComponent implements OnInit {
     expense.receipt = 'N/A';
     console.log(expense);
     let result;
+    this.model.purchaseDate = this.dateToString(this.model.purchaseDate);
+    this.model.reimbursedDate = this.dateToString(this.model.reimbursedDate);
     if (this.title === 'Create') {
       result = this.expenseService.createExpense(expense);
     } else {
@@ -39,13 +42,28 @@ export class ExpenseFormComponent implements OnInit {
     );
   }
 
+  dateToString(date) {
+    const dateString = new Date(`${date.month}/${date.day}/${date.year}`);
+    console.log('date string', dateString)
+    const momentDate: moment.Moment = moment(dateString);
+    console.log(momentDate);
+    return momentDate.format('YYYY-MM-DD');
+  }
+
+  datePreviewSetup(d1, d2) {
+    d1.open();
+    d2.close();
+    console.log(this.dateParser.parse('12-12-2012'));
+  }
+
   constructor(private location: Location,
     private expenseService: ExpenseService,
     private updateListService: UpdateListService,
     private route: ActivatedRoute,
     private router: Router,
     private errorService: ErrorService,
-    private expenseTypeService: ExpenseTypeService) { }
+    private expenseTypeService: ExpenseTypeService,
+    private dateParser: NgbDateParserFormatter) { }
 
   ngOnInit() {
     console.log(this.route.params)

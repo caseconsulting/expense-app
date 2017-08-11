@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Output, EventEmitter} from '@angular/core';
 import {NgbDateParserFormatter} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -6,9 +6,12 @@ import {NgbDateParserFormatter} from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './datepicker.component.html'
 })
 export class NgbdDatepickerPopupComponent {
+  @Output() onSelection = new EventEmitter<any>();
   model;
+  onSubmit();
 
   onSubmit() {
     console.log(this.model);
+    this.onSelection.emit(this.model);
    }
 }

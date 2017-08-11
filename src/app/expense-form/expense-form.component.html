@@ -1,7 +1,7 @@
 <div>
   <div *ngIf="model">
     <h1>{{title}} Expense Form</h1>
-    <form #employeeForm="ngForm">
+    <form #expenseForm="ngForm">
 
       <div class="form-group">
         <label for="name"> Description <span>*</span></label>
@@ -13,19 +13,27 @@
 
       <div class="form-group">
         <label for="name">Purchase Date <span>*</span></label>
-        <input placeholder="01/01/1970" type="date" class="form-control" id="purchaseDate" required [(ngModel)]="model.purchaseDate" name="purchaseDate" #purchaseDate="ngModel">
-        <!-- <ngbd-datepicker-popup placeholder="01/01/1970" type="date" class="form-control" id="hireDate" required [(ngModel)]="model.hireDate" name="hireDate" #hireDate="ngModel"></ngbd-datepicker-popup> -->
+        <div class="input-group">
+          <input class="form-control" placeholder="mm-dd-yyyy" name="dp1" [(ngModel)]="model.purchaseDate" ngbDatepicker #d1="ngbDatepicker" name="purchaseDate" #purchaseDate="ngModel">
+          <div class="input-group-addon" (click)="datePreviewSetup(d1, d2)">
+            <i class="fa fa-calendar"></i>
+          </div>
+        </div>
         <div [hidden]="purchaseDate.valid || purchaseDate.pristine" class="alert alert-danger">
-          Hire date is required
+          Purchase date is required
         </div>
       </div>
 
       <div class="form-group">
         <label for="name">Reimburse Date <span>*</span></label>
-        <input placeholder="01/01/1970" type="date" class="form-control" id="reimbursedDate" required [(ngModel)]="model.reimbursedDate" name="reimbursedDate" #reimbursedDate="ngModel">
-        <!-- <ngbd-datepicker-popup placeholder="01/01/1970" type="date" class="form-control" id="hireDate" required [(ngModel)]="model.hireDate" name="hireDate" #hireDate="ngModel"></ngbd-datepicker-popup> -->
+        <div class="input-group">
+          <input class="form-control" placeholder="mm-dd-yyyy" name="dp2" [(ngModel)]="model.reimbursedDate" ngbDatepicker #d2="ngbDatepicker" name="reimbursedDate" #reimbursedDate="ngModel">
+          <div class="input-group-addon" (click)="d2.toggle(); d1.close();">
+            <i class="fa fa-calendar"></i>
+          </div>
+        </div>
         <div [hidden]="reimbursedDate.valid || reimbursedDate.pristine" class="alert alert-danger">
-          Hire date is required
+          Reimbursed date is required
         </div>
       </div>
 
@@ -81,7 +89,7 @@
       </div>
 
 
-      <button type="submit" class="btn btn-success" (click)="onSubmit(model);" [disabled]="!employeeForm.form.valid || employeeForm.form.pristine">{{title}}</button>
+      <button type="submit" class="btn btn-success" (click)="onSubmit(model);" [disabled]="!expenseForm.form.valid || expenseForm.form.pristine">{{title}}</button>
 
       <button class="btn btn-default" routerLink="" (click)="goBack()">Go Back</button>
     </form>

@@ -1,13 +1,10 @@
-<form class="form-inline">
-  <div class="form-group">
-    <div class="input-group">
-      <input class="form-control" placeholder="mm-dd-yyyy" name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
-      <div class="input-group-addon" (click)="d.toggle()">
-        <img style="width: 1.2rem; height: 1rem; cursor: pointer;" />
-      </div>
+<div class="form-group">
+  <div class="input-group">
+    <input class="form-control" placeholder="mm-dd-yyyy" name="dp" [(ngModel)]="model" (click)="onSubmit(model)" ngbDatepicker #d="ngbDatepicker">
+    <div class="input-group-addon" (click)="d.toggle()">
+      <img style="width: 1.2rem; height: 1rem; cursor: pointer;" />
     </div>
   </div>
-</form>
+</div>
 
-<hr/>
 <pre>Model: {{ model | json }}</pre>

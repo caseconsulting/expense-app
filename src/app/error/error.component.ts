@@ -24,6 +24,8 @@ export class ErrorComponent {
         break;
       case 406: this.errorMessage = 'Not an Acceptable submittion';
         break;
+      case 422: this.errorMessage = 'This expense will put you over budget';
+        break;
       case 500: this.errorMessage = 'Server unavailable';
         break;
       default: this.errorMessage = 'Unexpected error :/';

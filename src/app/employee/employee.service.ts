@@ -22,7 +22,8 @@ export class Employee {
     public middleName: string,
     public lastName: string,
     public empId: string,
-    public hireDate: string
+    public hireDate: any,
+    public expenseTypes: any[]
   ) { }
 }
 
