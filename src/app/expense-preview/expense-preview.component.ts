@@ -5,6 +5,7 @@ import { UpdateListService } from '../update-list.service';
 import { Expense, ExpenseService } from '../expense/expense.service';
 import { ErrorService } from '../error/error.service';
 import { ExpenseType, ExpenseTypeService } from '../expense-type/expense-type.service';
+import { Employee, EmployeeService } from '../employee/employee.service';
 
 @Component({
   selector: 'exp-expense-preview',
@@ -14,13 +15,15 @@ import { ExpenseType, ExpenseTypeService } from '../expense-type/expense-type.se
 export class ExpensePreviewComponent implements OnInit {
 
   private id: any;
+  employeeName: string;
+  expenseTypeName: string;
   expense: Expense;
   model: Expense;
-  expenseTypeName: string;
   constructor(private expenseService: ExpenseService,
     private route: ActivatedRoute,
     private router: Router,
     private errorService: ErrorService,
+    private employeeService: EmployeeService,
     private expenseTypeService: ExpenseTypeService) { }
 
   ngOnInit() {
@@ -33,18 +36,26 @@ export class ExpensePreviewComponent implements OnInit {
           .subscribe(
           returnedExpense => {
             this.model = returnedExpense;
-            this.getExpenseType();
-            console.log(this.model);
+            this.getExpenseTypeName();
+            this.getEmployeeName();
           },
           error => this.errorService.announceError({ status: error, type: 'Expense' })
           ));
+
     }
   }
-  getExpenseType() {
+  getExpenseTypeName() {
     this.expenseTypeService.readSingleExpenseType(this.model.expenseTypeId)
       .subscribe(
       returnedExpenseType => this.expenseTypeName = returnedExpenseType.name,
-      error => this.errorService.announceError(error)
+      error => this.errorService.announceError({ status: error, type: 'Expense Type' })
+      );
+  }
+  getEmployeeName() {
+    this.employeeService.readSingleEmployee(this.model.userId)
+      .subscribe(
+      returnedEmployee => this.employeeName = `${returnedEmployee.firstName} ${returnedEmployee.middleName} ${returnedEmployee.lastName}`,
+      error => this.errorService.announceError({ status: error, type: 'Employee' })
       );
   }
 }
