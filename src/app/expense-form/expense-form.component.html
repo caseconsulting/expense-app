@@ -89,7 +89,12 @@
       </div> -->
 
       <div class="form-group">
-        <input id="userId" type="text" class="form-control" [(ngModel)]="model.userId" [ngbTypeahead]="search" name="userId" #userId="ngModel" />
+        <ng-template #rt let-r="result" let-t="term">
+          {{r.firstName}} {{r.lastName}}
+        </ng-template>
+
+        <label for="typeahead-template">Search for a employees:</label>
+        <input id="typeahead-template" type="text" class="form-control" [(ngModel)]="employee" [ngbTypeahead]="search" [resultTemplate]="rt" [inputFormatter]="formatter" name="employee" />
       </div>
 
 
