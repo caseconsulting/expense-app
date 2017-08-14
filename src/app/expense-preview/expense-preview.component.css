@@ -1,3 +1,7 @@
 .entry {
   padding-bottom: 12px;
 }
+
+#flag {
+  font-style: italic;
+}

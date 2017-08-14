@@ -18,7 +18,8 @@
   </div>
   <div class="row entry">
     <div class="col-3"> Reimbursed Date: </div>
-    <div class="col-3"> {{ model.purchaseDate | date }} </div>
+    <div class="col-3" *ngIf="model.reimbursedDate !== 'not assigned'"> {{ model.reimbursedDate | date }} </div>
+    <div class="col-3" *ngIf="model.reimbursedDate === 'not assigned'"> <span id="flag" class="text-warning">Not reimbursed </span> </div>
   </div>
   <div class="row entry">
     <div class="col-3"> Employee: </div>

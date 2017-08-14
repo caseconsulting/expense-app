@@ -85,14 +85,18 @@ export class ExpenseFormComponent implements OnInit {
 
   onSubmit(expense: Expense) {
     let result;
-    expense.receipt = 'N/A';
+    this.model.receipt = 'N/A';
     this.model.userId = this.employee.id;
     this.model.purchaseDate = this.dateToString(this.model.purchaseDate);
-    this.model.reimbursedDate = this.dateToString(this.model.reimbursedDate);
-    if (this.title === 'Create') {
-      result = this.expenseService.createExpense(expense);
+    if (this.model.reimbursedDate) {
+      this.model.reimbursedDate = this.dateToString(this.model.reimbursedDate);
     } else {
-      result = this.expenseService.updateExpense(expense);
+      this.model.reimbursedDate = 'not assigned';
+    }
+    if (this.title === 'Create') {
+      result = this.expenseService.createExpense(this.model);
+    } else {
+      result = this.expenseService.updateExpense(this.model);
     }
 
     result.subscribe(

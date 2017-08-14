@@ -14,7 +14,7 @@ import { ErrorService } from '../error/error.service';
 export class DashboardComponent implements OnInit {
 expenses: Expense[];
 userInputDate: any;
-model: Expense;
+
   constructor(
     private employeeService: EmployeeService,
     private expenseService: ExpenseService,
@@ -34,5 +34,7 @@ model: Expense;
       error => this.errorService.announceError({ status: error, type: 'Expense' })
       );
   }
+
+
 
 }
