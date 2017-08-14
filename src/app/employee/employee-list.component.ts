@@ -20,7 +20,8 @@ export class EmployeeListComponent implements OnInit {
   employees: Employee[];
   subscription: Subscription;
 
-  constructor(private employeeService: EmployeeService,
+  constructor(
+    private employeeService: EmployeeService,
     private updateListService: UpdateListService,
     private router: Router,
     private errorService: ErrorService) {
