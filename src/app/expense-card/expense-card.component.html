@@ -2,13 +2,13 @@
   <div>
     <b>Description: </b>{{ model.description}}
   </div>
-  <div>
+  <div *ngIf="expenseType">
     <b>Cost: </b>{{ model.cost | currency:'USD':true:'1.2-2' }} of {{ expenseType.budget | currency:'USD':true:'1.2-2' }}
   </div>
-  <div>
+  <div *ngIf="employee">
     <b>Employee: </b>{{employee.firstName}} {{employee.lastName}}
   </div>
-  <div>
+  <div *ngIf="expenseType">
     <b>Expense Type: </b>{{expenseType.name}}
   </div>
   <div>

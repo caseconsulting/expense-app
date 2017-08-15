@@ -1,3 +1,5 @@
 <div class="row">
-  <exp-expense-card *ngFor="let expense of expenses" [model]="expense"></exp-expense-card>
+  <div class="col-9">
+    <exp-expense-card *ngFor="let expense of expenses" [model]="expense"></exp-expense-card>
+  </div>
 </div>
