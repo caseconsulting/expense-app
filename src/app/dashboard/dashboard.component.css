@@ -9,8 +9,8 @@
       background-color: #e6e6e6;
     }
     .custom-day.range, .custom-day:hover {
-      background-color: #0275d8;
-      color: white;
+      background-color: #68CAA6;
+      color: black;
     }
     .faded {
       opacity: 0.5;
