@@ -37,9 +37,7 @@ export class ExpenseCardComponent implements OnInit {
     let update;
     if (this.reimburseFlag === true) {
       const today = new Date();
-      console.log('val: ', val, 'reimburseFlag', this.reimburseFlag);
-      console.log('today', today)
-      this.model.reimbursedDate = today;
+      this.model.reimbursedDate = today.toISOString().substring(0, 10);
       update = this.expenseService.updateExpense(this.model);
 
     } else {

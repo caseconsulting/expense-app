@@ -1,5 +1,20 @@
 <div class="row">
-  <div class="col-9">
-    <exp-expense-card *ngFor="let expense of expenses" [model]="expense"></exp-expense-card>
+  <div class="col-4">
+    <ngb-datepicker #dp ngModel (ngModelChange)="onDateChange($event)" [displayMonths]="2" [dayTemplate]="t">
+    </ngb-datepicker>
+
+    <ng-template #t let-date="date" let-focused="focused">
+      <span class="custom-day" [class.focused]="focused" [class.range]="isFrom(date) || isTo(date) || isInside(date) || isHovered(date)" [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date" (mouseleave)="hoveredDate = null">
+        {{ date.day }}
+      </span>
+    </ng-template>
+
+    <hr>
+
+    <pre>From: {{ fromDate | json }} </pre>
+    <pre>To: {{ toDate | json }} </pre>
+  </div>
+  <div class="col-8">
+    <exp-expense-card *ngFor="let expense of expensesInRange" [model]="expense"></exp-expense-card>
   </div>
 </div>
