@@ -2,7 +2,6 @@
   <div *ngIf="model">
     <h1>{{title}} Expense Form</h1>
     <form #expenseForm="ngForm">
-
       <div class="form-group">
         <label for="name"> Description <span>*</span></label>
         <input placeholder="Parking Ticket..." type="text" class="form-control" id="description" required [(ngModel)]="model.description" name="description" #description="ngModel">
@@ -10,7 +9,6 @@
           First name is required
         </div>
       </div>
-
       <div class="form-group">
         <label for="name">Purchase Date <span>*</span></label>
         <div class="input-group">
@@ -23,7 +21,6 @@
           Purchase date is required
         </div>
       </div>
-
       <div class="form-group">
         <label for="name">Reimburse Date <span>*</span></label>
         <div class="input-group">
@@ -33,7 +30,6 @@
           </div>
         </div>
       </div>
-
       <div class="form-group">
         <label for="name">Cost <span>*</span></label>
         <div class="input-group">
@@ -44,59 +40,25 @@
           An amount for the budget alotted to this expense type is required
         </div>
       </div>
-
       <div class="form-group">
         <label for="name">Note</label>
         <input placeholder="Notes..." type="text" class="form-control" id="note" required [(ngModel)]="model.note" name="note">
       </div>
-
-      <!-- <div class="form-group">
-        <label for="name">Receipt<span>*</span></label>
-        <div>
-          <label class="custom-file">
-            <input type="file" id="file" class="custom-file-input" [(ngModel)]="model.receipt" name="receipt" #receipt="ngModel">
-            <span id="chooseFile" class="custom-file-control"></span>
-          </label>
-        </div>
-
-      </div> -->
-
-      <!-- Get a list of all available expense categories and populate the dropdown menu -->
-      <!-- <div class="form-group">
-        <label for="name">Expense ID <span>*</span></label>
-        <input placeholder="12345678" type="number" min="0" step="1" class="form-control" id="expenseTypeId" required [(ngModel)]="model.expenseTypeId" name="expenseTypeId" #expenseTypeId="ngModel">
-        <div [hidden]="expenseTypeId.valid || expenseTypeId.pristine" class="alert alert-danger">
-          Employee ID is required
-        </div>
-      </div> -->
       <div class="form-group">
-        <label for="selectedExpenseType">Expense Type</label>
-        <select class="form-control" id="expenseTypes" [(ngModel)]="selectedExpenseType" name="expenseTypeId" (ngModelChange)="setExpenseType()">
-          <option *ngFor="let expenseType of expenseTypes" [ngValue]="expenseType.id" > {{expenseType.name}}</option>
-          <option selected >Select your option</option>
-        </select>
+        <ng-template #rtet let-r="result" let-t="termExpenseType">
+          {{r.name}}
+        </ng-template>
+        <label for="typeahead-template">Search for an expense type:</label>
+        <input id="typeahead-template" type="text" class="form-control" [(ngModel)]="selectedExpenseType" [ngbTypeahead]="searchExpenseType" [resultTemplate]="rtet" [inputFormatter]="formatterExpenseType" name="expenseType" />
       </div>
-      <!-- Eventually this can be a hidden variable -->
-      <!-- <div class="form-group">
-        <label for="name">Employee <span>*</span></label>
-        <input placeholder="12345678" type="text" min="0" step="1" class="form-control" id="userId" required [(ngModel)]="model.userId" name="userId" #userId="ngModel">
-        <div [hidden]="userId.valid || userId.pristine" class="alert alert-danger">
-          Employee ID is required
-        </div>
-      </div> -->
-
       <div class="form-group">
-        <ng-template #rt let-r="result" let-t="term">
+        <ng-template #rte let-r="result" let-t="termEmployee">
           {{r.firstName}} {{r.lastName}}
         </ng-template>
-
         <label for="typeahead-template">Search for a employees:</label>
-        <input id="typeahead-template" type="text" class="form-control" [(ngModel)]="employee" [ngbTypeahead]="search" [resultTemplate]="rt" [inputFormatter]="formatter" name="employee" />
+        <input id="typeahead-template" type="text" class="form-control" [(ngModel)]="employee" [ngbTypeahead]="searchEmployee" [resultTemplate]="rte" [inputFormatter]="formatterEmployee" name="employee" />
       </div>
-
-
       <button type="submit" class="btn btn-success" (click)="onSubmit(model);" [disabled]="!expenseForm.form.valid || expenseForm.form.pristine">{{title}}</button>
-
       <button class="btn btn-default" routerLink="" (click)="goBack()">Go Back</button>
     </form>
   </div>

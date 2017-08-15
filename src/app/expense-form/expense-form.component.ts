@@ -7,12 +7,11 @@ import { Location } from '@angular/common';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { ErrorService } from '../error/error.service';
 import * as moment from 'moment';
-import {NgbDateParserFormatter, NgbDateStruct, NgbDatepicker, NgbTypeaheadConfig} from '@ng-bootstrap/ng-bootstrap';
-import {Observable} from 'rxjs/Observable';
+import { NgbDateParserFormatter, NgbDateStruct, NgbDatepicker, NgbTypeaheadConfig } from '@ng-bootstrap/ng-bootstrap';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
-
 
 @Component({
   selector: 'exp-expense-form',
@@ -20,12 +19,13 @@ import 'rxjs/add/operator/distinctUntilChanged';
   styleUrls: ['./expense-form.component.css'],
   providers: [NgbTypeaheadConfig]
 })
+
 export class ExpenseFormComponent implements OnInit {
   id: any;
   model: Expense;
   employee: Employee;
   expense: Expense;
-  expenseTypes: ExpenseType;
+  expenseTypes: ExpenseType[];
   selectedExpenseType: string;
   title = '';
   employees: Employee[];
@@ -56,14 +56,14 @@ export class ExpenseFormComponent implements OnInit {
             this.title = 'Create';
           }
         },
-      error => this.errorService.announceError({ status: error, type: 'Expense' }));
+        error => this.errorService.announceError({ status: error, type: 'Expense' }));
     }
     this.getExpenseTypes();
     this.employeeService.getEmployees()
-    .subscribe(
+      .subscribe(
       listOfEmployees => this.employees = listOfEmployees,
       error => this.errorService.announceError({ status: error, type: 'Employee' })
-    );
+      );
   }
 
   retrieveExpenseData(id: string) {
@@ -75,10 +75,10 @@ export class ExpenseFormComponent implements OnInit {
         this.model.purchaseDate = this.dateStringToObject(this.model.purchaseDate);
         this.model.reimbursedDate = this.dateStringToObject(this.model.reimbursedDate);
         this.employeeService.readSingleEmployee(this.model.userId)
-        .subscribe(
+          .subscribe(
           returnedEmployee => this.employee = returnedEmployee,
           error => this.errorService.announceError({ status: error, type: 'Employee' })
-        );
+          );
       },
       error => this.errorService.announceError({ status: error, type: 'Expense' }));
   }
@@ -144,15 +144,18 @@ export class ExpenseFormComponent implements OnInit {
     console.log(this.selectedExpenseType);
   }
 
-  search = (text$: Observable<string>) =>
+  searchEmployee = (text$: Observable<string>) =>
     text$
       .debounceTime(200)
       .map(term => term === '' ? []
         : this.employees.filter(v => v.firstName.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10));
+  formatterEmployee = (x: { firstName: string, lastName: string }) => `${x.firstName} ${x.lastName}`;
 
-        formatter = (x: {firstName: string, lastName: string}) => `${x.firstName} ${x.lastName}`;
+  searchExpenseType = (text$: Observable<string>) =>
+    text$
+      .debounceTime(200)
+      .map(term => term === '' ? []
+        : this.expenseTypes.filter(v => v.name.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10));
+  formatterExpenseType = (x: { name: string }) => `${x.name}`;
 
-  // keep this last
-  // TODO remove when finished testing
-  get diagnostic() { return JSON.stringify(this.model); }
 }
