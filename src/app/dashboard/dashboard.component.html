@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-4">
-    <ngb-datepicker #dp ngModel (ngModelChange)="onDateChange($event)" [displayMonths]="2" [dayTemplate]="t">
+    <ngb-datepicker #dp ngModel (ngModelChange)="onDateChange($event)" [displayMonths]="3" [dayTemplate]="t">
     </ngb-datepicker>
 
     <ng-template #t let-date="date" let-focused="focused">
@@ -8,13 +8,9 @@
         {{ date.day }}
       </span>
     </ng-template>
-
-    <hr>
-
-    <pre>From: {{ fromDate | json }} </pre>
-    <pre>To: {{ toDate | json }} </pre>
+    <hr />
   </div>
-  <div class="col-8">
+  <div class="card-columns col-12">
     <exp-expense-card *ngFor="let expense of expensesInRange" [model]="expense"></exp-expense-card>
   </div>
 </div>
