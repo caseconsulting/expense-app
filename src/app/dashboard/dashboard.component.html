@@ -1,6 +1,6 @@
 <div class="row">
-  <div class="col-8">
-    <ngb-datepicker #dp ngModel (ngModelChange)="onDateChange($event)" [displayMonths]="3" [dayTemplate]="t">
+  <div class="col-4">
+    <ngb-datepicker #dp ngModel (ngModelChange)="onDateChange($event)" [displayMonths]="2" [dayTemplate]="t">
     </ngb-datepicker>
 
     <ng-template #t let-date="date" let-focused="focused">
@@ -12,15 +12,31 @@
   </div>
   <div class="col-4">
     <div class="form-group">
-      <ng-template #rte let-r="result" let-t="termEmployee">
+      <ng-template #rtet let-r="result" let-t="termExpenseType">
+        {{r.name}}
+      </ng-template>
+
+      <label for="typeahead-template">Search for an expense type:</label>
+      <input id="typeahead-template" type="text" class="form-control" [(ngModel)]="expenseType" [ngbTypeahead]="searchExpenseType" [resultTemplate]="rtet" [inputFormatter]="formatterExpenseType" name="expenseType" (ngModelChange)="refilter()" />
+    </div>
+
+    <div class=" form-group ">
+      <ng-template #rte let-r="result " let-t="termEmployee ">
         {{r.firstName}} {{r.lastName}}
       </ng-template>
 
-      <label for="typeahead-template">Search for a employees:</label>
-      <input id="typeahead-template" type="text" class="form-control" [(ngModel)]="employee" [ngbTypeahead]="searchEmployee" [resultTemplate]="rte" [inputFormatter]="formatterEmployee" name="employee" (ngModelChange)="getEmployeeRange()" />
+      <label for="typeahead-template ">Search for an employee:</label>
+      <input id="typeahead-template " type="text " class="form-control " [(ngModel)]="employee " [ngbTypeahead]="searchEmployee " [resultTemplate]="rte " [inputFormatter]="formatterEmployee " name="employee " (ngModelChange)="refilter() " />
+    </div>
+    <label>Reimbursed</label>
+    <div class="form-group">
+      <label class="switch">
+        <input type="checkbox" [(ngModel)]="displayUnreimbursed" name="displayUnreimbursed" (ngModelChange)="refilter()">
+        <span class="slider round"></span>
+      </label>
     </div>
   </div>
-  <div class="card-columns col-12">
-    <exp-expense-card *ngFor="let expense of expensesInRange" [model]="expense"></exp-expense-card>
+  <div class="card-columns col-12 ">
+    <exp-expense-card *ngFor="let expense of expensesInRange " [model]="expense "></exp-expense-card>
   </div>
 </div>

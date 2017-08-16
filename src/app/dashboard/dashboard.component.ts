@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { Employee, EmployeeService } from '../employee/employee.service';
 import { Expense, ExpenseService } from '../expense/expense.service';
 import { ExpenseType, ExpenseTypeService } from '../expense-type/expense-type.service';
@@ -27,13 +27,15 @@ const after = (one: NgbDateStruct, two: NgbDateStruct) =>
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, DoCheck {
   expenses: Expense[];
   expensesInRange: any[];
   employee: Employee;
   employees: Employee[];
   expenseType: ExpenseType;
   expenseTypes: ExpenseType[];
+  displayUnreimbursed: boolean;
+  initialView: boolean;
   // ng-bootstrap calendar
   hoveredDate: NgbDateStruct;
   fromDate: NgbDateStruct;
@@ -49,14 +51,23 @@ export class DashboardComponent implements OnInit {
     private formatter: NgbDateParserFormatter,
     calendar: NgbCalendar
   ) {
-    // ng-bootstrap calendar
-    this.fromDate = calendar.getToday();
-    this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
+    // To set the initial date range on the calendar
+    // this.fromDate = calendar.getToday();
+    // this.toDate = getNetxt(calendar.getToday(), 'd', 10;
+    this.displayUnreimbursed = true;
+    this.initialView = true;
   }
 
   ngOnInit() {
     this.getAllInformation();
+  }
 
+  ngDoCheck() {
+
+    if (this.displayUnreimbursed && this.expenses && this.initialView === true) {
+      this.refilter();
+      this.initialView = false;
+    }
   }
 
 
@@ -67,7 +78,7 @@ export class DashboardComponent implements OnInit {
       this.fromDate = date;
     } else if (this.fromDate && !this.toDate && after(date, this.fromDate)) {
       this.toDate = date;
-      this.getExpensesWithinRange();
+      this.refilter();
     } else {
       this.toDate = null;
       this.fromDate = date;
@@ -85,22 +96,59 @@ export class DashboardComponent implements OnInit {
   * if expenseDate isInside dateRange
   * store in expensesInRange[]
   */
-  getExpensesWithinRange() {
-
-    const dateFilter = _.filter(this.expenses, obj =>
-      ((this.isFrom(this.formatter.parse(obj.purchaseDate))
-        || this.isTo(this.formatter.parse(obj.purchaseDate))
-        || this.isInside(this.formatter.parse(obj.purchaseDate)))));
-    this.expensesInRange = _.intersection(dateFilter, this.expensesInRange);
-    console.log('***', this.expensesInRange);
+  getDateRange() {
+    if (this.fromDate || this.toDate) {
+      let dateFilter = this.expenses;
+      dateFilter = _.filter(this.expenses, obj =>
+        ((this.isFrom(this.formatter.parse(obj.purchaseDate))
+          || this.isTo(this.formatter.parse(obj.purchaseDate))
+          || this.isInside(this.formatter.parse(obj.purchaseDate)))));
+      console.log('dateFilter', dateFilter)
+      return dateFilter;
+    } else {
+      console.log('dateFilter: everything')
+      return this.expenses;
+    }
   }
 
   getEmployeeRange() {
-    if (this.employee.id) {
-      const tempArr = this.expenses;
-      const employeesExpenses = _.filter(tempArr, obj => obj.userId === this.employee.id);
-      this.expensesInRange = _.intersection(employeesExpenses, this.expensesInRange);
-      console.log('***', this.expensesInRange);
+    if (this.employee) {
+      let employeeFilter = this.expenses;
+      employeeFilter = _.filter(employeeFilter, obj => obj.userId === this.employee.id);
+      console.log('employee', employeeFilter);
+      return employeeFilter;
+    } else {
+      console.log('employeeFilter: everything')
+      return this.expenses
+    }
+  }
+
+  getExpenseTypeRange() {
+    if (this.expenseType) {
+      let expenseTypeFilter = this.expenses;
+      expenseTypeFilter = _.filter(expenseTypeFilter, obj => obj.expenseTypeId === this.expenseType.id);
+      console.log('expenseType', expenseTypeFilter);
+      return expenseTypeFilter;
+    } else {
+      console.log('expt: everything')
+      return this.expenses
+    }
+  }
+
+  getUnreimbursedRange() {
+    console.log('Im working')
+    if (this.displayUnreimbursed === true) {
+      let unreimbursedFilter = this.expenses;
+      unreimbursedFilter = _.filter(unreimbursedFilter, obj => {
+
+        return _.isEqual(obj.reimbursedDate, 'not assigned');
+      }
+      );
+      console.log('reimburseFlag:', unreimbursedFilter);
+      return unreimbursedFilter;
+    } else {
+      console.log('reimburse: everything');
+      return this.expenses
     }
   }
 
@@ -110,12 +158,17 @@ export class DashboardComponent implements OnInit {
       expenses => {
         this.expenses = expenses;
         this.expensesInRange = expenses;
-        console.log(this.expensesInRange)
       },
       error => this.errorService.announceError({ status: error, type: 'Expense' })
       );
   }
 
+  refilter() {
+    this.expensesInRange = _.intersection(
+      this.getEmployeeRange(), this.getDateRange(), this.getExpenseTypeRange(), this.getUnreimbursedRange());
+    console.log('result: ', this.expensesInRange);
+
+  }
   getEmployees() {
     this.employeeService.getEmployees()
       .subscribe(
@@ -124,10 +177,10 @@ export class DashboardComponent implements OnInit {
       );
   }
 
-  getExpenseType() {
+  getExpenseTypes() {
     this.expenseTypeService.getExpenseTypes()
       .subscribe(
-      returnedExpenseType => this.expenseType = returnedExpenseType,
+      returnedExpenseTypes => this.expenseTypes = returnedExpenseTypes,
       error => this.errorService.announceError({ status: error, type: 'Expense Type' })
       );
   }
@@ -135,7 +188,7 @@ export class DashboardComponent implements OnInit {
   getAllInformation() {
     this.getExpenses();
     this.getEmployees();
-    this.getExpenseType();
+    this.getExpenseTypes();
   }
 
   searchEmployee = (text$: Observable<string>) =>
@@ -145,6 +198,11 @@ export class DashboardComponent implements OnInit {
         : this.employees.filter(v => v.firstName.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10));
   formatterEmployee = (x: { firstName: string, lastName: string }) => `${x.firstName} ${x.lastName}`;
 
-
+  searchExpenseType = (text$: Observable<string>) =>
+    text$
+      .debounceTime(200)
+      .map(term => term === '' ? []
+        : this.expenseTypes.filter(v => v.name.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10));
+  formatterExpenseType = (x: { name: string }) => `${x.name}`;
 
 }
