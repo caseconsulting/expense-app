@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
 import { ErrorService } from '../error/error.service';
 import { NgbDateStruct, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import * as _ from 'lodash';
 
 // These constants are used for checking the date range in the ng-bootstrap calendar
 const equals = (one: NgbDateStruct, two: NgbDateStruct) =>
@@ -65,6 +66,8 @@ export class DashboardComponent implements OnInit {
     }
 
   }
+
+
 
   // ng-bootstrap calendar booleans
   isHovered = date => this.fromDate && !this.toDate && this.hoveredDate && after(date, this.fromDate) && before(date, this.hoveredDate);

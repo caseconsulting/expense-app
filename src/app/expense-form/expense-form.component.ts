@@ -26,7 +26,7 @@ export class ExpenseFormComponent implements OnInit {
   employee: Employee;
   expense: Expense;
   expenseTypes: ExpenseType[];
-  selectedExpenseType: string;
+  selectedExpenseType: ExpenseType;
   title = '';
   employees: Employee[];
 
@@ -87,12 +87,15 @@ export class ExpenseFormComponent implements OnInit {
     let result;
     this.model.receipt = 'N/A';
     this.model.userId = this.employee.id;
+    this.model.expenseTypeId = this.selectedExpenseType.id;
     this.model.purchaseDate = this.dateToString(this.model.purchaseDate);
     if (this.model.reimbursedDate) {
       this.model.reimbursedDate = this.dateToString(this.model.reimbursedDate);
     } else {
       this.model.reimbursedDate = 'not assigned';
     }
+    console.log(this.selectedExpenseType)
+
     if (this.title === 'Create') {
       result = this.expenseService.createExpense(this.model);
     } else {
@@ -138,10 +141,6 @@ export class ExpenseFormComponent implements OnInit {
     } else {
       this.router.navigate(['/expenses']); // list
     }
-  }
-  setExpenseType() {
-    this.model.expenseTypeId = this.selectedExpenseType;
-    console.log(this.selectedExpenseType);
   }
 
   searchEmployee = (text$: Observable<string>) =>

@@ -8,6 +8,7 @@ import { ExpRoutingModule, routableComponents } from './routing.module';
 // 3rd party
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbdDatepickerPopupComponent } from './datepicker/datepicker.component';
+import * as _ from 'lodash';
 
 // Local Components
 import { AppComponent } from './app.component';
@@ -28,8 +29,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ExpenseFormComponent } from './expense-form/expense-form.component';
 
 // Services
-import { EmployeeService} from './employee/employee.service';
-import { ExpenseTypeService} from './expense-type/expense-type.service';
+import { EmployeeService } from './employee/employee.service';
+import { ExpenseTypeService } from './expense-type/expense-type.service';
 import { UpdateListService } from './update-list.service';
 import { ErrorService } from './error/error.service';
 import { ExpenseService } from './expense/expense.service';
@@ -64,7 +65,8 @@ import { ExpenseCardComponent } from './expense-card/expense-card.component'
     HttpModule,
     FormsModule,
     NgbModule.forRoot(),
-    ExpRoutingModule
+    ExpRoutingModule,
+    _
   ],
   providers: [EmployeeService,
     ExpenseTypeService,
