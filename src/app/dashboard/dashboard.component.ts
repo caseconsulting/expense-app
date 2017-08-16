@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { ErrorService } from '../error/error.service';
 import { NgbDateStruct, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import * as _ from 'lodash';
+import { Observable } from 'rxjs/Observable';
 
 // These constants are used for checking the date range in the ng-bootstrap calendar
 const equals = (one: NgbDateStruct, two: NgbDateStruct) =>
@@ -29,7 +30,10 @@ const after = (one: NgbDateStruct, two: NgbDateStruct) =>
 export class DashboardComponent implements OnInit {
   expenses: Expense[];
   expensesInRange: any[];
-
+  employee: Employee;
+  employees: Employee[];
+  expenseType: ExpenseType;
+  expenseTypes: ExpenseType[];
   // ng-bootstrap calendar
   hoveredDate: NgbDateStruct;
   fromDate: NgbDateStruct;
@@ -38,6 +42,7 @@ export class DashboardComponent implements OnInit {
   constructor(
     private employeeService: EmployeeService,
     private expenseService: ExpenseService,
+    private expenseTypeService: ExpenseTypeService,
     private updateListService: UpdateListService,
     private router: Router,
     private errorService: ErrorService,
@@ -50,8 +55,11 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getExpenses();
+    this.getAllInformation();
+
   }
+
+
 
   // ng-bootstrap calendar function for handling date changes
   onDateChange(date: NgbDateStruct) {
@@ -66,8 +74,6 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-
-
   // ng-bootstrap calendar booleans
   isHovered = date => this.fromDate && !this.toDate && this.hoveredDate && after(date, this.fromDate) && before(date, this.hoveredDate);
   isInside = date => this.fromDate && after(date, this.fromDate) && before(date, this.toDate) && this.toDate;
@@ -80,22 +86,64 @@ export class DashboardComponent implements OnInit {
   * store in expensesInRange[]
   */
   getExpensesWithinRange() {
-    const tempArr = [{}];
-    this.expensesInRange = _.filter(this.expenses, obj =>
+
+    const dateFilter = _.filter(this.expenses, obj =>
       ((this.isFrom(this.formatter.parse(obj.purchaseDate))
         || this.isTo(this.formatter.parse(obj.purchaseDate))
         || this.isInside(this.formatter.parse(obj.purchaseDate)))));
+    this.expensesInRange = _.intersection(dateFilter, this.expensesInRange);
+    console.log('***', this.expensesInRange);
   }
 
-
+  getEmployeeRange() {
+    if (this.employee.id) {
+      const tempArr = this.expenses;
+      const employeesExpenses = _.filter(tempArr, obj => obj.userId === this.employee.id);
+      this.expensesInRange = _.intersection(employeesExpenses, this.expensesInRange);
+      console.log('***', this.expensesInRange);
+    }
+  }
 
   getExpenses() {
     this.expenseService.getExpenses()
       .subscribe(
-      expenses => this.expenses = expenses,
+      expenses => {
+        this.expenses = expenses;
+        this.expensesInRange = expenses;
+        console.log(this.expensesInRange)
+      },
       error => this.errorService.announceError({ status: error, type: 'Expense' })
       );
   }
+
+  getEmployees() {
+    this.employeeService.getEmployees()
+      .subscribe(
+      returnedEmployees => this.employees = returnedEmployees,
+      error => this.errorService.announceError({ status: error, type: 'Employee' })
+      );
+  }
+
+  getExpenseType() {
+    this.expenseTypeService.getExpenseTypes()
+      .subscribe(
+      returnedExpenseType => this.expenseType = returnedExpenseType,
+      error => this.errorService.announceError({ status: error, type: 'Expense Type' })
+      );
+  }
+
+  getAllInformation() {
+    this.getExpenses();
+    this.getEmployees();
+    this.getExpenseType();
+  }
+
+  searchEmployee = (text$: Observable<string>) =>
+    text$
+      .debounceTime(200)
+      .map(term => term === '' ? []
+        : this.employees.filter(v => v.firstName.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10));
+  formatterEmployee = (x: { firstName: string, lastName: string }) => `${x.firstName} ${x.lastName}`;
 
 
 

@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-12">
+  <div class="col-8">
     <ngb-datepicker #dp ngModel (ngModelChange)="onDateChange($event)" [displayMonths]="3" [dayTemplate]="t">
     </ngb-datepicker>
 
@@ -9,6 +9,16 @@
       </span>
     </ng-template>
     <hr />
+  </div>
+  <div class="col-4">
+    <div class="form-group">
+      <ng-template #rte let-r="result" let-t="termEmployee">
+        {{r.firstName}} {{r.lastName}}
+      </ng-template>
+
+      <label for="typeahead-template">Search for a employees:</label>
+      <input id="typeahead-template" type="text" class="form-control" [(ngModel)]="employee" [ngbTypeahead]="searchEmployee" [resultTemplate]="rte" [inputFormatter]="formatterEmployee" name="employee" (ngModelChange)="getEmployeeRange()" />
+    </div>
   </div>
   <div class="card-columns col-12">
     <exp-expense-card *ngFor="let expense of expensesInRange" [model]="expense"></exp-expense-card>
