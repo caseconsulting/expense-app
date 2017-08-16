@@ -52,7 +52,7 @@ export class ExpenseFormComponent implements OnInit {
             this.retrieveExpenseData(this.id);
           } else {
             // create new expense
-            this.model = new Expense('', '', '', 0, '', '', '', '', '');
+            this.model = new Expense('', '', '', 0, '', '', '', '', '', '');
             this.title = 'Create';
           }
         },
@@ -84,6 +84,8 @@ export class ExpenseFormComponent implements OnInit {
   }
 
   onSubmit(expense: Expense) {
+    const today = new Date();
+    this.model.createdAt = today.toISOString().substring(0, 10);
     let result;
     this.model.receipt = 'N/A';
     this.model.userId = this.employee.id;

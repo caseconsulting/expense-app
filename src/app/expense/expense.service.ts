@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Http, Response, RequestOptions, Headers } from '@angular/http';
+import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 
@@ -16,7 +16,8 @@ export class Expense {
     public note: string,
     public receipt: string,
     public expenseTypeId: string,
-    public userId: string
+    public userId: string,
+    public createdAt: string
   ) { }
 }
 
