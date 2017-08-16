@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ErrorService } from '../error/error.service';
 import { Subscription } from 'rxjs/Subscription';
-import _ from 'lodash';
+
 @Component({
   selector: 'exp-error',
   templateUrl: './error.component.html',

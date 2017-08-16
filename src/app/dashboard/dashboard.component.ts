@@ -64,7 +64,6 @@ export class DashboardComponent implements OnInit {
       this.toDate = null;
       this.fromDate = date;
     }
-
   }
 
 
@@ -81,20 +80,14 @@ export class DashboardComponent implements OnInit {
   * store in expensesInRange[]
   */
   getExpensesWithinRange() {
-    let expenseDateStruct: NgbDateStruct;
     const tempArr = [{}];
-
-    for (let i = 0; i < this.expenses.length; i++) {
-      expenseDateStruct = this.formatter.parse(this.expenses[i].purchaseDate);
-      if (this.isFrom(expenseDateStruct)
-        || this.isTo(expenseDateStruct)
-        || this.isInside(expenseDateStruct)) {
-        tempArr.push(this.expenses[i]);
-      }
-    }
-    this.expensesInRange = tempArr.splice(1, tempArr.length - 1);
-    console.log(this.expensesInRange);
+    this.expensesInRange = _.filter(this.expenses, obj =>
+      ((this.isFrom(this.formatter.parse(obj.purchaseDate))
+        || this.isTo(this.formatter.parse(obj.purchaseDate))
+        || this.isInside(this.formatter.parse(obj.purchaseDate)))));
   }
+
+
 
   getExpenses() {
     this.expenseService.getExpenses()

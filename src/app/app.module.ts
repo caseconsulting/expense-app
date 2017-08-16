@@ -8,7 +8,6 @@ import { ExpRoutingModule, routableComponents } from './routing.module';
 // 3rd party
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbdDatepickerPopupComponent } from './datepicker/datepicker.component';
-import * as _ from 'lodash';
 
 // Local Components
 import { AppComponent } from './app.component';
@@ -66,7 +65,6 @@ import { ExpenseCardComponent } from './expense-card/expense-card.component'
     FormsModule,
     NgbModule.forRoot(),
     ExpRoutingModule,
-    _
   ],
   providers: [EmployeeService,
     ExpenseTypeService,
