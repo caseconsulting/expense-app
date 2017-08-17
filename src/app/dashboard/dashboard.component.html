@@ -40,6 +40,8 @@
   <div class="col-4">
     <exp-expense-totals *ngIf="expensesInRange" [criteriaArray]="expensesInRange"></exp-expense-totals>
   </div>
+</div>
+<div class="row">
   <div class="card-columns col-12 ">
     <exp-expense-card *ngFor="let expense of expensesInRange " [model]="expense "></exp-expense-card>
   </div>
