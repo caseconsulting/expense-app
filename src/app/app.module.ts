@@ -34,7 +34,8 @@ import { UpdateListService } from './update-list.service';
 import { ErrorService } from './error/error.service';
 import { ExpenseService } from './expense/expense.service';
 import { HelpComponent } from './help/help.component';
-import { ExpenseCardComponent } from './expense-card/expense-card.component'
+import { ExpenseCardComponent } from './expense-card/expense-card.component';
+import { ExpenseTotalsComponent } from './expense-totals/expense-totals.component'
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { ExpenseCardComponent } from './expense-card/expense-card.component'
     ExpenseFormComponent,
     HelpComponent,
     ExpenseCardComponent,
+    ExpenseTotalsComponent,
   ],
   imports: [
     BrowserModule,

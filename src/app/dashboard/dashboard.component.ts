@@ -70,8 +70,6 @@ export class DashboardComponent implements OnInit, DoCheck {
     }
   }
 
-
-
   // ng-bootstrap calendar function for handling date changes
   onDateChange(date: NgbDateStruct) {
     if (!this.fromDate && !this.toDate) {

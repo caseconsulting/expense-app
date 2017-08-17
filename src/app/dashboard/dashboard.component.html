@@ -35,6 +35,10 @@
         <span class="slider round"></span>
       </label>
     </div>
+
+  </div>
+  <div class="col-4">
+    <exp-expense-totals *ngIf="expensesInRange" [criteriaArray]="expensesInRange"></exp-expense-totals>
   </div>
   <div class="card-columns col-12 ">
     <exp-expense-card *ngFor="let expense of expensesInRange " [model]="expense "></exp-expense-card>
