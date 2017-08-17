@@ -54,7 +54,7 @@ export class DashboardComponent implements OnInit, DoCheck {
     // To set the initial date range on the calendar
     // this.fromDate = calendar.getToday();
     // this.toDate = getNetxt(calendar.getToday(), 'd', 10;
-    this.displayUnreimbursed = true;
+    this.displayUnreimbursed = false;
     this.initialView = true;
   }
 
@@ -64,7 +64,7 @@ export class DashboardComponent implements OnInit, DoCheck {
 
   ngDoCheck() {
 
-    if (this.displayUnreimbursed && this.expenses && this.initialView === true) {
+    if (!this.displayUnreimbursed && this.expenses && this.initialView === true) {
       this.refilter();
       this.initialView = false;
     }
@@ -135,7 +135,7 @@ export class DashboardComponent implements OnInit, DoCheck {
 
   getUnreimbursedRange() {
     console.log('Im working')
-    if (this.displayUnreimbursed === true) {
+    if (!this.displayUnreimbursed) {
       let unreimbursedFilter = this.expenses;
       unreimbursedFilter = _.filter(unreimbursedFilter, obj => {
 

@@ -71,3 +71,10 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+h3 {
+  font-family: 'Quicksand', sans-serif;
+  color: #38424D;
+  text-transform: uppercase;
+
+}
