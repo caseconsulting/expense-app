@@ -5,9 +5,17 @@
 
       <div class="form-group">
         <label for="name">Name <span>*</span></label>
-        <input placeholder="Parking ticket..." type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name" #name="ngModel">
+        <input placeholder="Category" type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name" #name="ngModel">
         <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
           A name is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="Description">Description <span>*</span></label>
+        <textarea placeholder="A brief description so employees know what this category of expenses will be used for" rows="4" class="form-control" id="description" required [(ngModel)]="model.description" name="description" #description="ngModel"> </textarea>
+        <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+          A description is required
         </div>
       </div>
 

@@ -3,7 +3,11 @@
     <h2 class="col-11">{{ model.name }}</h2>
     <button class="close" routerLink='/expense-types'><i class="fa fa-times"></i></button>
   </div>
-  <br>
+  <hr />
+  <div class="row">
+    <div class="col-3">Description: </div>
+    <div class="col-8"> {{ model.description }} </div>
+  </div>
   <div class="row">
     <div class="col-3"> Budget:</div>
     <div class="col-3"> {{ model.budget | currency:'USD':true:'1.2-2' }} </div>

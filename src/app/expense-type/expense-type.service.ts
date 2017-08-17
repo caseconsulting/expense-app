@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Http, Response, RequestOptions, Headers } from '@angular/http';
+import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 
@@ -20,6 +20,7 @@ export class ExpenseType {
     public name: string,
     public budget: number,
     public overdraftFlag: boolean,
+    public description: string
   ) { }
 }
 

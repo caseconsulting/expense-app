@@ -28,8 +28,10 @@ export class ExpenseTypePreviewComponent implements OnInit {
         .do(id => this.id = id)
         .subscribe(id => this.expenseTypeService.readSingleExpenseType(this.id)
           .subscribe(
-          returnedExpenseType =>
-            this.model = returnedExpenseType,
+          returnedExpenseType => {
+            console.log(returnedExpenseType);
+            this.model = returnedExpenseType;
+          },
           error => this.errorService.announceError({ status: error, type: 'ExpenseType' })
           ));
     }

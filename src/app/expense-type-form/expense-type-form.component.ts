@@ -41,7 +41,7 @@ export class ExpenseTypeFormComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private errorService: ErrorService,
-  ) {  }
+  ) { }
 
   ngOnInit() {
     console.log(this.expenseType, '**');
@@ -62,7 +62,7 @@ export class ExpenseTypeFormComponent implements OnInit {
               },
               error => this.errorService.announceError(error))
           } else {
-            this.model = new ExpenseType('', '', 0, false);
+            this.model = new ExpenseType('', '', 0, false, '');
             this.title = 'Create';
           }
         });
@@ -70,11 +70,11 @@ export class ExpenseTypeFormComponent implements OnInit {
   }
 
   goBack(): void {
-     if (this.title === 'Update') {
-       this.router.navigate(['/expense-types', this.model.id]); // preview
-     } else {
-       this.router.navigate(['//expense-types']); // list
-     }
+    if (this.title === 'Update') {
+      this.router.navigate(['/expense-types', this.model.id]); // preview
+    } else {
+      this.router.navigate(['//expense-types']); // list
+    }
   }
 
   // keep this last
