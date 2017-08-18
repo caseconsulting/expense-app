@@ -3,8 +3,7 @@
   border-radius: 0;
   height: 100vh;
   background-color: #BDBDBD;
-  padding-left: 0;
-  padding-right: 0;
+
 }
 
 
@@ -15,7 +14,7 @@ i {
 li
 {
   outline: none;
-  padding-right: 10%;
+  /*padding-right: 10%;*/
   padding-top: 25px;
   padding-bottom: 25px;
   transition: background-color 0.5s ease;
