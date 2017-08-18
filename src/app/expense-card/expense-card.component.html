@@ -1,41 +1,27 @@
 <div class="card animated fadeIn">
-  <!-- <div class="col-12 header-content card-block"> -->
+
   <h5 class="card-header">{{ model.description }}</h5>
-  <!-- </div> -->
-  <div class="row body-content card-block">
-    <div class="row body-item" *ngIf="expenseType">
-      <div class="col-12">
-        <h6 class="card-subtitle mb-2">Category</h6>
-      </div>
-      <div class="col-12">
-        <p class="card-text">{{expenseType.name}}</p>
-      </div>
-    </div>
-    <div class="row body-item" *ngIf="expenseType">
-      <div class="col-12">
-        <h6 class="card-subtitle mb-2">Cost</h6>
-      </div>
-      <div class="col-12">
-        <span class="card-text">{{ model.cost | currency:'USD':true:'1.2-2' }} of {{ expenseType.budget | currency:'USD':true:'1.2-2' }}</span>
-      </div>
-    </div>
-    <div class="row body-item" *ngIf="employee">
-      <div class="col-12">
-        <h6 class="card-subtitle mb-2">Employee</h6>
-      </div>
-      <div class="col-12">
-        <span class="card-text">{{employee.firstName}} {{employee.lastName}}</span>
-      </div>
-    </div>
-    <div class="row body-item">
-      <div class="col-12">
-        <h6 class="card-subtitle mb-2">Purchase Date</h6>
-      </div>
-      <div class="col-12">
-        <span class="card-text">{{model.purchaseDate | date}}</span>
-      </div>
-    </div>
-  </div>
+
+  <table class="table table-sm">
+    <tbody>
+      <tr>
+        <th scope="row">Category</th>
+        <td>{{expenseType.name}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Cost</th>
+        <td>{{ model.cost | currency:'USD':true:'1.2-2' }} of {{ expenseType.budget | currency:'USD':true:'1.2-2' }}</td>
+      </tr>
+      <tr>
+        <th scope="row">Employee</th>
+        <td>{{employee.firstName}} {{employee.lastName}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Purchase Date</th>
+        <td>{{model.purchaseDate | date}}</td>
+      </tr>
+    </tbody>
+  </table>
   <div class="form-group text-center">
     <label class="custom-control custom-checkbox">
         <input id="reimbursed" type="checkbox" class="custom-control-input" name="reimbursed" [(ngModel)]="reimburseFlag" (ngModelChange)="updateDate(model)">
