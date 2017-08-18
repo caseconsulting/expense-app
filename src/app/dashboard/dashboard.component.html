@@ -29,6 +29,10 @@
         <input id="typeahead-template" type="text" class="form-control" [(ngModel)]="expenseType" [ngbTypeahead]="searchExpenseType" [resultTemplate]="rtet" [inputFormatter]="formatterExpenseType" name="expenseType" (ngModelChange)="refilter()" />
       </div>
 
+      <div class="form-group">
+        <button id="create-btn" (click)="this.fromDate = null; this.toDate = null; this.refilter();" class="btn btn-outline-warning">CLEAR DATE SELECTION</button>
+      </div>
+
       <label>Reimbursed</label>
       <div class="form-group">
         <label class="switch">
