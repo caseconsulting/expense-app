@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-4">
+  <div class="col-4 col-sm">
     <ngb-datepicker #dp ngModel (ngModelChange)="onDateChange($event)" [displayMonths]="2" [dayTemplate]="t">
     </ngb-datepicker>
 
@@ -9,7 +9,7 @@
       </span>
     </ng-template>
   </div>
-  <div class="col-4">
+  <div class="col-4 col-sm">
     <div class=" form-group ">
       <ng-template #rte let-r="result " let-t="termEmployee ">
         {{r.firstName}} {{r.lastName}}
@@ -37,7 +37,7 @@
     </div>
 
   </div>
-  <div class="col-4">
+  <div class="col-4 col-sm">
     <h3>Expense Totals</h3>
     <hr />
     <exp-expense-totals *ngIf="expensesInRange" [criteriaArray]="expensesInRange"></exp-expense-totals>
