@@ -1,2 +1,4 @@
-<td>
-  {{expenseTypeName}}</td>
+<h4>Expense Totals</h4>
+<div *ngFor="let expenseType of expenseTypes ">
+  <h5>{{expenseType.name}}: {{expenseType.total | currency:'USD':true:'1.2-2' }} of {{expenseType.budget | currency:'USD':true:'1.2-2'}}</h5>
+</div>

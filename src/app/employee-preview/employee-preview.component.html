@@ -3,16 +3,22 @@
     <h2 class="col-11">{{ model.firstName }} {{ model.middleName }} {{ model.lastName }}</h2>
     <button class="close" routerLink='/employees'><i class="fa fa-times"></i></button>
   </div>
-  <br />
+  <hr />
+
+  <div class="row">
+    <div class="col-12">
+      <exp-expense-preview-table-element *ngIf="expenses" [criteriaArray]="expenses">Loading...</exp-expense-preview-table-element>
+    </div>
+  </div>
+  <hr />
   <div class="row entry">
     <div class="col-3"> Hire Date: </div>
     <div class="col-3"> {{ model.hireDate | date:'MM/dd/y' }} </div>
   </div>
   <div class="row entry">
-    <div class="col-3"> Employee ID:</div>
-    <div class="col-3"> {{ model.empId }} </div>
+    <div class="col-4"> Employee ID:</div>
+    <div class="col-4"> {{ model.empId }} </div>
   </div>
-
   <div class="row">
     <table class="table table-bordered">
       <thead>

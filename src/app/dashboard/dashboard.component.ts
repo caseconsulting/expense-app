@@ -101,10 +101,8 @@ export class DashboardComponent implements OnInit, DoCheck {
         ((this.isFrom(this.formatter.parse(obj.purchaseDate))
           || this.isTo(this.formatter.parse(obj.purchaseDate))
           || this.isInside(this.formatter.parse(obj.purchaseDate)))));
-      console.log('dateFilter', dateFilter)
       return dateFilter;
     } else {
-      console.log('dateFilter: everything')
       return this.expenses;
     }
   }
@@ -113,10 +111,8 @@ export class DashboardComponent implements OnInit, DoCheck {
     if (this.employee) {
       let employeeFilter = this.expenses;
       employeeFilter = _.filter(employeeFilter, obj => obj.userId === this.employee.id);
-      console.log('employee', employeeFilter);
       return employeeFilter;
     } else {
-      console.log('employeeFilter: everything')
       return this.expenses
     }
   }
@@ -125,16 +121,13 @@ export class DashboardComponent implements OnInit, DoCheck {
     if (this.expenseType) {
       let expenseTypeFilter = this.expenses;
       expenseTypeFilter = _.filter(expenseTypeFilter, obj => obj.expenseTypeId === this.expenseType.id);
-      console.log('expenseType', expenseTypeFilter);
       return expenseTypeFilter;
     } else {
-      console.log('expt: everything')
       return this.expenses
     }
   }
 
   getUnreimbursedRange() {
-    console.log('Im working')
     if (!this.displayUnreimbursed) {
       let unreimbursedFilter = this.expenses;
       unreimbursedFilter = _.filter(unreimbursedFilter, obj => {
@@ -142,10 +135,10 @@ export class DashboardComponent implements OnInit, DoCheck {
         return _.isEqual(obj.reimbursedDate, 'not assigned');
       }
       );
-      console.log('reimburseFlag:', unreimbursedFilter);
+
       return unreimbursedFilter;
     } else {
-      console.log('reimburse: everything');
+
       return this.expenses
     }
   }
@@ -164,7 +157,6 @@ export class DashboardComponent implements OnInit, DoCheck {
   refilter() {
     this.expensesInRange = _.intersection(
       this.getEmployeeRange(), this.getDateRange(), this.getExpenseTypeRange(), this.getUnreimbursedRange());
-    console.log('result: ', this.expensesInRange);
 
   }
   getEmployees() {

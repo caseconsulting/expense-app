@@ -45,7 +45,6 @@ export class ExpenseTotalsComponent implements OnChanges {
           expenseType.total += expense.cost;
         }
       });
-      console.log(expenseType);
     });
   }
 
