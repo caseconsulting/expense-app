@@ -2,7 +2,7 @@
 <div class="row">
   <div class="col-4">
     <h1>Employees</h1>
-    <button id="create-btn" (click)="this.selectedEmployee = null" [routerLink]="['create']" class="btn btn-secondary"><i class="fa fa-user-plus fa-2x"></i></button>
+    <button id="create-btn" (click)="this.selectedEmployee = null" [routerLink]="['create']" class="btn btn-outline-success"><i class="fa fa-plus fa-1x"></i> EMPLOYEE</button>
     <ul class="list-group">
       <li class="list-group-item text-center" [routerLink]="['/employees', employee.id]" [class.selected]="employee === selectedEmployee" *ngFor="let employee of employees" (click)="selectedEmployee = employee">
         {{ employee.firstName }} {{ employee.middleName }} {{ employee.lastName }}

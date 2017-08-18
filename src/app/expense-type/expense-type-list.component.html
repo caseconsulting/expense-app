@@ -2,7 +2,7 @@
 <div class="row">
   <div class="col-4">
     <h1>Expense Types</h1>
-    <button id="create-btn" (click)="this.selectedEmployee = null" [routerLink]="['create']" class="btn btn-secondary"><i class="fa fa-user-plus fa-2x"></i></button>
+    <button id="create-btn" (click)="this.selectedEmployee = null" [routerLink]="['create']" class="btn btn-outline-success"><i class="fa fa-plus fa-1x"></i> EXPENSE TYPE</button>
     <ul class="list-group">
       <li class="list-group-item text-center" [routerLink]="['/expense-types', expenseType.id]" [class.selected]="expenseType === selectedExpenseType" *ngFor="let expenseType of expenseTypes" (click)="selectedExpenseType = expenseType">
         {{ expenseType.name }}
