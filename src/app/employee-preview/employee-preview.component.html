@@ -12,6 +12,31 @@
     <div class="col-3"> Employee ID:</div>
     <div class="col-3"> {{ model.empId }} </div>
   </div>
+
+  <div class="row">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Cost</th>
+          <th>Reimbursed</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let expense of expenses">
+          <td scope="row">{{expense.description}}</td>
+          <td>{{expense.cost | currency:'USD':true:'1.2-2'}}</td>
+          <td *ngIf="expense.reimbursedDate === 'not assigned'">
+            <i class="text-danger fa fa-times"></i>
+          </td>
+          <td *ngIf="expense.reimbursedDate !== 'not assigned'">
+            <i class="text-success fa fa-check"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
   <br />
   <button type="submit" class="btn btn-secondary" [routerLink]="['/employees/', model.id,'update']">Edit</button>
   <exp-delete-confirm [modelToDelete]="model"></exp-delete-confirm>

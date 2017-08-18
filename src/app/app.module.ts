@@ -35,7 +35,8 @@ import { ErrorService } from './error/error.service';
 import { ExpenseService } from './expense/expense.service';
 import { HelpComponent } from './help/help.component';
 import { ExpenseCardComponent } from './expense-card/expense-card.component';
-import { ExpenseTotalsComponent } from './expense-totals/expense-totals.component'
+import { ExpenseTotalsComponent } from './expense-totals/expense-totals.component';
+import { ExpensePreviewTableElementComponent } from './expense-preview-table-element/expense-preview-table-element.component'
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { ExpenseTotalsComponent } from './expense-totals/expense-totals.componen
     HelpComponent,
     ExpenseCardComponent,
     ExpenseTotalsComponent,
+    ExpensePreviewTableElementComponent,
   ],
   imports: [
     BrowserModule,
