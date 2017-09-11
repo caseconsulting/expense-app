@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { ExpenseType, ExpenseTypeService } from '../expense-type/expense-type.service';
+import { Expense } from '../expense/expense.service';
 import { ErrorService } from '../error/error.service';
 import * as _ from 'lodash';
 @Component({
@@ -40,7 +41,7 @@ export class ExpensePreviewTableElementComponent implements OnChanges {
   calculatePerBudget() {
     // O(n^2) lol
     _.forEach(this.expenseTypes, (expenseType) => {
-      _.forEach(this.criteriaArray, (expense) => {
+      _.forEach(this.criteriaArray, (expense: Expense) => {
         if (expense.expenseTypeId === expenseType.type) {
           expenseType.total += expense.cost;
         }
