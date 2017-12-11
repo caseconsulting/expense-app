@@ -100,7 +100,7 @@ export class DashboardComponent implements OnInit, DoCheck {
       dateFilter = _.filter(this.expenses, obj =>
         ((this.isFrom(this.formatter.parse(obj.purchaseDate))
           || this.isTo(this.formatter.parse(obj.purchaseDate))
-          || this.isInside(this.formatter.parse(obj.purchaseDate)))));
+          || !!this.isInside(this.formatter.parse(obj.purchaseDate)))));
       return dateFilter;
     } else {
       return this.expenses;
