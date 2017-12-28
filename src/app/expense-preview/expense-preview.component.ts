@@ -47,7 +47,7 @@ export class ExpensePreviewComponent implements OnInit {
   getExpenseTypeName() {
     this.expenseTypeService.readSingleExpenseType(this.model.expenseTypeId)
       .subscribe(
-      returnedExpenseType => this.expenseTypeName = returnedExpenseType.name,
+      returnedExpenseType => this.expenseTypeName = returnedExpenseType.budgetName,
       error => this.errorService.announceError({ status: error, type: 'Expense Type' })
       );
   }

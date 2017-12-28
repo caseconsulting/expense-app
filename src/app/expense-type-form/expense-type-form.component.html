@@ -4,10 +4,10 @@
     <form #expenseTypeForm="ngForm">
 
       <div class="form-group">
-        <label for="name">Name <span>*</span></label>
-        <input placeholder="Category" type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name" #name="ngModel">
+        <label for="budgetName">Budget Name <span>*</span></label>
+        <input placeholder="Category" type="text" class="form-control" id="name" required [(ngModel)]="model.budgetName" name="name" #name="ngModel">
         <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
-          A name is required
+          A budget name is required
         </div>
       </div>
 
@@ -20,7 +20,7 @@
       </div>
 
       <div class="form-group">
-        <label for="name">Budget <span>*</span></label>
+        <label for="Budget">Budget <span>*</span></label>
         <div class="input-group">
           <div class="input-group-addon">$</div>
           <input placeholder="12345678" type="number" min="0" step="1" class="form-control" id="budget" required [(ngModel)]="model.budget" name="budget" #budget="ngModel">

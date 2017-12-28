@@ -5,7 +5,7 @@
     <button id="create-btn" (click)="this.selectedEmployee = null" [routerLink]="['create']" class="btn btn-outline-success"><i class="fa fa-plus fa-1x"></i> EXPENSE TYPE</button>
     <ul class="list-group">
       <li class="list-group-item text-center" [routerLink]="['/expense-types', expenseType.id]" [class.selected]="expenseType === selectedExpenseType" *ngFor="let expenseType of expenseTypes" (click)="selectedExpenseType = expenseType">
-        {{ expenseType.name }}
+        {{ expenseType.budgetName }}
       </li>
     </ul>
   </div>

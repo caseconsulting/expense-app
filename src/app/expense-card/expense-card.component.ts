@@ -32,6 +32,7 @@ export class ExpenseCardComponent implements OnInit {
     }
     this.getExpenseType();
     this.getEmployee();
+    //https://angular-2-training-book.rangle.io/handout/http/requests_as_promises.html
   }
   updateDate(val: any) {
     let update;
@@ -52,6 +53,7 @@ export class ExpenseCardComponent implements OnInit {
   }
 
   getExpenseType() {
+    console.log(this.model.expenseTypeId);
     this.expenseTypeService.readSingleExpenseType(this.model.expenseTypeId)
       .subscribe(
       returnedExpenseType => this.expenseType = returnedExpenseType,
@@ -59,6 +61,7 @@ export class ExpenseCardComponent implements OnInit {
       );
   }
   getEmployee() {
+    console.log(this.model.userId);
     this.employeeService.readSingleEmployee(this.model.userId)
       .subscribe(
       returnedEmployee => this.employee = returnedEmployee,

@@ -156,7 +156,7 @@ export class ExpenseFormComponent implements OnInit {
     text$
       .debounceTime(200)
       .map(term => term === '' ? []
-        : this.expenseTypes.filter(v => v.name.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10));
-  formatterExpenseType = (x: { name: string }) => `${x.name}`;
+        : this.expenseTypes.filter(v => v.budgetName.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10));
+  formatterExpenseType = (x: { budgetName: string }) => `${x.budgetName}`;
 
 }

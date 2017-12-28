@@ -17,7 +17,7 @@ const expenseTypeRoute = 'http://localhost:3000/expense-types/';
 export class ExpenseType {
   constructor(
     public id: string,
-    public name: string,
+    public budgetName: string,
     public budget: number,
     public overdraftFlag: boolean,
     public description: string
@@ -51,6 +51,7 @@ export class ExpenseTypeService {
     return this.http
       .get(expenseTypeRoute + id)
       .map((response: Response) => <ExpenseType>response.json())
+      .do(data => console.log('recieving ', data))
       .catch(this.handleError);
 
   }
