@@ -74,6 +74,11 @@ export class ExpenseFormComponent implements OnInit {
         this.model = returnedExpense;
         this.model.purchaseDate = this.dateStringToObject(this.model.purchaseDate);
         this.model.reimbursedDate = this.dateStringToObject(this.model.reimbursedDate);
+        this.expenseTypeService.readSingleExpenseType(this.model.expenseTypeId)
+          .subscribe(
+          returnedExpenseType => this.selectedExpenseType = returnedExpenseType,
+          error => this.errorService.announceError({ status: error, type: 'ExpenseType' })
+          );
         this.employeeService.readSingleEmployee(this.model.userId)
           .subscribe(
           returnedEmployee => this.employee = returnedEmployee,

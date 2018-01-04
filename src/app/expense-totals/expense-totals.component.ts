@@ -23,13 +23,13 @@ export class ExpenseTotalsComponent implements OnChanges {
   }
 
   findBudgets() {
-    let expenseTypeArray = [{ type: '', total: 0, name: '' }];
+    let expenseTypeArray = [{ type: '', total: 0, budgetName: '' }];
     // TODO convert to lodash for each function
     for (let i = 0; i < this.criteriaArray.length; i++) {
       const tempObj = {
         type: this.criteriaArray[i].expenseTypeId,
         total: 0,
-        name: ''
+        budgetName: ''
       };
       expenseTypeArray.push(tempObj);
     }
@@ -53,7 +53,7 @@ export class ExpenseTotalsComponent implements OnChanges {
     _.forEach(this.expenseTypes, (expenseType) => {
       this.expenseTypeService.readSingleExpenseType(expenseType.type)
         .subscribe(
-        returnedExpenseType => expenseType.name = returnedExpenseType.name,
+        returnedExpenseType => expenseType.budgetName = returnedExpenseType.budgetName,
         error => this.errorService.announceError({ status: error, type: 'Expense Type' })
         );
 

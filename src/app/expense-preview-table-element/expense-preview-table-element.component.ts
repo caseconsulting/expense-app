@@ -54,7 +54,7 @@ export class ExpensePreviewTableElementComponent implements OnChanges {
       this.expenseTypeService.readSingleExpenseType(expenseType.type)
         .subscribe(
         returnedExpenseType => {
-          expenseType.name = returnedExpenseType.name;
+          expenseType.budgetName = returnedExpenseType.budgetName;
           expenseType.budget = returnedExpenseType.budget;
         },
         error => this.errorService.announceError({ status: error, type: 'Expense Type' })

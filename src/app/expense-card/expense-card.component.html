@@ -1,4 +1,4 @@
-<div class="card animated fadeIn">
+<div *ngIf="employee && expenseType" class="card animated fadeIn">
 
   <h5 class="card-header">{{ model.description }}</h5>
 
@@ -6,11 +6,12 @@
     <tbody>
       <tr>
         <th scope="row">Category</th>
-        <td>{{expenseType.name}}</td>
+        <td>{{expenseType.budgetName}}</td>
       </tr>
       <tr>
         <th scope="row">Cost</th>
-        <td>{{ model.cost | currency:'USD':true:'1.2-2' }} of {{ expenseType.budget | currency:'USD':true:'1.2-2' }}</td>
+        <td>{{ model.cost | currency:'USD':true:'1.2-2' }} of {{ expenseType.budget | currency:'USD':true:'1.2-2' }}
+        </td>
       </tr>
       <tr>
         <th scope="row">Employee</th>

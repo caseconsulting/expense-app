@@ -1,8 +1,8 @@
 ul{
   cursor: pointer;
   }
-li{
-font-family: 'Quicksand', sans-serif;
+li {
+  font-family: 'Quicksand', sans-serif;
   outline: none;
   border-radius: 0 !important;
   border: 0;
@@ -11,6 +11,7 @@ font-family: 'Quicksand', sans-serif;
   border-bottom-width: thin;
   border-bottom-color: #bdbdbd;
   margin-bottom: 0;
+  background-color: #fcfcfc;
 }
 li:hover {
   outline: none;
