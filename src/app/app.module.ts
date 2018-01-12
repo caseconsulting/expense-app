@@ -26,6 +26,8 @@ import { ExpenseListComponent } from './expense/expense-list.component';
 import { ExpensePreviewComponent } from './expense-preview/expense-preview.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ExpenseFormComponent } from './expense-form/expense-form.component';
+import { AuthService } from './auth/auth.service';
+import { CallbackComponent } from './callback/callback.component';
 
 // Services
 import { EmployeeService } from './employee/employee.service';
@@ -62,6 +64,7 @@ import { ExpensePreviewTableElementComponent } from './expense-preview-table-ele
     ExpenseCardComponent,
     ExpenseTotalsComponent,
     ExpensePreviewTableElementComponent,
+    CallbackComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +77,8 @@ import { ExpensePreviewTableElementComponent } from './expense-preview-table-ele
     ExpenseTypeService,
     UpdateListService,
     ErrorService,
-    ExpenseService],
+    ExpenseService,
+    AuthService],
 
   bootstrap: [AppComponent]
 })

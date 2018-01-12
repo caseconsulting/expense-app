@@ -1,25 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'exp-header',
-
-  template: `<h1 class="text-center animated slideDown"><span>{{specialE}}</span>{{title}}</h1>`,
-
-  styles: [
-    `h1 {
-    font-family: 'Quicksand', sans-serif;
-    font-weight: bold;
-    font-size: 48px;
-    color: #38424D;
-    padding-top: 1%;
-    padding-bottom: 2%;
-  }
-    span {
-      color: #68CAA6;
-    }`]
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
   specialE = '€';
   title = 'XPENSE APP';
+  constructor(public auth: AuthService) {
 
+  }
 }

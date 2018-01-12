@@ -14,6 +14,7 @@ import { ExpensePreviewComponent } from './expense-preview/expense-preview.compo
 import { ExpenseFormComponent } from './expense-form/expense-form.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HelpComponent } from './help/help.component';
+import { CallbackComponent } from './callback/callback.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
@@ -40,7 +41,10 @@ const routes: Routes = [
       { path: ':id/update', component: EmployeeFormCreateComponent },
     ]
   },
-  { path: 'help', component: HelpComponent }
+  { path: 'help', component: HelpComponent },
+  { path: 'callback', component: CallbackComponent },
+  { path: '**', redirectTo: 'dashboard' }
+
   // { path: '**', pathMatch: 'full', component: PageNotFoundComponent }
 ];
 

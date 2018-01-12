@@ -1,6 +1,23 @@
-<!--The whole content below can be removed with the new code.-->
+<div class="logged-out container-fluid" *ngIf="!auth.isAuthenticated()">
+  <exp-header>
+  </exp-header>
+  <div class="mx-auto" style="width: 175px;">
 
-<div class="container-fluid" style="padding-left:0;">
+
+    <button class="btn btn-primary btn-margin" routerLink="/">
+          Home
+      </button>
+
+    <button id="qsLoginBtn" class="btn btn-primary btn-margin" *ngIf="!auth.isAuthenticated()" (click)="auth.login()">
+          Log In
+      </button>
+
+
+  </div>
+</div>
+
+
+<div class="logged-in container-fluid" *ngIf="auth.isAuthenticated()" style="padding-left:0;">
   <div class="row">
 
     <div class="col-1">
